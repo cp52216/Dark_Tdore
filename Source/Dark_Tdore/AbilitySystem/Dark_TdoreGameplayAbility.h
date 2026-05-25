@@ -6,6 +6,8 @@
 #include "Dark_TdoreAbilitySystemComponent.h"
 #include "Dark_TdoreGameplayAbility.generated.h"
 
+class UDark_TdoreAbilityCost;
+
 /**
  * UDark_TdoreGameplayAbility — 技能基类
  *
@@ -54,6 +56,8 @@ public:
 
 	//~UGameplayAbility 接口覆写
 	virtual bool CanActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayTagContainer* SourceTags = nullptr, const FGameplayTagContainer* TargetTags = nullptr, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;
+	virtual bool CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;
+	virtual void ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const override;
 	virtual void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 	virtual void OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
@@ -97,4 +101,8 @@ protected:
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Ability Activation")
 	EDark_TdoreAbilityActivationGroup ActivationGroup = EDark_TdoreAbilityActivationGroup::Independent;
+
+	/** 技能额外消耗列表（参考 Lyra AdditionalCosts） */
+	UPROPERTY(EditDefaultsOnly, Instanced, Category = Costs)
+	TArray<TObjectPtr<UDark_TdoreAbilityCost>> AdditionalCosts;
 };

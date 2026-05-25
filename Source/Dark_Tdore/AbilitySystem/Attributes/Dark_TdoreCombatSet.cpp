@@ -8,6 +8,8 @@
 UDark_TdoreCombatSet::UDark_TdoreCombatSet()
 	: BaseDamage(0.0f)
 	, BaseHeal(0.0f)
+	, Mana(100.0f)
+	, MaxMana(100.0f)
 {
 }
 
@@ -17,6 +19,8 @@ void UDark_TdoreCombatSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 
 	DOREPLIFETIME_CONDITION_NOTIFY(UDark_TdoreCombatSet, BaseDamage, COND_OwnerOnly, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UDark_TdoreCombatSet, BaseHeal, COND_OwnerOnly, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UDark_TdoreCombatSet, Mana, COND_OwnerOnly, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UDark_TdoreCombatSet, MaxMana, COND_OwnerOnly, REPNOTIFY_Always);
 }
 
 void UDark_TdoreCombatSet::OnRep_BaseDamage(const FGameplayAttributeData& OldValue)
@@ -27,4 +31,14 @@ void UDark_TdoreCombatSet::OnRep_BaseDamage(const FGameplayAttributeData& OldVal
 void UDark_TdoreCombatSet::OnRep_BaseHeal(const FGameplayAttributeData& OldValue)
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UDark_TdoreCombatSet, BaseHeal, OldValue);
+}
+
+void UDark_TdoreCombatSet::OnRep_Mana(const FGameplayAttributeData& OldValue)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UDark_TdoreCombatSet, Mana, OldValue);
+}
+
+void UDark_TdoreCombatSet::OnRep_MaxMana(const FGameplayAttributeData& OldValue)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UDark_TdoreCombatSet, MaxMana, OldValue);
 }

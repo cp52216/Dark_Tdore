@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Dark_TdoreGameplayAbility.h"
+#include "Abilities/Dark_TdoreAbilityCost.h"
 #include "Dark_TdoreLogChannels.h"
 
 // ============ 构造 ============
@@ -55,6 +56,48 @@ bool UDark_TdoreGameplayAbility::CanActivateAbility(const FGameplayAbilitySpecHa
 	}
 
 	return Super::CanActivateAbility(Handle, ActorInfo, SourceTags, TargetTags, OptionalRelevantTags);
+}
+
+// 参考 Lyra ULyraGameplayAbility::CheckCost
+// 先调用父类（检查引擎内置 CostGE/CooldownGE），再遍历 AdditionalCosts
+bool UDark_TdoreGameplayAbility::CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, FGameplayTagContainer* OptionalRelevantTags) const
+{
+	if (!Super::CheckCost(Handle, ActorInfo, OptionalRelevantTags) || !ActorInfo)
+	{
+		return false;
+	}
+
+	for (const TObjectPtr<UDark_TdoreAbilityCost>& Cost : AdditionalCosts)
+	{
+		if (Cost && !Cost->CheckCost(this, Handle, ActorInfo, OptionalRelevantTags))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// 参考 Lyra ULyraGameplayAbility::ApplyCost
+// 先调用父类，然后遍历 AdditionalCosts 逐个扣除
+void UDark_TdoreGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const
+{
+	Super::ApplyCost(Handle, ActorInfo, ActivationInfo);
+	check(ActorInfo);
+
+	for (const TObjectPtr<UDark_TdoreAbilityCost>& Cost : AdditionalCosts)
+	{
+		if (Cost)
+		{
+			// 命中才扣除的消耗（如弹药）
+			if (Cost->ShouldOnlyApplyCostOnHit())
+			{
+				// TODO: 需要 DetermineIfAbilityHitTarget — 接入 Targeting 后实现
+				continue;
+			}
+			Cost->ApplyCost(this, Handle, ActorInfo, ActivationInfo);
+		}
+	}
 }
 
 void UDark_TdoreGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)

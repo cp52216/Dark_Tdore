@@ -31,6 +31,8 @@ public:
 
 	ATTRIBUTE_ACCESSORS(UDark_TdoreCombatSet, BaseDamage);
 	ATTRIBUTE_ACCESSORS(UDark_TdoreCombatSet, BaseHeal);
+	ATTRIBUTE_ACCESSORS(UDark_TdoreCombatSet, Mana);
+	ATTRIBUTE_ACCESSORS(UDark_TdoreCombatSet, MaxMana);
 
 protected:
 	UFUNCTION()
@@ -38,6 +40,12 @@ protected:
 
 	UFUNCTION()
 	void OnRep_BaseHeal(const FGameplayAttributeData& OldValue);
+
+	UFUNCTION()
+	void OnRep_Mana(const FGameplayAttributeData& OldValue);
+
+	UFUNCTION()
+	void OnRep_MaxMana(const FGameplayAttributeData& OldValue);
 
 private:
 	/** 基础伤害值（ExecutionCalculation 读取此值计算最终伤害） */
@@ -47,4 +55,12 @@ private:
 	/** 基础治疗值 */
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_BaseHeal, Category = "DarkTdore|Combat", Meta = (AllowPrivateAccess = true))
 	FGameplayAttributeData BaseHeal;
+
+	/** 当前法力值（技能消耗） */
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Mana, Category = "DarkTdore|Combat", Meta = (AllowPrivateAccess = true))
+	FGameplayAttributeData Mana;
+
+	/** 最大法力值 */
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMana, Category = "DarkTdore|Combat", Meta = (AllowPrivateAccess = true))
+	FGameplayAttributeData MaxMana;
 };

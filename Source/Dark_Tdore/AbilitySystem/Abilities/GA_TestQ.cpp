@@ -24,6 +24,15 @@ UGA_TestQ::UGA_TestQ()
 
 void UGA_TestQ::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
+	// 参考 Lyra：CommitAbility 触发 ApplyCost（扣除法力/耐力等）
+	// 如果 Commit 失败（资源不足），立即结束技能
+	if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+	{
+		UE_LOG(LogDark_TdoreGAS, Warning, TEXT("GA_TestQ CommitAbility 失败，技能取消"));
+		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+		return;
+	}
+
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
 	// ===== 控制台日志：打印完整激活信息 =====
