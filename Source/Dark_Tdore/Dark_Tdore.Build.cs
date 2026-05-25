@@ -40,5 +40,9 @@ public class Dark_Tdore : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+
+		// Iris 网络序列化：FDark_TdoreGameplayEffectContext 需要
+		// UE_NET_IMPLEMENT_FORWARDING_NETSERIALIZER 宏依赖 IrisCore 模块
+		SetupIrisSupport(Target);
 	}
 }
