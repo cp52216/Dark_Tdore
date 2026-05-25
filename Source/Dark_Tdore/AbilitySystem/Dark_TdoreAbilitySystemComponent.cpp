@@ -1,7 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Dark_TdoreAbilitySystemComponent.h"
+#include "Dark_TdoreAbilityTagRelationshipMapping.h"
 #include "Dark_TdoreGameplayAbility.h"
+#include "Dark_TdoreGameplayEffectContext.h"
 #include "Dark_TdoreLogChannels.h"
 #include "GameplayTagContainer.h"
 
@@ -20,6 +22,15 @@ UDark_TdoreAbilitySystemComponent::UDark_TdoreAbilitySystemComponent(const FObje
 void UDark_TdoreAbilitySystemComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+}
+
+// ============ EffectContext 工厂 ============
+
+FGameplayEffectContextHandle UDark_TdoreAbilitySystemComponent::MakeEffectContext() const
+{
+	// 返回扩展的 EffectContext，使 ExecutionCalculation 可以访问 CartridgeID 等扩展数据
+	FDark_TdoreGameplayEffectContext* Context = new FDark_TdoreGameplayEffectContext();
+	return FGameplayEffectContextHandle(Context);
 }
 
 // ============ 输入路由（参考 Lyra 模式） ============
@@ -233,4 +244,52 @@ void UDark_TdoreAbilitySystemComponent::NotifyAbilityEnded(FGameplayAbilitySpecH
 	}
 
 	UE_LOG(LogDark_TdoreGAS, Log, TEXT("技能已结束: %s（取消: %d）"), *GetNameSafe(Ability), bWasCancelled);
+}
+
+// ============ 技能标签关系映射（TagRelationshipMapping）============
+// 参考 Lyra ULyraAbilitySystemComponent
+
+// 覆写 ApplyAbilityBlockAndCancelTags：在引擎默认的 Block/Cancel 逻辑之前，
+// 通过 TagRelationshipMapping 扩展需要 Block 和 Cancel 的标签。
+// 例如：轻攻击激活时，Mapping 中配置了 "Action.Attack.Light → Cancel: Action.Move.Dash"
+//       则所有拥有 Action.Move.Dash 标签的闪避技能将被自动取消。
+void UDark_TdoreAbilitySystemComponent::ApplyAbilityBlockAndCancelTags(
+	const FGameplayTagContainer& AbilityTags, UGameplayAbility* RequestingAbility,
+	bool bEnableBlockTags, const FGameplayTagContainer& BlockTags,
+	bool bExecuteCancelTags, const FGameplayTagContainer& CancelTags)
+{
+	// 复制原始标签，后续通过 Mapping 扩展
+	FGameplayTagContainer ModifiedBlockTags = BlockTags;
+	FGameplayTagContainer ModifiedCancelTags = CancelTags;
+
+	if (TagRelationshipMapping)
+	{
+		// 通过 Mapping 表查询 → 将配置的 Block/Cancel 关系注入
+		TagRelationshipMapping->GetAbilityTagsToBlockAndCancel(AbilityTags, &ModifiedBlockTags, &ModifiedCancelTags);
+	}
+
+	// 调用父类，使用扩展后的 Block/Cancel 标签
+	Super::ApplyAbilityBlockAndCancelTags(AbilityTags, RequestingAbility,
+		bEnableBlockTags, ModifiedBlockTags, bExecuteCancelTags, ModifiedCancelTags);
+}
+
+// 根据技能标签集合，从 Mapping 中查询额外的激活必要/阻止条件。
+// 在技能激活前由引擎内部调用，将 Mapping 配置的条件合并到 ActivationRequiredTags / ActivationBlockedTags。
+void UDark_TdoreAbilitySystemComponent::GetAdditionalActivationTagRequirements(
+	const FGameplayTagContainer& AbilityTags,
+	FGameplayTagContainer& OutActivationRequired,
+	FGameplayTagContainer& OutActivationBlocked) const
+{
+	if (TagRelationshipMapping)
+	{
+		TagRelationshipMapping->GetRequiredAndBlockedActivationTags(AbilityTags, &OutActivationRequired, &OutActivationBlocked);
+	}
+}
+
+// 设置标签关系映射表（通常在 PawnData/ASC 初始化时调用）
+// 传入 nullptr 会清除映射
+void UDark_TdoreAbilitySystemComponent::SetTagRelationshipMapping(
+	UDark_TdoreAbilityTagRelationshipMapping* NewMapping)
+{
+	TagRelationshipMapping = NewMapping;
 }

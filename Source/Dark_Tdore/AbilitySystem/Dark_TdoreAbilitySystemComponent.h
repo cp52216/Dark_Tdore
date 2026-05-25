@@ -7,6 +7,7 @@
 
 // 前置声明
 class UDark_TdoreGameplayAbility;
+class UDark_TdoreAbilityTagRelationshipMapping;
 
 /**
  * EDark_TdoreAbilityActivationPolicy — 技能激活策略
@@ -66,6 +67,8 @@ enum class EDark_TdoreAbilityActivationGroup : uint8
  *   - 输入路由：通过 GameplayTag 将按键输入路由到对应技能
  *   - 输入缓冲：每帧处理缓冲的按键输入（ProcessAbilityInput）
  *   - 激活组管理：支持 Independent / Exclusive 互斥模式
+ *   - TagRelationMapping：DataAsset 驱动的技能 Block/Cancel 关系表
+ *   - 扩展 EffectContext：自定义 FDark_TdoreGameplayEffectContext
  *   - OnSpawn 技能：角色生成时自动激活标记为 OnSpawn 的技能
  *   - 动态标签效果：通过 GameplayEffect 动态添加/移除 GameplayTag
  *
@@ -87,6 +90,10 @@ public:
 
 	//~UActorComponent 接口
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	//~UAbilitySystemComponent 接口 — EffectContext 工厂
+	/** 覆写 MakeEffectContext 以返回扩展的 FDark_TdoreGameplayEffectContext */
+	virtual FGameplayEffectContextHandle MakeEffectContext() const override;
 
 	// ============ 输入路由（从 Character 输入处理器调用） ============
 
@@ -121,6 +128,16 @@ public:
 	/** 尝试激活所有激活策略为 OnSpawn 的技能（角色生成后调用） */
 	void TryActivateAbilitiesOnSpawn();
 
+	// ============ 技能标签关系映射（TagRelationshipMapping）============
+	// 参考 Lyra ULyraAbilitySystemComponent 的同名方法
+
+	/** 设置标签关系映射表（通常在 PawnData/ASC 初始化时调用） */
+	void SetTagRelationshipMapping(UDark_TdoreAbilityTagRelationshipMapping* NewMapping);
+
+	/** 根据技能标签查询额外的必要/阻止激活条件（技能激活前隐式调用） */
+	void GetAdditionalActivationTagRequirements(const FGameplayTagContainer& AbilityTags,
+		FGameplayTagContainer& OutActivationRequired, FGameplayTagContainer& OutActivationBlocked) const;
+
 	// ============ 动态标签效果 ============
 
 	/** 通过 GameplayEffect 动态添加 GameplayTag */
@@ -140,6 +157,11 @@ protected:
 	// 引擎回调：技能结束时触发（用于激活组计数 -1）
 	virtual void NotifyAbilityEnded(FGameplayAbilitySpecHandle Handle, UGameplayAbility* Ability, bool bWasCancelled) override;
 
+	// 引擎回调：应用 Block/Cancel 标签时 — 通过 TagRelationshipMapping 扩展
+	virtual void ApplyAbilityBlockAndCancelTags(const FGameplayTagContainer& AbilityTags, UGameplayAbility* RequestingAbility,
+		bool bEnableBlockTags, const FGameplayTagContainer& BlockTags,
+		bool bExecuteCancelTags, const FGameplayTagContainer& CancelTags) override;
+
 protected:
 	/** 本帧按下输入的技能句柄列表 */
 	TArray<FGameplayAbilitySpecHandle> InputPressedSpecHandles;
@@ -152,4 +174,8 @@ protected:
 
 	/** 每个激活组中当前活跃的技能数量（用于互斥判断） */
 	int32 ActivationGroupCounts[static_cast<uint8>(EDark_TdoreAbilityActivationGroup::MAX)];
+
+	/** 技能标签关系映射表（DataAsset 驱动，查询 Block/Cancel/Required/Blocked 关系） */
+	UPROPERTY()
+	TObjectPtr<UDark_TdoreAbilityTagRelationshipMapping> TagRelationshipMapping;
 };

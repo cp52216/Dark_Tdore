@@ -54,6 +54,9 @@ public:
 	/** 初始化 ASC，将 Pawn 设为 Avatar */
 	void InitializeAbilitySystem(UDark_TdoreAbilitySystemComponent* InASC, AActor* InOwnerActor);
 
+	/** 设置 TagRelationshipMapping — 在 PawnData 中配置后，初始化 ASC 时调用此方法 */
+	void SetTagRelationshipMapping(UDark_TdoreAbilityTagRelationshipMapping* NewMapping);
+
 	/** 解除 ASC 的 Avatar 关联 */
 	void UninitializeAbilitySystem();
 

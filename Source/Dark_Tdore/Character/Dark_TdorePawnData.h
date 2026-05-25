@@ -7,6 +7,7 @@
 #include "Dark_TdorePawnData.generated.h"
 
 class UDark_TdoreAbilitySet;
+class UDark_TdoreAbilityTagRelationshipMapping;
 class UDark_TdoreCameraMode;
 class UDark_TdoreInputConfig;
 
@@ -35,6 +36,10 @@ public:
 	/** 技能集合（GA/GE/AttributeSet） */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
 	TArray<TObjectPtr<UDark_TdoreAbilitySet>> AbilitySets;
+
+	/** 技能标签关系映射表（配置技能之间的 Block/Cancel 关系） */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
+	TObjectPtr<UDark_TdoreAbilityTagRelationshipMapping> TagRelationshipMapping;
 
 	/** 默认摄像机模式（第三人称等） */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera")

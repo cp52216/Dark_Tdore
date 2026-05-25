@@ -3,6 +3,7 @@
 #include "Dark_TdorePawnExtensionComponent.h"
 
 #include "AbilitySystem/Dark_TdoreAbilitySystemComponent.h"
+#include "AbilitySystem/Dark_TdoreAbilityTagRelationshipMapping.h"
 #include "AbilitySystem/Dark_TdoreLogChannels.h"
 #include "Components/GameFrameworkComponentManager.h"
 #include "GameFramework/Controller.h"
@@ -112,6 +113,17 @@ void UDark_TdorePawnExtensionComponent::InitializeAbilitySystem(UDark_TdoreAbili
 
 	// 广播 ASC 初始化完成 — 其他组件监听此委托进行各自的子初始化
 	OnAbilitySystemInitialized.Broadcast();
+}
+
+// 在 ASC 初始化完成后调用，将蓝图配置的 TagRelationshipMapping DataAsset 设置到 ASC。
+// 此后技能激活/Block/Cancel 时 ASC 会自动查询此映射表，扩展 Block 和 Cancel 标签。
+// 参考 Lyra：LyraPawnExtensionComponent::InitializeAbilitySystem 中同样调用 SetTagRelationshipMapping
+void UDark_TdorePawnExtensionComponent::SetTagRelationshipMapping(UDark_TdoreAbilityTagRelationshipMapping* NewMapping)
+{
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->SetTagRelationshipMapping(NewMapping);
+	}
 }
 
 // 解除 ASC 的 Avatar 关联

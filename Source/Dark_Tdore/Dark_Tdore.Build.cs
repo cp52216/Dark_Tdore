@@ -28,7 +28,9 @@ public class Dark_Tdore : ModuleRules
 		PublicIncludePaths.AddRange(new string[] {
 			"Dark_Tdore",
 			"Dark_Tdore/AbilitySystem",
-			"Dark_Tdore/AbilitySystem/Abilities"
+			"Dark_Tdore/AbilitySystem/Abilities",
+			"Dark_Tdore/AbilitySystem/Attributes",
+			"Dark_Tdore/AbilitySystem/Executions"
 		});
 
 		// Uncomment if you are using Slate UI
