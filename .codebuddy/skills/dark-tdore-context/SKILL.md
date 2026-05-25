@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-05-25
+> **最后更新**: 2026-05-25 11:40 (增量: 其他文件)
 
 ---
 
@@ -64,27 +64,24 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成，每次 commit 时刷新
+> 自动生成于 2026-05-25 11:40
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
-| Abilities | - | 蓝图资产 | - |
-| Blueprints | - | 蓝图资产 | - |
-| Characters | 128 | .uasset | - |
-| Collections | - | 收藏集 | - |
-| Developers | - | 开发者内容 | - |
-| Input | 11 | .uasset | - |
-| LevelPrototyping | 29 | .uasset | - |
-| ShuangDao | 186 | .uasset(185), .umap(1) | - |
-| System | - | 系统配置资产 | - |
-| ThirdPerson | - | 第三人称模板 | - |
-| Variant_Combat | 31 | .uasset(30), .umap(1) | - |
-| Variant_Platforming | 11 | .uasset(10), .umap(1) | - |
-| Variant_SideScrolling | 19 | .uasset(18), .umap(1) | - |
-| WuDang_Montage | 371 | .uasset(370), .umap(1) | - |
-| __ExternalActors__ | 556 | .uasset | (引擎管理) |
-| __ExternalObjects__ | 42 | .uasset | (引擎管理) |
-
+| Abilities | 5 | .uasset(5) | - |
+| Blueprints | 0 | - | - |
+| Characters | 128 | .uasset(128) | Mannequins |
+| Collections | 0 | - | - |
+| Developers | 0 | - | dell |
+| Input | 11 | .uasset(11) | Actions, Touch |
+| LevelPrototyping | 29 | .uasset(29) | Interactable, Materials, Meshes, Textures |
+| ShuangDao | 186 | .uasset(185), .umap(1) | AdvancedAsset, Animation, Maps, Materials, mesh, Particles, Textures |
+| System | 2 | .uasset(2) | - |
+| ThirdPerson | 8 | .uasset(7), .umap(1) | Camera |
+| Variant_Combat | 31 | .uasset(30), .umap(1) | Anims, Blueprints, Input, Materials, UI, VFX |
+| Variant_Platforming | 11 | .uasset(10), .umap(1) | Anims, Blueprints, Input, VFX |
+| Variant_SideScrolling | 19 | .uasset(18), .umap(1) | Anims, Blueprints, Input, UI |
+| WuDang_Montage | 371 | .uasset(370), .umap(1) | AdvancedAsset, Animation, demo, FBX, Maps |
 ## 三、核心类继承关系
 
 ```
@@ -294,3 +291,11 @@ git commit (任何代码变更, 含 revert 回退)
 
 ### 防递归
 自动提交信息包含 `[skill-auto]` 标记，Hook 检测到此标记自动跳过，防止无限循环。
+
+
+---
+
+## 自动更新日志
+
+- **2026-05-25 11:40**: 增量更新 (其他文件)
+  - Other: .codebuddy/skills/dark-tdore-context/SKILL.md, .codebuddy/skills/dark-tdore-context/update-skill.py
