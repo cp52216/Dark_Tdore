@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "monolith": {
+      "type": "sse",
+      "url": "http://localhost:9316/mcp",
+      "disabled": false
+    }
+  }
+}

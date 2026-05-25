@@ -1,0 +1,43 @@
+# Unreal Engine 5 - Generated Files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+*.sln.DotSettings.user
+
+# VS Code / CodeBuddy
+.vs/
+.vscode/
+*.VC.db
+*.VC.VC.opendb
+
+# JetBrains
+.idea/
+
+# Content - ignore cooked/test content (keep source assets)
+# Content/ is tracked by default, uncomment if needed:
+# Content/Developers/
+
+# Plugins - ignore binaries and intermediate
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+
+# Build
+Build/
+*.suo
+*.user
+*.sln.docstates
+*.pidb
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+*.dSYM.zip
+*.dSYM
