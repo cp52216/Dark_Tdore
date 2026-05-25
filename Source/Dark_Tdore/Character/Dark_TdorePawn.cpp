@@ -6,6 +6,7 @@
 #include "Dark_TdorePawnExtensionComponent.h"
 #include "AbilitySystem/Dark_TdoreAbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/Dark_TdoreHealthSet.h"
+#include "AbilitySystem/Attributes/Dark_TdoreCombatSet.h"
 #include "AbilitySystem/Dark_TdoreAbilitySet.h"
 #include "AbilitySystem/Dark_TdoreLogChannels.h"
 #include "Components/GameFrameworkComponentManager.h"
@@ -59,6 +60,7 @@ void ADark_TdorePawn::SetupAbilitySystem()
 	if (!PawnExtComponent) return;
 
 	// 如果子类未在构造中创建 ASC，在此延迟创建（适用于蓝图子类）
+	// 参考 Lyra ALyraCharacterWithAbilities：同时创建 HealthSet 和 CombatSet
 	if (!AbilitySystemComponent)
 	{
 		AbilitySystemComponent = NewObject<UDark_TdoreAbilitySystemComponent>(this, TEXT("AbilitySystemComponent"));
@@ -67,6 +69,7 @@ void ADark_TdorePawn::SetupAbilitySystem()
 		AbilitySystemComponent->RegisterComponent();
 
 		HealthSet = NewObject<UDark_TdoreHealthSet>(this, TEXT("HealthSet"));
+		CombatSet = NewObject<UDark_TdoreCombatSet>(this, TEXT("CombatSet"));
 	}
 
 	PawnExtComponent->InitializeAbilitySystem(Cast<UDark_TdoreAbilitySystemComponent>(AbilitySystemComponent), this);

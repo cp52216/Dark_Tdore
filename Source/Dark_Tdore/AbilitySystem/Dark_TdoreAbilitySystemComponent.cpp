@@ -3,7 +3,6 @@
 #include "Dark_TdoreAbilitySystemComponent.h"
 #include "Dark_TdoreAbilityTagRelationshipMapping.h"
 #include "Dark_TdoreGameplayAbility.h"
-#include "Dark_TdoreGameplayEffectContext.h"
 #include "Dark_TdoreLogChannels.h"
 #include "GameplayTagContainer.h"
 
@@ -22,15 +21,6 @@ UDark_TdoreAbilitySystemComponent::UDark_TdoreAbilitySystemComponent(const FObje
 void UDark_TdoreAbilitySystemComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
-}
-
-// ============ EffectContext 工厂 ============
-
-FGameplayEffectContextHandle UDark_TdoreAbilitySystemComponent::MakeEffectContext() const
-{
-	// 返回扩展的 EffectContext，使 ExecutionCalculation 可以访问 CartridgeID 等扩展数据
-	FDark_TdoreGameplayEffectContext* Context = new FDark_TdoreGameplayEffectContext();
-	return FGameplayEffectContextHandle(Context);
 }
 
 // ============ 输入路由（参考 Lyra 模式） ============

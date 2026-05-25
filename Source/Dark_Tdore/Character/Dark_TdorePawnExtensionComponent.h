@@ -11,6 +11,7 @@ namespace EEndPlayReason { enum Type : int; }
 
 class UGameFrameworkComponentManager;
 class UDark_TdoreAbilitySystemComponent;
+class UDark_TdoreAbilityTagRelationshipMapping;
 struct FActorInitStateChangedParams;
 struct FGameplayTag;
 

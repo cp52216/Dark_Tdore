@@ -12,7 +12,7 @@
 
 struct FDamageStatics
 {
-	// 从攻击者（Source）捕获 BaseDamage — 即 "我出了多少伤害"
+	// 从攻击者（Source）捕获 BaseDamage
 	FGameplayEffectAttributeCaptureDefinition BaseDamageDef;
 
 	FDamageStatics()
@@ -38,7 +38,7 @@ UDark_TdoreDamageExecution::UDark_TdoreDamageExecution()
 	RelevantAttributesToCapture.Add(DamageStatics().BaseDamageDef);
 }
 
-// ============ 执行伤害计算 ============
+// ============ 执行伤害计算（参照 Lyra ULyraDamageExecution） ============
 
 void UDark_TdoreDamageExecution::Execute_Implementation(
 	const FGameplayEffectCustomExecutionParameters& ExecutionParams,
@@ -47,7 +47,6 @@ void UDark_TdoreDamageExecution::Execute_Implementation(
 #if WITH_SERVER_CODE
 	const FGameplayEffectSpec& Spec = ExecutionParams.GetOwningSpec();
 
-	// 提取我们的扩展 EffectContext
 	FDark_TdoreGameplayEffectContext* TypedContext = FDark_TdoreGameplayEffectContext::ExtractEffectContext(Spec.GetContext());
 	check(TypedContext);
 
@@ -58,14 +57,8 @@ void UDark_TdoreDamageExecution::Execute_Implementation(
 	EvaluateParameters.SourceTags = SourceTags;
 	EvaluateParameters.TargetTags = TargetTags;
 
-	// ===== Step 1: 获取攻击者的基础伤害 =====
 	float BaseDamage = 0.0f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().BaseDamageDef, EvaluateParameters, BaseDamage);
-
-	UE_LOG(LogDark_TdoreGAS, Log,
-		TEXT("[DamageExecution] Source.BaseDamage = %.1f | 攻击者: %s"),
-		BaseDamage,
-		*GetNameSafe(TypedContext->GetEffectCauser()));
 
 	// ===== Step 2: 伤害衰减计算（距离衰减/物理材质衰减）=====
 	const AActor* EffectCauser = TypedContext->GetEffectCauser();

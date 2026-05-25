@@ -9,6 +9,7 @@
 
 class UDark_TdoreAbilitySystemComponent;
 class UDark_TdoreHealthSet;
+class UDark_TdoreCombatSet;
 class UDark_TdoreAbilitySet;
 class UDark_TdoreHealthComponent;
 class UDark_TdorePawnExtensionComponent;
@@ -61,6 +62,10 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UDark_TdoreHealthSet> HealthSet;
+
+	/** CombatSet — 战斗属性（BaseDamage/BaseHeal），ExecutionCalculation 读取 */
+	UPROPERTY()
+	TObjectPtr<UDark_TdoreCombatSet> CombatSet;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
 	UDark_TdoreHealthComponent* HealthComponent;

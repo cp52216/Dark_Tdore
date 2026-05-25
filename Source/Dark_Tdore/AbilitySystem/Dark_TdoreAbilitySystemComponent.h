@@ -91,10 +91,6 @@ public:
 	//~UActorComponent 接口
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-	//~UAbilitySystemComponent 接口 — EffectContext 工厂
-	/** 覆写 MakeEffectContext 以返回扩展的 FDark_TdoreGameplayEffectContext */
-	virtual FGameplayEffectContextHandle MakeEffectContext() const override;
-
 	// ============ 输入路由（从 Character 输入处理器调用） ============
 
 	/** 按键按下：通过 GameplayTag 路由，将匹配的技能加入按下队列 */
