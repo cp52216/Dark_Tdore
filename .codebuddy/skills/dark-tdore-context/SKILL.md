@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-05-25 15:11 (增量: 7 .h + 6 .cpp + 1 .cs)
+> **最后更新**: 2026-05-25 17:50 (增量: 4 .h + 4 .cpp + 4 Content + 1 .ini + 1 Docs)
 
 ---
 
@@ -64,11 +64,11 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-05-25 15:11
+> 自动生成于 2026-05-25 17:50
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
-| Abilities | 5 | .uasset(5) | - |
+| Abilities | 6 | .uasset(6) | - |
 | Blueprints | 0 | - | - |
 | Characters | 128 | .uasset(128) | Mannequins |
 | Collections | 0 | - | - |
@@ -303,6 +303,12 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
+- **ActivationGroup**: `Independent` / `Exclusive_Replaceable` / `Exclusive_Blocking`
+- **蓝图事件**: `K2_OnAbilityAdded()` / `K2_OnAbilityRemoved()` / `K2_OnPawnAvatarSet()`
+- **`UDark_TdoreHealthComponent`**: 监听 `HealthSet` 属性变化
+- **Build.cs 公共依赖**: Core, CoreUObject, Engine, InputCore, EnhancedInput, GameplayAbilities, GameplayTags, GameplayTasks, ModularGameplay, ModularGameplayActors, UMG, Slate
+- **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
+- **2026-05-25 11:40**: 增量更新 (其他文件)
 - **输入路由**: `AbilityInputTagPressed(Tag)` / `AbilityInputTagReleased(Tag)` / `ProcessAbilityInput()` / `ClearAbilityInput()`
 - **激活组管理**: `IsActivationGroupBlocked()` / `AddAbilityToActivationGroup()` / `RemoveAbilityFromActivationGroup()` / `CancelActivationGroupAbilities()`
 - **OnSpawn 技能**: `TryActivateAbilitiesOnSpawn()`
@@ -316,9 +322,11 @@ git commit (任何代码变更, 含 revert 回退)
 - **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
 - **2026-05-25 11:40**: 增量更新 (其他文件)
 - **2026-05-25 15:11**: 增量更新 (7 .h + 6 .cpp + 1 .cs)
-  - Source/.h: Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.h, Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilityTagRelationshipMapping.h, Source/Dark_Tdore/AbilitySystem/Dark_TdoreGameplayEffectContext.h, Source/Dark_Tdore/AbilitySystem/Executions/Dark_TdoreDamageExecution.h, Source/Dark_Tdore/AbilitySystem/Executions/Dark_TdoreHealExecution.h, Source/Dark_Tdore/Character/Dark_TdorePawnData.h, Source/Dark_Tdore/Character/Dark_TdorePawnExtensionComponent.h
-  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.cpp, Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilityTagRelationshipMapping.cpp, Source/Dark_Tdore/AbilitySystem/Dark_TdoreGameplayEffectContext.cpp, Source/Dark_Tdore/AbilitySystem/Executions/Dark_TdoreDamageExecution.cpp, Source/Dark_Tdore/AbilitySystem/Executions/Dark_TdoreHealExecution.cpp, Source/Dark_Tdore/Character/Dark_TdorePawnExtensionComponent.cpp
-  - Source/.cs: Source/Dark_Tdore/Dark_Tdore.Build.cs
-  - 类变更 [AbilitySystem]: EDark_TdoreAbilityActivationPolicy, EDark_TdoreAbilityActivationGroup, UDark_TdoreAbilitySystemComponent, UDark_TdoreAbilityTagRelationshipMapping, UPackageMap
-  - 类变更 [Executions]: UDark_TdoreDamageExecution, UDark_TdoreHealExecution
-  - 类变更 [Character]: UDark_TdorePawnData, UDark_TdorePawnExtensionComponent
+- **2026-05-25 17:50**: 增量更新 (4 .h + 4 .cpp + 4 Content + 1 .ini + 1 Docs)
+  - Source/.h: Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.h, Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemGlobals.h, Source/Dark_Tdore/Character/Dark_TdorePawn.h, Source/Dark_Tdore/Character/Dark_TdorePawnExtensionComponent.h
+  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.cpp, Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemGlobals.cpp, Source/Dark_Tdore/AbilitySystem/Executions/Dark_TdoreDamageExecution.cpp, Source/Dark_Tdore/Character/Dark_TdorePawn.cpp
+  - Content: Content/Abilities/DA_DefaultAbilitySet.uasset, Content/Abilities/GE_BaseDamage_20.uasset, Content/Abilities/GE_Damage_20.uasset, Content/ThirdPerson/BP_ThirdPersonCharacter.uasset
+  - Config/.ini: Config/DefaultGame.ini
+  - Docs: Docs/GAS_System_Guide.md
+  - 类变更 [AbilitySystem]: EDark_TdoreAbilityActivationPolicy, EDark_TdoreAbilityActivationGroup, UDark_TdoreAbilitySystemComponent, UDark_TdoreAbilitySystemGlobals
+  - 类变更 [Character]: ADark_TdorePawn, UDark_TdorePawnExtensionComponent
