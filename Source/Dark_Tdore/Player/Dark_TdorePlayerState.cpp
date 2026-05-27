@@ -8,6 +8,7 @@
 #include "AbilitySystem/Dark_TdoreAbilitySet.h"
 #include "AbilitySystem/Dark_TdoreLogChannels.h"
 #include "Character/Dark_TdorePawnData.h"
+#include "Net/UnrealNetwork.h"
 
 ADark_TdorePlayerState::ADark_TdorePlayerState(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -19,6 +20,8 @@ ADark_TdorePlayerState::ADark_TdorePlayerState(const FObjectInitializer& ObjectI
 	HealthSet = CreateDefaultSubobject<UDark_TdoreHealthSet>(TEXT("HealthSet"));
 	CombatSet = CreateDefaultSubobject<UDark_TdoreCombatSet>(TEXT("CombatSet"));
 	SetNetUpdateFrequency(100.0f);
+
+	MyTeamID = FGenericTeamId::NoTeam;
 }
 
 UAbilitySystemComponent* ADark_TdorePlayerState::GetAbilitySystemComponent() const
@@ -61,4 +64,47 @@ void ADark_TdorePlayerState::GrantAbilitySets()
 	}
 
 	UE_LOG(LogDark_TdoreGAS, Log, TEXT("PawnData 通过 %d 个 AbilitySet 授予技能"), PawnData->AbilitySets.Num());
+}
+
+// ============ 阵营系统（IDark_TdoreTeamAgentInterface 实现）============
+// PlayerState 是阵营归属的权威来源 — 阵营切换仅通过 SetGenericTeamId
+// 阵营变更通过 ConditionalBroadcastTeamChanged 通知 TeamSubsystem 和其他监听者
+
+// 网络复制声明（MyTeamID 需要复制到客户端）
+void ADark_TdorePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ThisClass, MyTeamID);
+}
+
+// SetGenericTeamId — 设置阵营（仅服务器，通过 TeamCreationComponent 或 GM 命令调用）
+// 流程：保存旧 ID → 设置新 ID → 条件广播（仅当变化时）
+void ADark_TdorePlayerState::SetGenericTeamId(const FGenericTeamId& NewTeamID)
+{
+	if (HasAuthority())
+	{
+		const FGenericTeamId OldTeamID = MyTeamID;
+		MyTeamID = NewTeamID;
+
+		// 仅当旧阵营 ≠ 新阵营时才触发委托广播
+		ConditionalBroadcastTeamChanged(this, OldTeamID, NewTeamID);
+	}
+}
+
+// GetGenericTeamId — 供 TeamSubsystem::FindTeamFromObject 查询
+FGenericTeamId ADark_TdorePlayerState::GetGenericTeamId() const
+{
+	return MyTeamID;
+}
+
+// GetOnTeamIndexChangedDelegate — 委托获取（由 ConditionalBroadcastTeamChanged 内部调用）
+FOnDarkTdoreTeamIndexChangedDelegate* ADark_TdorePlayerState::GetOnTeamIndexChangedDelegate()
+{
+	return &OnTeamChangedDelegate;
+}
+
+// OnRep_MyTeamID — 客户端收到复制后触发（同样通过条件广播通知本地监听者）
+void ADark_TdorePlayerState::OnRep_MyTeamID(FGenericTeamId OldTeamID)
+{
+	ConditionalBroadcastTeamChanged(this, OldTeamID, MyTeamID);
 }

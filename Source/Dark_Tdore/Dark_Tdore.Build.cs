@@ -9,6 +9,7 @@ public class Dark_Tdore : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] {
+			"AIModule",
 			"Core",
 			"CoreUObject",
 			"Engine",
@@ -20,11 +21,13 @@ public class Dark_Tdore : ModuleRules
 			"GameplayTasks",
 			"ModularGameplay",
 			"ModularGameplayActors",
+			"Niagara",
 			"UMG",
 			"Slate"
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { });
+		PrivateDependencyModuleNames.AddRange(new string[] {
+			"NetCore"});
 
 		PublicIncludePaths.AddRange(new string[] {
 			"Dark_Tdore",
@@ -32,7 +35,10 @@ public class Dark_Tdore : ModuleRules
 			"Dark_Tdore/AbilitySystem/Abilities",
 			"Dark_Tdore/AbilitySystem/Attributes",
 			"Dark_Tdore/AbilitySystem/Executions",
-			"Dark_Tdore/Messages"
+			"Dark_Tdore/GameModes",
+			"Dark_Tdore/Messages",
+			"Dark_Tdore/Teams",
+			"Dark_Tdore/System"
 		});
 
 		// Uncomment if you are using Slate UI

@@ -5,6 +5,7 @@
 #include "AbilitySystem/Attributes/Dark_TdoreCombatSet.h"
 #include "AbilitySystem/Dark_TdoreGameplayEffectContext.h"
 #include "Dark_TdoreLogChannels.h"
+#include "Teams/Dark_TdoreTeamSubsystem.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(Dark_TdoreDamageExecution)
 
@@ -97,8 +98,21 @@ void UDark_TdoreDamageExecution::Execute_Implementation(
 	const float DistanceAttenuation = 1.0f;   // TODO: 接入 AbilitySourceInterface 后从接口获取
 	const float PhysicalMaterialAttenuation = 1.0f; // TODO: 同上
 
-	// TODO: 队伍伤害检查
-	const float DamageInteractionAllowedMultiplier = 1.0f; // TODO: 接入 TeamSubsystem 后检查
+	// ===== 队伍伤害检查（TeamSubsystem）=====
+	float DamageInteractionAllowedMultiplier = 0.0f;
+	if (HitActor)
+	{
+		UDark_TdoreTeamSubsystem* TeamSubsystem = HitActor->GetWorld()->GetSubsystem<UDark_TdoreTeamSubsystem>();
+		if (ensure(TeamSubsystem))
+		{
+			DamageInteractionAllowedMultiplier = TeamSubsystem->CanCauseDamage(EffectCauser, HitActor) ? 1.0f : 0.0f;
+		}
+	}
+	else
+	{
+		// 无 HitActor → 放行（非命中伤害，如自毁/环境）
+		DamageInteractionAllowedMultiplier = 1.0f;
+	}
 
 	// ===== Step 3: 计算最终伤害 =====
 	const float DamageDone = FMath::Max(
