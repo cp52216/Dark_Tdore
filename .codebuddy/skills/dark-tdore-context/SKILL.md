@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-05-27 14:57 (增量: 1 .cs)
+> **最后更新**: 2026-05-27 15:43 (增量: 1 .h + 1 .cpp + 1 .cs + 1 .uplugin + .uproject)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-05-27 14:57
+> 自动生成于 2026-05-27 15:43
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -303,7 +303,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **Build.cs 公共依赖**: Core, CoreUObject, Engine, InputCore, EnhancedInput, GameplayAbilities, GameplayTags, GameplayTasks, ModularGameplay, ModularGameplayActors, UMG, Slate
 - **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
 - **2026-05-25 11:40**: 增量更新 (其他文件)
 - **输入路由**: `AbilityInputTagPressed(Tag)` / `AbilityInputTagReleased(Tag)` / `ProcessAbilityInput()` / `ClearAbilityInput()`
@@ -323,4 +322,11 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-05-25 21:00**: 增量更新 (4 .h + 4 .cpp + 2 Content)
 - **2026-05-27 14:18**: 增量更新 (3 .h + 3 .cpp + 1 .cs)
 - **2026-05-27 14:57**: 增量更新 (1 .cs)
+- **2026-05-27 15:43**: 增量更新 (1 .h + 1 .cpp + 1 .cs + 1 .uplugin + .uproject)
+  - Source/.h: Source/Dark_Tdore/Character/Dark_TdoreHealthComponent.h
+  - Source/.cpp: Source/Dark_Tdore/Character/Dark_TdoreHealthComponent.cpp
   - Source/.cs: Source/Dark_Tdore/Dark_Tdore.Build.cs
+  - Plugins/.uplugin: Plugins/GameplayMessageRouter/GameplayMessageRouter.uplugin
+  - .uproject: Dark_Tdore.uproject
+  - Other: Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/GameplayMessageNodes.Build.cs, Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/Private/GameplayMessageNodesModule.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/Private/K2Node_AsyncAction_ListenForGameplayMessages.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/Public/K2Node_AsyncAction_ListenForGameplayMessages.h, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/GameplayMessageRuntime.Build.cs, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Private/GameFramework/AsyncAction_ListenForGameplayMessage.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Private/GameFramework/GameplayMessageRuntime.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Private/GameFramework/GameplayMessageSubsystem.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Public/GameFramework/AsyncAction_ListenForGameplayMessage.h, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Public/GameFramework/GameplayMessageSubsystem.h ... 共11个
+  - 类变更 [Character]: EDeathState, UDark_TdoreHealthComponent
