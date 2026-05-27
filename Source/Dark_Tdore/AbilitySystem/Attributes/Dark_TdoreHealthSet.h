@@ -16,6 +16,9 @@ UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Gameplay_DamageImmunity);
 /** 自毁伤害 Tag：无视免疫的直接伤害 */
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Gameplay_DamageSelfDestruct);
 
+/** 伤害消息 Verb：通过 GameplayMessageSubsystem 广播供其他系统订阅 */
+UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Gameplay_Damage_Message);
+
 /**
  * UDark_TdoreHealthSet — 生命值属性集（参考 Lyra ULyraHealthSet）
  *

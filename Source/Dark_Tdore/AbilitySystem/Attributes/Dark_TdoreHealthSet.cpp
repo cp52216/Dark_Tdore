@@ -4,9 +4,11 @@
 #include "Dark_TdoreAttributeSet.h"
 #include "AbilitySystem/Dark_TdoreAbilitySystemComponent.h"
 #include "Dark_TdoreLogChannels.h"
+#include "Messages/Dark_TdoreVerbMessage.h"
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectExtension.h"
 #include "Engine/World.h"
+#include "GameFramework/GameplayMessageSubsystem.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(Dark_TdoreHealthSet)
 
@@ -14,6 +16,7 @@
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Gameplay_DamageImmunity, "Gameplay.DamageImmunity");
 UE_DEFINE_GAMEPLAY_TAG(TAG_Gameplay_DamageSelfDestruct, "Gameplay.Damage.SelfDestruct");
+UE_DEFINE_GAMEPLAY_TAG(TAG_Gameplay_Damage_Message, "Gameplay.Damage.Message");
 
 // ============ 构造 ============
 
@@ -116,6 +119,22 @@ void UDark_TdoreHealthSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 		{
 			UE_LOG(LogDark_TdoreGAS, Log, TEXT("[HealthSet] 收到 %.1f 伤害: HP %.1f → %.1f | 来源: %s"),
 				LocalDamage, GetHealth(), FMath::Clamp(GetHealth() - LocalDamage, MinimumHealth, GetMaxHealth()), *GetNameSafe(Instigator));
+
+			// ===== Verb Message：将伤害事件广播到消息总线 =====
+			// 参考 Lyra ULyraHealthSet::PostGameplayEffectExecute
+			// 任何系统（UI、KillFeed、成就、伤害统计）通过订阅 "Gameplay.Damage.Message" 即可接收
+			FDark_TdoreVerbMessage Message;
+			Message.Verb = TAG_Gameplay_Damage_Message;
+			Message.Instigator = EffectContext.GetEffectCauser();
+			Message.InstigatorTags = *Data.EffectSpec.CapturedSourceTags.GetAggregatedTags();
+			Message.Target = GetOwningActor();
+			Message.TargetTags = *Data.EffectSpec.CapturedTargetTags.GetAggregatedTags();
+			Message.Magnitude = LocalDamage;
+
+			UGameplayMessageSubsystem& MessageSystem = UGameplayMessageSubsystem::Get(GetWorld());
+			MessageSystem.BroadcastMessage(Message.Verb, Message);
+
+			UE_LOG(LogDark_TdoreGAS, Verbose, TEXT("[HealthSet] VerbMessage 已广播: %s"), *Message.ToString());
 		}
 
 		SetHealth(FMath::Clamp(GetHealth() - GetDamage(), MinimumHealth, GetMaxHealth()));

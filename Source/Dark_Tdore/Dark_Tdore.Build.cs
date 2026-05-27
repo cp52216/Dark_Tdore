@@ -15,6 +15,7 @@ public class Dark_Tdore : ModuleRules
 			"InputCore",
 			"EnhancedInput",
 			"GameplayAbilities",
+			"GameplayMessages",
 			"GameplayTags",
 			"GameplayTasks",
 			"ModularGameplay",
@@ -30,7 +31,8 @@ public class Dark_Tdore : ModuleRules
 			"Dark_Tdore/AbilitySystem",
 			"Dark_Tdore/AbilitySystem/Abilities",
 			"Dark_Tdore/AbilitySystem/Attributes",
-			"Dark_Tdore/AbilitySystem/Executions"
+			"Dark_Tdore/AbilitySystem/Executions",
+			"Dark_Tdore/Messages"
 		});
 
 		// Uncomment if you are using Slate UI
