@@ -5,6 +5,8 @@
 #include "AbilitySystem/Dark_TdoreAbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/Dark_TdoreHealthSet.h"
 #include "AbilitySystem/Dark_TdoreLogChannels.h"
+#include "GameFramework/GameplayMessageSubsystem.h"
+#include "Messages/Dark_TdoreVerbMessage.h"
 #include "Net/UnrealNetwork.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(Dark_TdoreHealthComponent)
@@ -67,6 +69,17 @@ void UDark_TdoreHealthComponent::InitializeWithAbilitySystem(UDark_TdoreAbilityS
 		GetHealth(), GetMaxHealth());
 	AbilitySystemComponent->SetNumericAttributeBase(UDark_TdoreHealthSet::GetHealthAttribute(), GetMaxHealth());
 
+	// ===== 注册 VerbMessage 监听器 =====
+	// 订阅 "Gameplay.Damage.Message" 频道，接收全局伤害事件
+	// 参考 Lyra ULyraDamageLogDebuggerComponent
+	{
+		UGameplayMessageSubsystem& MessageSubsystem = UGameplayMessageSubsystem::Get(this);
+		DamageListenerHandle = MessageSubsystem.RegisterListener(
+			FGameplayTag::RequestGameplayTag(TEXT("Gameplay.Damage.Message")),
+			this,
+			&ThisClass::OnDamageVerbMessage);
+	}
+
 	ClearGameplayTags();
 
 	OnHealthChanged.Broadcast(this, GetHealth(), GetHealth(), nullptr);
@@ -76,6 +89,13 @@ void UDark_TdoreHealthComponent::InitializeWithAbilitySystem(UDark_TdoreAbilityS
 void UDark_TdoreHealthComponent::UninitializeFromAbilitySystem()
 {
 	ClearGameplayTags();
+
+	// 解除 VerbMessage 监听器
+	// 注意：退出 PIE 时 Subsystem 可能已被销毁，直接调用 handle.Unregister() 更安全
+	if (DamageListenerHandle.IsValid())
+	{
+		DamageListenerHandle.Unregister();
+	}
 
 	if (HealthSet)
 	{
@@ -215,6 +235,22 @@ void UDark_TdoreHealthComponent::FinishDeath()
 
 	OnDeathFinished.Broadcast(GetOwner());
 	GetOwner()->ForceNetUpdate();
+}
+
+// ============ VerbMessage 监听回调 ============
+// 每次任意角色受到伤害（HealthSet 广播 Gameplay.Damage.Message），所有 HealthComponent 都会收到
+// 参考 Lyra ULyraDamageLogDebuggerComponent::OnDamageMessage
+
+void UDark_TdoreHealthComponent::OnDamageVerbMessage(FGameplayTag Channel, const FDark_TdoreVerbMessage& Payload)
+{
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("============================================"));
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("[VerbMessage] 收到伤害消息!"));
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("  Channel:   %s"), *Channel.ToString());
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("  Instigator: %s"), *GetNameSafe(Payload.Instigator.Get()));
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("  Target:     %s"), *GetNameSafe(Payload.Target.Get()));
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("  Magnitude:  %.1f"), Payload.Magnitude);
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("  监听者(Owner): %s"), *GetNameSafe(GetOwner()));
+	UE_LOG(LogDark_TdoreGAS, Display, TEXT("============================================"));
 }
 
 void UDark_TdoreHealthComponent::OnRep_DeathState(EDeathState OldDeathState)

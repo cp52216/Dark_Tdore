@@ -3,11 +3,14 @@
 #pragma once
 
 #include "Components/GameFrameworkComponent.h"
+#include "GameFramework/GameplayMessageSubsystem.h"
 #include "Dark_TdoreHealthComponent.generated.h"
 
 class UDark_TdoreAbilitySystemComponent;
 class UDark_TdoreHealthSet;
 struct FGameplayEffectSpec;
+struct FDark_TdoreVerbMessage;
+struct FGameplayTag;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDarkTdoreHealth_DeathEvent, AActor*, OwningActor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FDarkTdoreHealth_AttributeChanged, class UDark_TdoreHealthComponent*, HealthComponent, float, OldValue, float, NewValue, AActor*, Instigator);
@@ -99,6 +102,9 @@ protected:
 	void HandleMaxHealthChanged(AActor* Instigator, AActor* Causer, const FGameplayEffectSpec* EffectSpec, float Magnitude, float OldValue, float NewValue);
 	void HandleOutOfHealth(AActor* Instigator, AActor* Causer, const FGameplayEffectSpec* EffectSpec, float Magnitude, float OldValue, float NewValue);
 
+	/** Verb Message 监听：收到伤害消息时回调（来自 GameplayMessageSubsystem 总线） */
+	void OnDamageVerbMessage(FGameplayTag Channel, const FDark_TdoreVerbMessage& Payload);
+
 	UFUNCTION()
 	void OnRep_DeathState(EDeathState OldDeathState);
 
@@ -111,4 +117,7 @@ protected:
 
 	UPROPERTY(ReplicatedUsing = OnRep_DeathState)
 	EDeathState DeathState = EDeathState::NotDead;
+
+	/** VerbMessage 监听器句柄（用于解除注册） */
+	FGameplayMessageListenerHandle DamageListenerHandle;
 };
