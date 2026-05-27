@@ -15,7 +15,7 @@ public class Dark_Tdore : ModuleRules
 			"InputCore",
 			"EnhancedInput",
 			"GameplayAbilities",
-			"GameplayMessages",
+			"GameplayMessageSubsystem",
 			"GameplayTags",
 			"GameplayTasks",
 			"ModularGameplay",
