@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-05-25 21:00 (增量: 4 .h + 4 .cpp + 2 Content)
+> **最后更新**: 2026-05-27 14:18 (增量: 3 .h + 3 .cpp + 1 .cs)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-05-25 21:00
+> 自动生成于 2026-05-27 14:18
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -303,7 +303,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **蓝图事件**: `K2_OnAbilityAdded()` / `K2_OnAbilityRemoved()` / `K2_OnPawnAvatarSet()`
 - **`UDark_TdoreHealthComponent`**: 监听 `HealthSet` 属性变化
 - **Build.cs 公共依赖**: Core, CoreUObject, Engine, InputCore, EnhancedInput, GameplayAbilities, GameplayTags, GameplayTasks, ModularGameplay, ModularGameplayActors, UMG, Slate
 - **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
@@ -323,9 +322,9 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-05-25 15:11**: 增量更新 (7 .h + 6 .cpp + 1 .cs)
 - **2026-05-25 17:50**: 增量更新 (4 .h + 4 .cpp + 4 Content + 1 .ini + 1 Docs)
 - **2026-05-25 21:00**: 增量更新 (4 .h + 4 .cpp + 2 Content)
-  - Source/.h: Source/Dark_Tdore/AbilitySystem/Abilities/Dark_TdoreAbilityCost.h, Source/Dark_Tdore/AbilitySystem/Abilities/Dark_TdoreAbilityCost_Attribute.h, Source/Dark_Tdore/AbilitySystem/Attributes/Dark_TdoreCombatSet.h, Source/Dark_Tdore/AbilitySystem/Dark_TdoreGameplayAbility.h
-  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Abilities/Dark_TdoreAbilityCost_Attribute.cpp, Source/Dark_Tdore/AbilitySystem/Abilities/GA_TestQ.cpp, Source/Dark_Tdore/AbilitySystem/Attributes/Dark_TdoreCombatSet.cpp, Source/Dark_Tdore/AbilitySystem/Dark_TdoreGameplayAbility.cpp
-  - Content: Content/Abilities/BP_GA_TestQ.uasset, Content/Abilities/GE_BaseDamage_20.uasset
-  - 类变更 [Abilities]: UDark_TdoreAbilityCost, UDark_TdoreAbilityCost_Attribute
-  - 类变更 [Attributes]: UDark_TdoreCombatSet
-  - 类变更 [AbilitySystem]: UDark_TdoreGameplayAbility
+- **2026-05-27 14:18**: 增量更新 (3 .h + 3 .cpp + 1 .cs)
+  - Source/.h: Source/Dark_Tdore/AbilitySystem/Attributes/Dark_TdoreHealthSet.h, Source/Dark_Tdore/Messages/Dark_TdoreVerbMessage.h, Source/Dark_Tdore/Messages/Dark_TdoreVerbMessageHelpers.h
+  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Attributes/Dark_TdoreHealthSet.cpp, Source/Dark_Tdore/Messages/Dark_TdoreVerbMessage.cpp, Source/Dark_Tdore/Messages/Dark_TdoreVerbMessageHelpers.cpp
+  - Source/.cs: Source/Dark_Tdore/Dark_Tdore.Build.cs
+  - 类变更 [Attributes]: UDark_TdoreHealthSet
+  - 类变更 [Messages]: UDark_TdoreVerbMessageHelpers
