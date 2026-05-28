@@ -385,3 +385,31 @@ else                    // ← 没实现，TScriptInterface 为 null
 ```
 
 **一行代码同时完成「类型转换 + 接口检查」。** 这是 UE 反射系统对 `TScriptInterface` 的特别设计。任何 `UObject*` 都可以塞进去，引擎自动判断是否实现了对应接口。
+
+---
+
+## 九、已知限制与改进方向
+
+### 9.1 GA 离开范围后不会自动撤销（和 Lyra 保持一致）
+
+**现状：** GrantNearbyInteraction 只负责授予 GA，不负责撤销。离开目标 5m 范围后 GA 仍留在 ASC 上。
+
+```
+你走进 5m → 扫描到 → ASC::GiveAbility(BP_GA_PickupWeapon)
+你走出 5m → 扫描不到 → 不重复授予 → 但 GA 还在 ASC 上
+```
+
+**Lyra 的设计选择：** GA 永不撤销，依赖以下机制兜底：
+1. `WaitForInteractableTargets` 实时更新 `CurrentOptions`（射线扫描）
+2. `TriggerInteraction` 使用 `CurrentOptions[0]`（始终是最新的扫描结果）
+3. `UpdateInteractableOptions` 只广播 `CanActivateAbility` 通过的选项
+
+**结论：** 和 Lyra 保持一致，不做自动撤销。如需要可后续按场景添加 `CanActivateAbility` 检查。
+
+### 9.2 碰撞通道硬编码为 ECC_WorldDynamic
+
+当前 GrantNearbyInteraction 的 Overlap 通道固定为 `ECC_WorldDynamic`，无法通过蓝图配置。后续可改为 `UPROPERTY(EditDefaultsOnly)` 暴露给蓝图。
+
+### 9.3 SingleLineTrace 未接入当前项目
+
+`AbilityTask_WaitForInteractableTargets_SingleLineTrace` 已完整实现但未被使用。当前项目仅使用 `GrantNearbyInteraction`（OnSpawn 球形扫描）。如果需要精确瞄准交互（FPS 准心检测），在对应的 GA 中创建 SingleLineTrace Task 并绑定 Delegate 即可。
