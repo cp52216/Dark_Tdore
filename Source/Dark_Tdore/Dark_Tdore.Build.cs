@@ -35,6 +35,7 @@ public class Dark_Tdore : ModuleRules
 			"Dark_Tdore/AbilitySystem/Abilities",
 			"Dark_Tdore/AbilitySystem/Attributes",
 			"Dark_Tdore/AbilitySystem/Executions",
+			"Dark_Tdore/AbilitySystem/Phases",
 			"Dark_Tdore/GameModes",
 			"Dark_Tdore/Messages",
 			"Dark_Tdore/Teams",
