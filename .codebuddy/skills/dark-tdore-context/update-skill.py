@@ -91,24 +91,25 @@ def scan_top_dirs(dir_path: Path, max_depth: int = 2) -> list[dict]:
     for entry in sorted(dir_path.iterdir()):
         if entry.name.startswith(".") or entry.name.startswith("__"):
             continue
+        if not entry.is_dir():
+            continue
         item = {
             "name": entry.name,
-            "is_dir": entry.is_dir(),
+            "is_dir": True,
         }
-        if entry.is_dir():
-            # 统计子文件数
-            all_files = list(entry.rglob("*"))
-            files_only = [f for f in all_files if f.is_file()]
-            item["file_count"] = len(files_only)
-            # 获取文件扩展名统计
-            ext_counts: dict[str, int] = {}
-            for f in files_only:
-                ext = f.suffix if f.suffix else "(none)"
-                ext_counts[ext] = ext_counts.get(ext, 0) + 1
-            item["extensions"] = ext_counts
-            # 子目录
-            subdirs = [s.name for s in sorted(entry.iterdir()) if s.is_dir() and not s.name.startswith("__")]
-            item["subdirs"] = subdirs[:15]
+        # 统计子文件数
+        all_files = list(entry.rglob("*"))
+        files_only = [f for f in all_files if f.is_file()]
+        item["file_count"] = len(files_only)
+        # 获取文件扩展名统计
+        ext_counts: dict[str, int] = {}
+        for f in files_only:
+            ext = f.suffix if f.suffix else "(none)"
+            ext_counts[ext] = ext_counts.get(ext, 0) + 1
+        item["extensions"] = ext_counts
+        # 子目录
+        subdirs = [s.name for s in sorted(entry.iterdir()) if s.is_dir() and not s.name.startswith("__")]
+        item["subdirs"] = subdirs[:15]
         result.append(item)
     return result
 
