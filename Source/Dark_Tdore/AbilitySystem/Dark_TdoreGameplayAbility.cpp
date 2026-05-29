@@ -3,6 +3,12 @@
 #include "Dark_TdoreGameplayAbility.h"
 #include "Abilities/Dark_TdoreAbilityCost.h"
 #include "Dark_TdoreLogChannels.h"
+#include "GameFramework/GameplayMessageSubsystem.h"
+#include "NativeGameplayTags.h"
+
+// 技能失败消息标签
+UE_DEFINE_GAMEPLAY_TAG(TAG_ABILITY_SIMPLE_FAILURE_MESSAGE, "Ability.UserFacingSimpleActivateFail.Message");
+UE_DEFINE_GAMEPLAY_TAG(TAG_ABILITY_PLAY_MONTAGE_FAILURE_MESSAGE, "Ability.PlayMontageOnActivateFail.Message");
 
 // ============ 构造 ============
 
@@ -146,4 +152,47 @@ void UDark_TdoreGameplayAbility::OnPawnAvatarSet()
 
 	// 通知蓝图：Pawn 化身已就绪
 	K2_OnPawnAvatarSet();
+}
+
+// ============ 技能激活失败 ============
+
+void UDark_TdoreGameplayAbility::NativeOnAbilityFailedToActivate(const FGameplayTagContainer& FailedReason) const
+{
+	bool bSimpleFailureFound = false;
+
+	for (FGameplayTag Reason : FailedReason)
+	{
+		// 1. 查找用户提示文本
+		if (!bSimpleFailureFound)
+		{
+			if (const FText* pUserFacingMessage = FailureTagToUserFacingMessages.Find(Reason))
+			{
+				// 通过 GameplayMessageSubsystem 广播消息，UI 系统可监听此消息显示提示
+				FDark_TdoreAbilityFailureMontageMessage Message;
+				Message.PlayerController = GetActorInfo().PlayerController.Get();
+				Message.AvatarActor = GetActorInfo().AvatarActor.Get();
+				Message.FailureTags = FailedReason;
+
+				UGameplayMessageSubsystem& MessageSystem = UGameplayMessageSubsystem::Get(GetWorld());
+				MessageSystem.BroadcastMessage(TAG_ABILITY_SIMPLE_FAILURE_MESSAGE, Message);
+				bSimpleFailureFound = true;
+			}
+		}
+
+		// 2. 查找对应的失败 Montage
+		if (UAnimMontage* pMontage = FailureTagToAnimMontage.FindRef(Reason))
+		{
+			FDark_TdoreAbilityFailureMontageMessage Message;
+			Message.PlayerController = GetActorInfo().PlayerController.Get();
+			Message.AvatarActor = GetActorInfo().AvatarActor.Get();
+			Message.FailureTags = FailedReason;
+			Message.FailureMontage = pMontage;
+
+			UGameplayMessageSubsystem& MessageSystem = UGameplayMessageSubsystem::Get(GetWorld());
+			MessageSystem.BroadcastMessage(TAG_ABILITY_PLAY_MONTAGE_FAILURE_MESSAGE, Message);
+		}
+	}
+
+	// 3. 通知蓝图
+	K2_OnAbilityFailedToActivate(FailedReason);
 }

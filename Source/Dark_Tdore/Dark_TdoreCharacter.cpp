@@ -5,6 +5,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Camera/Dark_TdoreCameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Controller.h"
 
 #include "AbilitySystem/Dark_TdoreAbilitySystemComponent.h"
@@ -19,6 +20,8 @@
 
 #include "Dark_Tdore.h"
 
+static FName NAME_DarkTdoreCharacterCollisionProfile_Mesh(TEXT("DarkTdorePawnMesh"));
+
 // ============ 构造 ============
 
 ADark_TdoreCharacter::ADark_TdoreCharacter(const FObjectInitializer& ObjectInitializer)
@@ -29,6 +32,11 @@ ADark_TdoreCharacter::ADark_TdoreCharacter(const FObjectInitializer& ObjectIniti
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
+
+	// 参考 Lyra：旋转网格体使其 X 轴朝前（UE 骨骼默认是 Y 轴朝前）
+	USkeletalMeshComponent* MeshComp = GetMesh();
+	check(MeshComp);
+	MeshComp->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
 
 	UDark_TdoreCharacterMovementComponent* MoveComp = CastChecked<UDark_TdoreCharacterMovementComponent>(GetCharacterMovement());
 	MoveComp->GravityScale = 1.0f;
@@ -42,6 +50,8 @@ ADark_TdoreCharacter::ADark_TdoreCharacter(const FObjectInitializer& ObjectIniti
 	MoveComp->MaxWalkSpeed = 500.f;
 	MoveComp->MinAnalogWalkSpeed = 20.f;
 	MoveComp->BrakingDecelerationFalling = 1500.0f;
+	// 参考 Lyra：禁用动画 RootMotion 期间的物理旋转（由动画驱动旋转）
+	MoveComp->bAllowPhysicsRotationDuringAnimRootMotion = false;
 
 	// 摄像机组件 — Lyra 式的摄像机模式栈管理（替换传统 SpringArm+FollowCamera）
 	CameraComponent = CreateDefaultSubobject<UDark_TdoreCameraComponent>(TEXT("CameraComponent"));

@@ -6,7 +6,37 @@
 #include "Dark_TdoreAbilitySystemComponent.h"
 #include "Dark_TdoreGameplayAbility.generated.h"
 
+class APlayerController;
+class UAnimMontage;
 class UDark_TdoreAbilityCost;
+
+/**
+ * 技能激活失败 Montage 消息（参考 Lyra FLyraAbilityMontageFailureMessage）
+ *
+ * 当技能激活失败时，通过 GameplayMessageSubsystem 广播此消息，
+ * 动画蓝图收到后可以播放对应的失败 Montage（如没蓝动画、冷却中动画等）
+ */
+USTRUCT(BlueprintType)
+struct FDark_TdoreAbilityFailureMontageMessage
+{
+	GENERATED_BODY()
+
+	/** 触发失败的玩家控制器 */
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<APlayerController> PlayerController = nullptr;
+
+	/** 失败的角色 */
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<AActor> AvatarActor = nullptr;
+
+	/** 失败原因标签 */
+	UPROPERTY(BlueprintReadWrite)
+	FGameplayTagContainer FailureTags;
+
+	/** 要播放的 Montage */
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<UAnimMontage> FailureMontage = nullptr;
+};
 
 /**
  * UDark_TdoreGameplayAbility — 技能基类
@@ -105,4 +135,32 @@ protected:
 	/** 技能额外消耗列表（参考 Lyra AdditionalCosts） */
 	UPROPERTY(EditDefaultsOnly, Instanced, Category = Costs)
 	TArray<TObjectPtr<UDark_TdoreAbilityCost>> AdditionalCosts;
+
+	/**
+	 * 失败标签 → 动画 Montage 映射表（参考 Lyra FailureTagToAnimMontage）
+	 *
+	 * 配置示例：
+	 *   Key: Ability.ActivateFail.NotEnoughMana → Value: AM_NotEnoughMana
+	 *   Key: Ability.ActivateFail.OnCooldown     → Value: AM_OnCooldown
+	 *
+	 * 激活失败时，通过 GameplayMessageSubsystem 广播播放对应的 Montage
+	 */
+	UPROPERTY(EditDefaultsOnly, Category = "Advanced")
+	TMap<FGameplayTag, TObjectPtr<UAnimMontage>> FailureTagToAnimMontage;
+
+	/**
+	 * 失败标签 → 用户提示文本映射表
+	 *
+	 * 配置示例：
+	 *   Key: Ability.ActivateFail.NotEnoughMana → Value: "法力不足"
+	 */
+	UPROPERTY(EditDefaultsOnly, Category = "Advanced")
+	TMap<FGameplayTag, FText> FailureTagToUserFacingMessages;
+
+	/** 当技能激活失败时调用（蓝图可覆写，用于 UI 反馈） */
+	virtual void NativeOnAbilityFailedToActivate(const FGameplayTagContainer& FailedReason) const;
+
+	/** 蓝图事件：技能激活失败 */
+	UFUNCTION(BlueprintImplementableEvent, Category = Ability, DisplayName = "OnAbilityFailedToActivate")
+	void K2_OnAbilityFailedToActivate(const FGameplayTagContainer& FailedReason) const;
 };
