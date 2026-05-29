@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-05-27 15:43 (增量: 1 .h + 1 .cpp + 1 .cs + 1 .uplugin + .uproject)
+> **最后更新**: 2026-05-29 20:31 (增量: 其他文件)
 
 ---
 
@@ -64,24 +64,24 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-05-27 15:43
+> 自动生成于 2026-05-29 20:31
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
-| Abilities | 6 | .uasset(6) | - |
-| Blueprints | 0 | - | - |
+| Abilities | 7 | .uasset(7) | - |
+| Blueprints | 1 | .uasset(1) | - |
 | Characters | 128 | .uasset(128) | Mannequins |
 | Collections | 0 | - | - |
 | Developers | 0 | - | dell |
 | Input | 11 | .uasset(11) | Actions, Touch |
 | LevelPrototyping | 29 | .uasset(29) | Interactable, Materials, Meshes, Textures |
 | ShuangDao | 186 | .uasset(185), .umap(1) | AdvancedAsset, Animation, Maps, Materials, mesh, Particles, Textures |
-| System | 2 | .uasset(2) | - |
-| ThirdPerson | 8 | .uasset(7), .umap(1) | Camera |
+| System | 6 | .uasset(6) | GamePase |
+| ThirdPerson | 11 | .uasset(10), .umap(1) | Animations, Camera |
 | Variant_Combat | 31 | .uasset(30), .umap(1) | Anims, Blueprints, Input, Materials, UI, VFX |
 | Variant_Platforming | 11 | .uasset(10), .umap(1) | Anims, Blueprints, Input, VFX |
 | Variant_SideScrolling | 19 | .uasset(18), .umap(1) | Anims, Blueprints, Input, UI |
-| WuDang_Montage | 371 | .uasset(370), .umap(1) | AdvancedAsset, Animation, demo, FBX, Maps |
+| WuDang_Montage | 369 | .uasset(368), .umap(1) | AdvancedAsset, Animation, demo, FBX, Maps |
 ## 三、核心类继承关系
 
 ```
@@ -303,7 +303,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
 - **2026-05-25 11:40**: 增量更新 (其他文件)
 - **输入路由**: `AbilityInputTagPressed(Tag)` / `AbilityInputTagReleased(Tag)` / `ProcessAbilityInput()` / `ClearAbilityInput()`
 - **激活组管理**: `IsActivationGroupBlocked()` / `AddAbilityToActivationGroup()` / `RemoveAbilityFromActivationGroup()` / `CancelActivationGroupAbilities()`
@@ -323,10 +322,5 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-05-27 14:18**: 增量更新 (3 .h + 3 .cpp + 1 .cs)
 - **2026-05-27 14:57**: 增量更新 (1 .cs)
 - **2026-05-27 15:43**: 增量更新 (1 .h + 1 .cpp + 1 .cs + 1 .uplugin + .uproject)
-  - Source/.h: Source/Dark_Tdore/Character/Dark_TdoreHealthComponent.h
-  - Source/.cpp: Source/Dark_Tdore/Character/Dark_TdoreHealthComponent.cpp
-  - Source/.cs: Source/Dark_Tdore/Dark_Tdore.Build.cs
-  - Plugins/.uplugin: Plugins/GameplayMessageRouter/GameplayMessageRouter.uplugin
-  - .uproject: Dark_Tdore.uproject
-  - Other: Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/GameplayMessageNodes.Build.cs, Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/Private/GameplayMessageNodesModule.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/Private/K2Node_AsyncAction_ListenForGameplayMessages.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageNodes/Public/K2Node_AsyncAction_ListenForGameplayMessages.h, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/GameplayMessageRuntime.Build.cs, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Private/GameFramework/AsyncAction_ListenForGameplayMessage.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Private/GameFramework/GameplayMessageRuntime.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Private/GameFramework/GameplayMessageSubsystem.cpp, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Public/GameFramework/AsyncAction_ListenForGameplayMessage.h, Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Public/GameFramework/GameplayMessageSubsystem.h ... 共11个
-  - 类变更 [Character]: EDeathState, UDark_TdoreHealthComponent
+- **2026-05-29 20:31**: 增量更新 (其他文件)
+  - Other: .codebuddy/skills/dark-tdore-context/update-skill.py
