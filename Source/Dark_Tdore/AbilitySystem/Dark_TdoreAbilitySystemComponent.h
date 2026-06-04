@@ -73,8 +73,8 @@ enum class EDark_TdoreAbilityActivationGroup : uint8
  *   - 动态标签效果：通过 GameplayEffect 动态添加/移除 GameplayTag
  *
  * 数据流：
- *   Q 键按下 → Character::OnAbilityInputPressed(Input.Ability.Q)
- *           → ASC::AbilityInputTagPressed("Input.Ability.Q")
+ *   Q 键按下 → Character::OnAbilityInputPressed(InputTag.Ability.Q)
+ *           → ASC::AbilityInputTagPressed("InputTag.Ability.Q")
  *           → 遍历 ActivatableAbilities，匹配 GetDynamicSpecSourceTags
  *           → 加入 InputPressedSpecHandles 缓冲队列
  *   PlayerController::PostProcessInput → ProcessAbilityInput()

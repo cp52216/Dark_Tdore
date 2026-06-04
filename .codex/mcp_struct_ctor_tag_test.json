@@ -1,0 +1,17 @@
+[
+  {
+    "val": "'Input.Ability.Weapon.2'",
+    "ok": false,
+    "error": "Dark_TdoreInputAction: Failed to convert type 'str' to property 'InputTag' (StructProperty) for attribute 'input_tag' on 'Dark_TdoreInputAction'\n  TypeError: NativizeProperty: Cannot nativize 'str' as 'InputTag' (StructProperty)\n    TypeError: NativizeStructInstance: Cannot nativize 'str' as 'GameplayTag'\n      Exception: GameplayTag: Struct has 0 initialization parameters, but the given sequence had 22 elements"
+  },
+  {
+    "val": "unreal.Name('Input.Ability.Weapon.2')",
+    "ok": false,
+    "error": "Dark_TdoreInputAction: Failed to convert type 'Name' to property 'InputTag' (StructProperty) for attribute 'input_tag' on 'Dark_TdoreInputAction'\n  TypeError: NativizeProperty: Cannot nativize 'Name' as 'InputTag' (StructProperty)\n    TypeError: NativizeStructInstance: Cannot nativize 'Name' as 'GameplayTag'"
+  },
+  {
+    "val": "unreal.GameplayTag()",
+    "ok": true,
+    "obj": "<Struct 'Dark_TdoreInputAction' (0x000002028739CD60) {input_action: None, input_tag: {}}>"
+  }
+]

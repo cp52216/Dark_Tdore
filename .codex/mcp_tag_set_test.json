@@ -1,0 +1,17 @@
+[
+  {
+    "prop": "tag_name",
+    "ok": false,
+    "error": "GameplayTag: Property 'TagName' for attribute 'tag_name' on 'GameplayTag' is read-only and cannot be set"
+  },
+  {
+    "prop": "TagName",
+    "ok": false,
+    "error": "GameplayTag: Property 'TagName' for attribute 'TagName' on 'GameplayTag' is read-only and cannot be set"
+  },
+  {
+    "prop": "name",
+    "ok": false,
+    "error": "GameplayTag: Failed to find property 'name' for attribute 'name' on 'GameplayTag'"
+  }
+]

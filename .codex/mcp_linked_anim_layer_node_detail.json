@@ -1,0 +1,32 @@
+[
+  {
+    "name": "AnimGraphNode_LinkedAnimLayer_1",
+    "class": "AnimGraphNode_LinkedAnimLayer",
+    "title_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'get_node_title'",
+    "dir": [
+      "get_editor_property",
+      "is_editor_property_overridden",
+      "reset_editor_property",
+      "set_editor_property"
+    ],
+    "get_all_pins_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'get_all_pins'",
+    "pins_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'pins'",
+    "get_node_title_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'get_node_title'",
+    "get_schema_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'get_schema'",
+    "get_graph_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'get_graph'",
+    "pins_detail_error": "'AnimGraphNode_LinkedAnimLayer' object has no attribute 'get_all_pins'",
+    "anim_node_dir": [
+      "__class__",
+      "__init_subclass__",
+      "__subclasshook__"
+    ],
+    "anim_node_str": "<Struct 'AnimNode_LinkedAnimLayer' (0x000001E37492FD38) {}>",
+    "anim_node_layer": "ArmedLocaomotionState",
+    "anim_node_layer_name_error": "AnimNode_LinkedAnimLayer: Failed to find property 'layer_name' for attribute 'layer_name' on 'AnimNode_LinkedAnimLayer'",
+    "anim_node_interface_class_error": "AnimNode_LinkedAnimLayer: Failed to find property 'interface_class' for attribute 'interface_class' on 'AnimNode_LinkedAnimLayer'",
+    "anim_node_instance_class": "None",
+    "anim_node_tag_error": "AnimNode_LinkedAnimLayer: Property 'Tag' for attribute 'tag' on 'AnimNode_LinkedAnimLayer' is protected and cannot be read",
+    "anim_node_function_reference_error": "AnimNode_LinkedAnimLayer: Failed to find property 'function_reference' for attribute 'function_reference' on 'AnimNode_LinkedAnimLayer'",
+    "anim_node_linked_layer_class_error": "AnimNode_LinkedAnimLayer: Failed to find property 'linked_layer_class' for attribute 'linked_layer_class' on 'AnimNode_LinkedAnimLayer'"
+  }
+]

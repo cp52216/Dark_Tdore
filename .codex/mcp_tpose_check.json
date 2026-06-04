@@ -1,0 +1,4 @@
+{
+  "equipped_default_layer": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword_C' (0x000002E60CDF7000) Class 'AnimBlueprintGeneratedClass'>",
+  "FATAL": "Traceback (most recent call last):\n  File \"<string>\", line 11, in <module>\nAttributeError: 'AnimBlueprint' object has no attribute 'parent_class'\n"
+}

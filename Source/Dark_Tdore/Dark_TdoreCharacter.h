@@ -16,6 +16,7 @@ class UDark_TdoreCameraComponent;
 class UDark_TdoreCameraMode;
 class UDark_TdoreHealthComponent;
 class UDark_TdoreInputConfig;
+class UDark_TdoreEquipmentManagerComponent;
 class UDark_TdorePawnExtensionComponent;
 class UDark_TdoreHeroComponent;
 class ADark_TdorePlayerState;
@@ -57,6 +58,10 @@ class ADark_TdoreCharacter : public AModularCharacter, public IAbilitySystemInte
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
 	UDark_TdoreHealthComponent* HealthComponent;
 
+	/** 装备管理组件：负责当前角色装备列表、装备实例复制、装备授予技能和挂件 Actor 生命周期。 */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
+	UDark_TdoreEquipmentManagerComponent* EquipmentManagerComponent;
+
 public:
 	ADark_TdoreCharacter(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
@@ -91,4 +96,6 @@ public:
 	virtual void DoJumpEnd();
 
 	FORCEINLINE class UDark_TdoreCameraComponent* GetDarkTdoreCameraComponent() const { return CameraComponent; }
+	/** 获取角色装备管理组件；蓝图或技能可通过它调用 EquipItem/UnequipItem。 */
+	FORCEINLINE class UDark_TdoreEquipmentManagerComponent* GetEquipmentManagerComponent() const { return EquipmentManagerComponent; }
 };

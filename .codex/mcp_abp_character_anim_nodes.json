@@ -1,0 +1,262 @@
+{
+  "graphs": [
+    {
+      "name": "AnimGraph",
+      "class": "AnimationGraph",
+      "nodes": [],
+      "nodes_error": "AnimationGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Idle",
+      "class": "AnimationStateGraph",
+      "nodes": [],
+      "nodes_error": "AnimationStateGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationStateGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Walk / Run",
+      "class": "AnimationStateGraph",
+      "nodes": [],
+      "nodes_error": "AnimationStateGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationStateGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Locomotion",
+      "class": "AnimationStateGraph",
+      "nodes": [],
+      "nodes_error": "AnimationStateGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationStateGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Jump",
+      "class": "AnimationStateGraph",
+      "nodes": [],
+      "nodes_error": "AnimationStateGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationStateGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Fall Loop",
+      "class": "AnimationStateGraph",
+      "nodes": [],
+      "nodes_error": "AnimationStateGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationStateGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Land",
+      "class": "AnimationStateGraph",
+      "nodes": [],
+      "nodes_error": "AnimationStateGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationStateGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    },
+    {
+      "name": "Transition",
+      "class": "AnimationTransitionGraph",
+      "nodes": [],
+      "nodes_error": "AnimationTransitionGraph: Property 'Nodes' for attribute 'nodes' on 'AnimationTransitionGraph' is protected and cannot be read"
+    }
+  ],
+  "candidate_node_classes": [
+    "AnimGraphNode_BlendBoneByChannel",
+    "AnimGraphNode_BlendListBase",
+    "AnimGraphNode_BlendListByBool",
+    "AnimGraphNode_BlendListByEnum",
+    "AnimGraphNode_BlendListByInt",
+    "AnimGraphNode_BlendSpace",
+    "AnimGraphNode_BlendSpaceBase",
+    "AnimGraphNode_BlendSpaceEvaluator",
+    "AnimGraphNode_BlendSpaceGraph",
+    "AnimGraphNode_BlendSpaceGraphBase",
+    "AnimGraphNode_BlendSpacePlayer",
+    "AnimGraphNode_BlendSpaceSampleResult",
+    "AnimGraphNode_BlendStack",
+    "AnimGraphNode_BlendStackInput",
+    "AnimGraphNode_BlendStackResult",
+    "AnimGraphNode_BlendStack_Base",
+    "AnimGraphNode_DeadBlending",
+    "AnimGraphNode_Layer",
+    "AnimGraphNode_LayeredBoneBlend",
+    "AnimGraphNode_LinkedAnimGraph",
+    "AnimGraphNode_LinkedAnimGraphBase",
+    "AnimGraphNode_LinkedAnimLayer",
+    "AnimGraphNode_LinkedInputPose",
+    "AnimGraphNode_MultiWayBlend",
+    "AnimGraphNode_PoseBlendNode",
+    "AnimGraphNode_RotationOffsetBlendSpace",
+    "AnimGraphNode_RotationOffsetBlendSpaceGraph",
+    "AnimGraphNode_StateMachine",
+    "AnimGraphNode_StateMachineBase",
+    "AnimGraphNode_TwoWayBlend"
+  ],
+  "node_results": {
+    "AnimGraphNode_BlendListBase": [
+      {
+        "name": "AnimGraphNode_LayeredBoneBlend_0",
+        "class": "AnimGraphNode_LayeredBoneBlend",
+        "props": {
+          "node": "<Struct 'AnimNode_LayeredBoneBlend' (0x000001E37492F2B0) {base_pose: {}, blend_poses: (()), blend_weights: (1.000000), lod_threshold: -1, mesh_space_rotation_blend: False, root_space_rotation_blend: False, mesh_space_scale_blend: False, curve_blend_option: Override}>",
+          "tag": "None"
+        }
+      },
+      {
+        "name": "AnimGraphNode_BlendListByBool_0",
+        "class": "AnimGraphNode_BlendListByBool",
+        "props": {
+          "node": "<Struct 'AnimNode_BlendListByBool' (0x000001E37B6EA2B0) {}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_BlendListByBool": [
+      {
+        "name": "AnimGraphNode_BlendListByBool_0",
+        "class": "AnimGraphNode_BlendListByBool",
+        "props": {
+          "node": "<Struct 'AnimNode_BlendListByBool' (0x000001E37B6EA2B0) {}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_BlendSpace": [
+      {
+        "name": "AnimGraphNode_BlendSpacePlayer_0",
+        "class": "AnimGraphNode_BlendSpacePlayer",
+        "props": {
+          "node": "<Struct 'AnimNode_BlendSpacePlayer' (0x000001E37B6EAAD0) {blend_weight: 0.000000, internal_time_accumulator: 0.000000}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_BlendSpaceBase": [
+      {
+        "name": "AnimGraphNode_BlendSpacePlayer_0",
+        "class": "AnimGraphNode_BlendSpacePlayer",
+        "props": {
+          "node": "<Struct 'AnimNode_BlendSpacePlayer' (0x000001E37B6EAAD0) {blend_weight: 0.000000, internal_time_accumulator: 0.000000}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_BlendSpacePlayer": [
+      {
+        "name": "AnimGraphNode_BlendSpacePlayer_0",
+        "class": "AnimGraphNode_BlendSpacePlayer",
+        "props": {
+          "node": "<Struct 'AnimNode_BlendSpacePlayer' (0x000001E37B6EAAD0) {blend_weight: 0.000000, internal_time_accumulator: 0.000000}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_Layer": [
+      {
+        "name": "AnimGraphNode_LinkedAnimLayer_1",
+        "class": "AnimGraphNode_LinkedAnimLayer",
+        "props": {
+          "node": "<Struct 'AnimNode_LinkedAnimLayer' (0x000001E37492FD38) {}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_LayeredBoneBlend": [
+      {
+        "name": "AnimGraphNode_LayeredBoneBlend_0",
+        "class": "AnimGraphNode_LayeredBoneBlend",
+        "props": {
+          "node": "<Struct 'AnimNode_LayeredBoneBlend' (0x000001E37492F2B0) {base_pose: {}, blend_poses: (()), blend_weights: (1.000000), lod_threshold: -1, mesh_space_rotation_blend: False, root_space_rotation_blend: False, mesh_space_scale_blend: False, curve_blend_option: Override}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_LinkedAnimGraphBase": [
+      {
+        "name": "AnimGraphNode_LinkedAnimLayer_1",
+        "class": "AnimGraphNode_LinkedAnimLayer",
+        "props": {
+          "node": "<Struct 'AnimNode_LinkedAnimLayer' (0x000001E37492FD38) {}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_LinkedAnimLayer": [
+      {
+        "name": "AnimGraphNode_LinkedAnimLayer_1",
+        "class": "AnimGraphNode_LinkedAnimLayer",
+        "props": {
+          "node": "<Struct 'AnimNode_LinkedAnimLayer' (0x000001E37492FD38) {}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_StateMachine": [
+      {
+        "name": "AnimGraphNode_StateMachine_0",
+        "class": "AnimGraphNode_StateMachine",
+        "props": {
+          "node": "<Struct 'AnimNode_StateMachine' (0x000001E37492D9C8) {}>",
+          "tag": "None"
+        }
+      },
+      {
+        "name": "AnimGraphNode_StateMachine_3",
+        "class": "AnimGraphNode_StateMachine",
+        "props": {
+          "node": "<Struct 'AnimNode_StateMachine' (0x000001E37492BBC8) {}>",
+          "tag": "None"
+        }
+      }
+    ],
+    "AnimGraphNode_StateMachineBase": [
+      {
+        "name": "AnimGraphNode_StateMachine_0",
+        "class": "AnimGraphNode_StateMachine",
+        "props": {
+          "node": "<Struct 'AnimNode_StateMachine' (0x000001E37492D9C8) {}>",
+          "tag": "None"
+        }
+      },
+      {
+        "name": "AnimGraphNode_StateMachine_3",
+        "class": "AnimGraphNode_StateMachine",
+        "props": {
+          "node": "<Struct 'AnimNode_StateMachine' (0x000001E37492BBC8) {}>",
+          "tag": "None"
+        }
+      }
+    ]
+  }
+}

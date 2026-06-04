@@ -1,0 +1,18 @@
+[
+  {
+    "expr": "unreal.EdGraphPinType()",
+    "ok": true,
+    "value": "<Struct 'EdGraphPinType' (0x000001B75892BC90) {}>",
+    "dir": []
+  },
+  {
+    "expr": "unreal.EdGraphPinType(pin_category='bool')",
+    "ok": false,
+    "error": "call() takes at most 0 arguments (1 given)"
+  },
+  {
+    "expr": "unreal.EdGraphPinType(pin_category=unreal.Name('bool'))",
+    "ok": false,
+    "error": "call() takes at most 0 arguments (1 given)"
+  }
+]

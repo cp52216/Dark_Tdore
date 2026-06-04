@@ -1,0 +1,1133 @@
+{
+  "AIController": [
+    "find_component_by_tag"
+  ],
+  "AbilitySystemComponent": [
+    "find_all_abilities_with_tags"
+  ],
+  "AbilitySystemDebugHUD": [
+    "find_component_by_tag"
+  ],
+  "AbilitySystemTestPawn": [
+    "find_component_by_tag"
+  ],
+  "AbstractNavData": [
+    "find_component_by_tag"
+  ],
+  "Actor": [
+    "find_component_by_tag"
+  ],
+  "ActorSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "AmbientSound": [
+    "find_component_by_tag"
+  ],
+  "AnimationEditorPreviewActor": [
+    "find_component_by_tag"
+  ],
+  "AnimationSequencerDataModel": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "AnimationThumbnailSkeletalMeshActor": [
+    "find_component_by_tag"
+  ],
+  "ArchVisCharacter": [
+    "find_component_by_tag"
+  ],
+  "AtmosphericFog": [
+    "find_component_by_tag"
+  ],
+  "AudioVolume": [
+    "find_component_by_tag"
+  ],
+  "AutoRTFMTestActor": [
+    "find_component_by_tag"
+  ],
+  "AutoRTFMTestAnotherActor": [
+    "find_component_by_tag"
+  ],
+  "BandwidthTestActor": [
+    "find_component_by_tag"
+  ],
+  "BaseTransformGizmo": [
+    "find_component_by_tag"
+  ],
+  "BlockingVolume": [
+    "find_component_by_tag"
+  ],
+  "BlutilityActor": [
+    "find_component_by_tag"
+  ],
+  "BoxReflectionCapture": [
+    "find_component_by_tag"
+  ],
+  "Brush": [
+    "find_component_by_tag"
+  ],
+  "BrushShape": [
+    "find_component_by_tag"
+  ],
+  "CableActor": [
+    "find_component_by_tag"
+  ],
+  "CameraActor": [
+    "find_component_by_tag"
+  ],
+  "CameraAnimationSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "CameraBlockingVolume": [
+    "find_component_by_tag"
+  ],
+  "CameraRig_Crane": [
+    "find_component_by_tag"
+  ],
+  "CameraRig_Rail": [
+    "find_component_by_tag"
+  ],
+  "CameraShakeSourceActor": [
+    "find_component_by_tag"
+  ],
+  "ChaosCacheManager": [
+    "find_component_by_tag"
+  ],
+  "ChaosCachePlayer": [
+    "find_component_by_tag"
+  ],
+  "ChaosSolverActor": [
+    "find_component_by_tag"
+  ],
+  "ChaosVDDataContainerBaseActor": [
+    "find_component_by_tag"
+  ],
+  "ChaosVDGameFrameInfoActor": [
+    "find_component_by_tag"
+  ],
+  "ChaosVDGeometryContainer": [
+    "find_component_by_tag"
+  ],
+  "ChaosVDSolverInfoActor": [
+    "find_component_by_tag"
+  ],
+  "Character": [
+    "find_component_by_tag"
+  ],
+  "CineCameraActor": [
+    "find_component_by_tag"
+  ],
+  "ClusterUnionActor": [
+    "find_component_by_tag"
+  ],
+  "CombinedTransformGizmoActor": [
+    "find_component_by_tag"
+  ],
+  "ConstraintsActor": [
+    "find_component_by_tag"
+  ],
+  "ControlPointMeshActor": [
+    "find_component_by_tag"
+  ],
+  "ControlRigControlActor": [
+    "find_component_by_tag"
+  ],
+  "ControlRigGizmoActor": [
+    "find_component_by_tag"
+  ],
+  "ControlRigShapeActor": [
+    "find_component_by_tag"
+  ],
+  "Controller": [
+    "find_component_by_tag"
+  ],
+  "CullDistanceVolume": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreAbilitySystemComponent": [
+    "find_all_abilities_with_tags"
+  ],
+  "Dark_TdoreCharacter": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreGameMode": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreGameState": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreInputConfig": [
+    "find_ability_input_action_for_tag",
+    "find_native_input_action_for_tag"
+  ],
+  "Dark_TdorePawn": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdorePlayerController": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdorePlayerState": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreTeamInfoBase": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreTeamPublicInfo": [
+    "find_component_by_tag"
+  ],
+  "Dark_TdoreTestInteractable": [
+    "find_component_by_tag"
+  ],
+  "DataValidationTestActor": [
+    "find_component_by_tag"
+  ],
+  "DataflowActor": [
+    "find_component_by_tag"
+  ],
+  "DatasmithAreaLightActor": [
+    "find_component_by_tag"
+  ],
+  "DatasmithImportedSequencesActor": [
+    "find_component_by_tag"
+  ],
+  "DatasmithSceneActor": [
+    "find_component_by_tag"
+  ],
+  "DebugCameraController": [
+    "find_component_by_tag"
+  ],
+  "DebugCameraHUD": [
+    "find_component_by_tag"
+  ],
+  "DecalActor": [
+    "find_component_by_tag"
+  ],
+  "DefaultPawn": [
+    "find_component_by_tag"
+  ],
+  "DefaultPhysicsVolume": [
+    "find_component_by_tag"
+  ],
+  "DetourCrowdAIController": [
+    "find_component_by_tag"
+  ],
+  "DirectionalLight": [
+    "find_component_by_tag"
+  ],
+  "DirectionalLightMovable": [
+    "find_component_by_tag"
+  ],
+  "DirectionalLightStatic": [
+    "find_component_by_tag"
+  ],
+  "DirectionalLightStationary": [
+    "find_component_by_tag"
+  ],
+  "DocumentationActor": [
+    "find_component_by_tag"
+  ],
+  "DynamicBlockingVolume": [
+    "find_component_by_tag"
+  ],
+  "DynamicMeshActor": [
+    "find_component_by_tag"
+  ],
+  "DynamicPhysicsVolume": [
+    "find_component_by_tag"
+  ],
+  "DynamicTriggerVolume": [
+    "find_component_by_tag"
+  ],
+  "EQSTestingPawn": [
+    "find_component_by_tag"
+  ],
+  "EditorAutomationActor": [
+    "find_component_by_tag"
+  ],
+  "EditorUtilityActor": [
+    "find_component_by_tag"
+  ],
+  "EditorUtilityCamera": [
+    "find_component_by_tag"
+  ],
+  "Emitter": [
+    "find_component_by_tag"
+  ],
+  "EmitterCameraLensEffectBase": [
+    "find_component_by_tag"
+  ],
+  "EmitterSpawnable": [
+    "find_component_by_tag"
+  ],
+  "ExponentialHeightFog": [
+    "find_component_by_tag"
+  ],
+  "FieldSystemActor": [
+    "find_component_by_tag"
+  ],
+  "FloatingText": [
+    "find_component_by_tag"
+  ],
+  "FunctionalAITest": [
+    "find_component_by_tag"
+  ],
+  "FunctionalAITestBase": [
+    "find_component_by_tag"
+  ],
+  "FunctionalTest": [
+    "find_component_by_tag"
+  ],
+  "FunctionalTestGameMode": [
+    "find_component_by_tag"
+  ],
+  "FunctionalTestLevelScript": [
+    "find_component_by_tag"
+  ],
+  "FunctionalUIScreenshotTest": [
+    "find_component_by_tag"
+  ],
+  "GameMode": [
+    "find_component_by_tag"
+  ],
+  "GameModeBase": [
+    "find_component_by_tag"
+  ],
+  "GameNetworkManager": [
+    "find_component_by_tag"
+  ],
+  "GameSession": [
+    "find_component_by_tag"
+  ],
+  "GameState": [
+    "find_component_by_tag"
+  ],
+  "GameStateBase": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityTargetActor": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityTargetActor_ActorPlacement": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityTargetActor_GroundTrace": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityTargetActor_Radius": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityTargetActor_SingleLineTrace": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityTargetActor_Trace": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityWorldReticle": [
+    "find_component_by_tag"
+  ],
+  "GameplayAbilityWorldReticle_ActorVisualization": [
+    "find_component_by_tag"
+  ],
+  "GameplayCameraActor": [
+    "find_component_by_tag"
+  ],
+  "GameplayCameraActorBase": [
+    "find_component_by_tag"
+  ],
+  "GameplayCameraRigActor": [
+    "find_component_by_tag"
+  ],
+  "GameplayCameraSystemActor": [
+    "find_component_by_tag"
+  ],
+  "GameplayCamerasPlayerCameraManager": [
+    "find_component_by_tag"
+  ],
+  "GameplayCueNotify_Actor": [
+    "find_component_by_tag"
+  ],
+  "GameplayCueNotify_BurstLatent": [
+    "find_component_by_tag"
+  ],
+  "GameplayCueNotify_Looping": [
+    "find_component_by_tag"
+  ],
+  "GameplayDebuggerCategoryReplicator": [
+    "find_component_by_tag"
+  ],
+  "GameplayDebuggerPlayerManager": [
+    "find_component_by_tag"
+  ],
+  "GameplayTagLibrary": [
+    "make_gameplay_tag_container_from_array",
+    "make_gameplay_tag_container_from_tag",
+    "make_gameplay_tag_query",
+    "make_gameplay_tag_query_match_all_tags",
+    "make_gameplay_tag_query_match_any_tags",
+    "make_gameplay_tag_query_match_no_tags",
+    "make_literal_gameplay_tag",
+    "make_literal_gameplay_tag_container"
+  ],
+  "GeneratedDynamicMeshActor": [
+    "find_component_by_tag"
+  ],
+  "GeneratedMeshAreaLight": [
+    "find_component_by_tag"
+  ],
+  "GenericSmartObject": [
+    "find_component_by_tag"
+  ],
+  "GeometryCacheActor": [
+    "find_component_by_tag"
+  ],
+  "GeometryCollectionActor": [
+    "find_component_by_tag"
+  ],
+  "GeometryCollectionDebugDrawActor": [
+    "find_component_by_tag"
+  ],
+  "GeometryCollectionISMPoolActor": [
+    "find_component_by_tag"
+  ],
+  "GeometryCollectionRenderLevelSetActor": [
+    "find_component_by_tag"
+  ],
+  "GizmoActor": [
+    "find_component_by_tag"
+  ],
+  "GridPathAIController": [
+    "find_component_by_tag"
+  ],
+  "GroomActor": [
+    "find_component_by_tag"
+  ],
+  "GroupActor": [
+    "find_component_by_tag"
+  ],
+  "HUD": [
+    "find_component_by_tag"
+  ],
+  "HairStrandsActor": [
+    "find_component_by_tag"
+  ],
+  "HeterogeneousVolume": [
+    "find_component_by_tag"
+  ],
+  "HierarchicalLODVolume": [
+    "find_component_by_tag"
+  ],
+  "ISMPartitionActor": [
+    "find_component_by_tag"
+  ],
+  "ISMPoolActor": [
+    "find_component_by_tag"
+  ],
+  "Info": [
+    "find_component_by_tag"
+  ],
+  "InstancedFoliageActor": [
+    "find_component_by_tag"
+  ],
+  "InstancedPlacementPartitionActor": [
+    "find_component_by_tag"
+  ],
+  "InteractiveFoliageActor": [
+    "find_component_by_tag"
+  ],
+  "InternalToolFrameworkActor": [
+    "find_component_by_tag"
+  ],
+  "InterpActor": [
+    "find_component_by_tag"
+  ],
+  "IntervalGizmoActor": [
+    "find_component_by_tag"
+  ],
+  "KillZVolume": [
+    "find_component_by_tag"
+  ],
+  "LODActor": [
+    "find_component_by_tag"
+  ],
+  "Landscape": [
+    "find_component_by_tag"
+  ],
+  "LandscapeBlueprintBrush": [
+    "find_component_by_tag"
+  ],
+  "LandscapeBlueprintBrushBase": [
+    "find_component_by_tag"
+  ],
+  "LandscapeBlueprintCustomBrush": [
+    "find_component_by_tag"
+  ],
+  "LandscapeGizmoActiveActor": [
+    "find_component_by_tag"
+  ],
+  "LandscapeGizmoActor": [
+    "find_component_by_tag"
+  ],
+  "LandscapeMeshProxyActor": [
+    "find_component_by_tag"
+  ],
+  "LandscapePlaceholder": [
+    "find_component_by_tag"
+  ],
+  "LandscapeProxy": [
+    "find_component_by_tag"
+  ],
+  "LandscapeSplineActor": [
+    "find_component_by_tag"
+  ],
+  "LandscapeSplineMeshesActor": [
+    "find_component_by_tag"
+  ],
+  "LandscapeStreamingProxy": [
+    "find_component_by_tag"
+  ],
+  "LevelBounds": [
+    "find_component_by_tag"
+  ],
+  "LevelInstance": [
+    "find_component_by_tag"
+  ],
+  "LevelInstanceEditorInstanceActor": [
+    "find_component_by_tag"
+  ],
+  "LevelInstancePivot": [
+    "find_component_by_tag"
+  ],
+  "LevelScriptActor": [
+    "find_component_by_tag"
+  ],
+  "LevelSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "LevelSequenceActor": [
+    "find_component_by_tag"
+  ],
+  "LevelSequenceMediaController": [
+    "find_component_by_tag"
+  ],
+  "LevelStreamingVolume": [
+    "find_component_by_tag"
+  ],
+  "LevelVariantSetsActor": [
+    "find_component_by_tag"
+  ],
+  "Light": [
+    "find_component_by_tag"
+  ],
+  "LightWeightInstanceManager": [
+    "find_component_by_tag"
+  ],
+  "LightWeightInstanceStaticMeshManager": [
+    "find_component_by_tag"
+  ],
+  "LightmassCharacterIndirectDetailVolume": [
+    "find_component_by_tag"
+  ],
+  "LightmassImportanceVolume": [
+    "find_component_by_tag"
+  ],
+  "LightmassPortal": [
+    "find_component_by_tag"
+  ],
+  "LocalFogVolume": [
+    "find_component_by_tag"
+  ],
+  "LocationVolume": [
+    "find_component_by_tag"
+  ],
+  "Manipulator": [
+    "find_component_by_tag"
+  ],
+  "MapBuildDataActor": [
+    "find_component_by_tag"
+  ],
+  "MassClientBubbleInfoBase": [
+    "find_component_by_tag"
+  ],
+  "MassDebugVisualizer": [
+    "find_component_by_tag"
+  ],
+  "MassEntityTestFarmPlot": [
+    "find_component_by_tag"
+  ],
+  "MassSpawner": [
+    "find_component_by_tag"
+  ],
+  "MassVisualizer": [
+    "find_component_by_tag"
+  ],
+  "MaterialInstanceActor": [
+    "find_component_by_tag"
+  ],
+  "MediaPlate": [
+    "find_component_by_tag"
+  ],
+  "MeshMergeCullingVolume": [
+    "find_component_by_tag"
+  ],
+  "ModularAIController": [
+    "find_component_by_tag"
+  ],
+  "ModularCharacter": [
+    "find_component_by_tag"
+  ],
+  "ModularGameMode": [
+    "find_component_by_tag"
+  ],
+  "ModularGameModeBase": [
+    "find_component_by_tag"
+  ],
+  "ModularGameState": [
+    "find_component_by_tag"
+  ],
+  "ModularGameStateBase": [
+    "find_component_by_tag"
+  ],
+  "ModularPawn": [
+    "find_component_by_tag"
+  ],
+  "ModularPlayerController": [
+    "find_component_by_tag"
+  ],
+  "ModularPlayerState": [
+    "find_component_by_tag"
+  ],
+  "MovieSceneSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "MovieSceneTestSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "NavLinkProxy": [
+    "find_component_by_tag"
+  ],
+  "NavMeshBoundsVolume": [
+    "find_component_by_tag"
+  ],
+  "NavModifierVolume": [
+    "find_component_by_tag"
+  ],
+  "NavSystemConfigOverride": [
+    "find_component_by_tag"
+  ],
+  "NavigationData": [
+    "find_component_by_tag"
+  ],
+  "NavigationDataChunkActor": [
+    "find_component_by_tag"
+  ],
+  "NavigationGraph": [
+    "find_component_by_tag"
+  ],
+  "NavigationGraphNode": [
+    "find_component_by_tag"
+  ],
+  "NavigationObjectBase": [
+    "find_component_by_tag"
+  ],
+  "NavigationTestingActor": [
+    "find_component_by_tag"
+  ],
+  "NiagaraActor": [
+    "find_component_by_tag"
+  ],
+  "NiagaraEditorPreviewActor": [
+    "find_component_by_tag"
+  ],
+  "NiagaraLensEffectBase": [
+    "find_component_by_tag"
+  ],
+  "NiagaraPerfBaselineActor": [
+    "find_component_by_tag"
+  ],
+  "NiagaraPreviewBase": [
+    "find_component_by_tag"
+  ],
+  "NiagaraPreviewGrid": [
+    "find_component_by_tag"
+  ],
+  "NiagaraSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "NoPawnPlayerController": [
+    "find_component_by_tag"
+  ],
+  "Note": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeacon": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeaconClient": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeaconHost": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeaconHostObject": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeaconUnitTestClient": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeaconUnitTestHost": [
+    "find_component_by_tag"
+  ],
+  "OnlineBeaconUnitTestHostObject": [
+    "find_component_by_tag"
+  ],
+  "PCGPartitionActor": [
+    "find_component_by_tag"
+  ],
+  "PCGUnitTestDummyActor": [
+    "find_component_by_tag"
+  ],
+  "PCGVolume": [
+    "find_component_by_tag"
+  ],
+  "PCGWorldActor": [
+    "find_component_by_tag"
+  ],
+  "PackedLevelActor": [
+    "find_component_by_tag"
+  ],
+  "PackedLevelInstance": [
+    "find_component_by_tag"
+  ],
+  "PainCausingVolume": [
+    "find_component_by_tag"
+  ],
+  "PaperCharacter": [
+    "find_component_by_tag"
+  ],
+  "PaperFlipbookActor": [
+    "find_component_by_tag"
+  ],
+  "PaperGroupedSpriteActor": [
+    "find_component_by_tag"
+  ],
+  "PaperRenderActor": [
+    "find_component_by_tag"
+  ],
+  "PaperSpriteActor": [
+    "find_component_by_tag"
+  ],
+  "PaperTerrainActor": [
+    "find_component_by_tag"
+  ],
+  "PaperTileMapActor": [
+    "find_component_by_tag"
+  ],
+  "ParticleEventManager": [
+    "find_component_by_tag"
+  ],
+  "PartitionActor": [
+    "find_component_by_tag"
+  ],
+  "PartyBeaconClient": [
+    "find_component_by_tag"
+  ],
+  "PartyBeaconHost": [
+    "find_component_by_tag"
+  ],
+  "Pawn": [
+    "find_component_by_tag"
+  ],
+  "PhasedAutomationActorBase": [
+    "find_component_by_tag"
+  ],
+  "PhysicsActor": [
+    "find_component_by_tag"
+  ],
+  "PhysicsBSJointActor": [
+    "find_component_by_tag"
+  ],
+  "PhysicsConstraintActor": [
+    "find_component_by_tag"
+  ],
+  "PhysicsHingeActor": [
+    "find_component_by_tag"
+  ],
+  "PhysicsPrismaticActor": [
+    "find_component_by_tag"
+  ],
+  "PhysicsThruster": [
+    "find_component_by_tag"
+  ],
+  "PhysicsVolume": [
+    "find_component_by_tag"
+  ],
+  "PivotTransformGizmo": [
+    "find_component_by_tag"
+  ],
+  "PlacedEditorUtilityBase": [
+    "find_component_by_tag"
+  ],
+  "PlanarReflection": [
+    "find_component_by_tag"
+  ],
+  "PlaneReflectionCapture": [
+    "find_component_by_tag"
+  ],
+  "PlayerCameraManager": [
+    "find_component_by_tag"
+  ],
+  "PlayerController": [
+    "find_component_by_tag"
+  ],
+  "PlayerStart": [
+    "find_component_by_tag"
+  ],
+  "PlayerStartPIE": [
+    "find_component_by_tag"
+  ],
+  "PlayerState": [
+    "find_component_by_tag"
+  ],
+  "PointLight": [
+    "find_component_by_tag"
+  ],
+  "PointLightMovable": [
+    "find_component_by_tag"
+  ],
+  "PointLightStatic": [
+    "find_component_by_tag"
+  ],
+  "PointLightStationary": [
+    "find_component_by_tag"
+  ],
+  "PostProcessVolume": [
+    "find_component_by_tag"
+  ],
+  "PrecomputedVisibilityOverrideVolume": [
+    "find_component_by_tag"
+  ],
+  "PrecomputedVisibilityVolume": [
+    "find_component_by_tag"
+  ],
+  "PreviewGeometryActor": [
+    "find_component_by_tag"
+  ],
+  "PreviewMeshActor": [
+    "find_component_by_tag"
+  ],
+  "ProceduralFoliageActor": [
+    "find_component_by_tag"
+  ],
+  "ProceduralFoliageBlockingVolume": [
+    "find_component_by_tag"
+  ],
+  "ProceduralFoliageVolume": [
+    "find_component_by_tag"
+  ],
+  "PropertyEditorTestActor": [
+    "find_component_by_tag"
+  ],
+  "RB_ConstraintActor": [
+    "find_component_by_tag"
+  ],
+  "RB_Thruster": [
+    "find_component_by_tag"
+  ],
+  "RadialForceActor": [
+    "find_component_by_tag"
+  ],
+  "RecastNavMesh": [
+    "find_component_by_tag"
+  ],
+  "RectLight": [
+    "find_component_by_tag"
+  ],
+  "ReflectionCapture": [
+    "find_component_by_tag"
+  ],
+  "ReplicatedLevelSequenceActor": [
+    "find_component_by_tag"
+  ],
+  "ResonanceAudioDirectivityVisualizer": [
+    "find_component_by_tag"
+  ],
+  "ReverbVolume": [
+    "find_component_by_tag"
+  ],
+  "ReverbVolumeToggleable": [
+    "find_component_by_tag"
+  ],
+  "RigidBodyBase": [
+    "find_component_by_tag"
+  ],
+  "RuntimeVirtualTextureVolume": [
+    "find_component_by_tag"
+  ],
+  "SceneCapture": [
+    "find_component_by_tag"
+  ],
+  "SceneCapture2D": [
+    "find_component_by_tag"
+  ],
+  "SceneCaptureCube": [
+    "find_component_by_tag"
+  ],
+  "ScreenshotFunctionalTest": [
+    "find_component_by_tag"
+  ],
+  "ScreenshotFunctionalTestBase": [
+    "find_component_by_tag"
+  ],
+  "SequenceRecorderGroup": [
+    "find_component_by_tag"
+  ],
+  "ServerStatReplicator": [
+    "find_component_by_tag"
+  ],
+  "ServerStreamingLevelsVisibility": [
+    "find_component_by_tag"
+  ],
+  "SingleAnimSkeletalActor": [
+    "find_component_by_tag"
+  ],
+  "SkeletalMeshActor": [
+    "find_component_by_tag"
+  ],
+  "SkeletalPhysicsActor": [
+    "find_component_by_tag"
+  ],
+  "SkyAtmosphere": [
+    "find_component_by_tag"
+  ],
+  "SkyLight": [
+    "find_component_by_tag"
+  ],
+  "SmartObjectCollection": [
+    "find_component_by_tag"
+  ],
+  "SmartObjectPersistentCollection": [
+    "find_component_by_tag"
+  ],
+  "SmartObjectSubsystemRenderingActor": [
+    "find_component_by_tag"
+  ],
+  "SmartObjectTestCollection": [
+    "find_component_by_tag"
+  ],
+  "SmartObjectTestingActor": [
+    "find_component_by_tag"
+  ],
+  "SparseVolumeTextureViewer": [
+    "find_component_by_tag"
+  ],
+  "SpatialHashRuntimeGridInfo": [
+    "find_component_by_tag"
+  ],
+  "SpectatorBeaconClient": [
+    "find_component_by_tag"
+  ],
+  "SpectatorBeaconHost": [
+    "find_component_by_tag"
+  ],
+  "SpectatorPawn": [
+    "find_component_by_tag"
+  ],
+  "SphereReflectionCapture": [
+    "find_component_by_tag"
+  ],
+  "SplineMeshActor": [
+    "find_component_by_tag"
+  ],
+  "SpotLight": [
+    "find_component_by_tag"
+  ],
+  "SpotLightMovable": [
+    "find_component_by_tag"
+  ],
+  "SpotLightStatic": [
+    "find_component_by_tag"
+  ],
+  "SpotLightStationary": [
+    "find_component_by_tag"
+  ],
+  "StaticMeshActor": [
+    "find_component_by_tag"
+  ],
+  "SwitchActor": [
+    "find_component_by_tag"
+  ],
+  "TP_ThirdPersonCharacter": [
+    "find_component_by_tag"
+  ],
+  "TP_ThirdPersonGameMode": [
+    "find_component_by_tag"
+  ],
+  "TP_ThirdPersonPlayerController": [
+    "find_component_by_tag"
+  ],
+  "TargetPoint": [
+    "find_component_by_tag"
+  ],
+  "TemplateSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "TemplateSequenceActor": [
+    "find_component_by_tag"
+  ],
+  "TestBeaconClient": [
+    "find_component_by_tag"
+  ],
+  "TestBeaconHost": [
+    "find_component_by_tag"
+  ],
+  "TestMovieSceneArrayPropertiesActor": [
+    "find_component_by_tag"
+  ],
+  "TestMovieSceneSequence": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "TextRenderActor": [
+    "find_component_by_tag"
+  ],
+  "TriggerBase": [
+    "find_component_by_tag"
+  ],
+  "TriggerBox": [
+    "find_component_by_tag"
+  ],
+  "TriggerCapsule": [
+    "find_component_by_tag"
+  ],
+  "TriggerSphere": [
+    "find_component_by_tag"
+  ],
+  "TriggerVolume": [
+    "find_component_by_tag"
+  ],
+  "VLogRenderingActor": [
+    "find_component_by_tag"
+  ],
+  "VREditorAvatarActor": [
+    "find_component_by_tag"
+  ],
+  "VREditorBaseActor": [
+    "find_component_by_tag"
+  ],
+  "VREditorDockableCameraWindow": [
+    "find_component_by_tag"
+  ],
+  "VREditorDockableWindow": [
+    "find_component_by_tag"
+  ],
+  "VREditorFloatingCameraUI": [
+    "find_component_by_tag"
+  ],
+  "VREditorFloatingUI": [
+    "find_component_by_tag"
+  ],
+  "VREditorRadialFloatingUI": [
+    "find_component_by_tag"
+  ],
+  "VREditorTeleporter": [
+    "find_component_by_tag"
+  ],
+  "VariantManagerTestActor": [
+    "find_component_by_tag"
+  ],
+  "VectorFieldVolume": [
+    "find_component_by_tag"
+  ],
+  "VisualLoggerCameraController": [
+    "find_component_by_tag"
+  ],
+  "VisualLoggerFilterVolume": [
+    "find_component_by_tag"
+  ],
+  "VisualLoggerHUD": [
+    "find_component_by_tag"
+  ],
+  "VisualLoggerRenderingActor": [
+    "find_component_by_tag"
+  ],
+  "VisualLoggerRenderingActorBase": [
+    "find_component_by_tag"
+  ],
+  "Volume": [
+    "find_component_by_tag"
+  ],
+  "VolumetricCloud": [
+    "find_component_by_tag"
+  ],
+  "VolumetricLightmapDensityVolume": [
+    "find_component_by_tag"
+  ],
+  "WidgetAnimation": [
+    "find_binding_by_tag",
+    "find_bindings_by_tag"
+  ],
+  "WindDirectionalSource": [
+    "find_component_by_tag"
+  ],
+  "WorldDataLayers": [
+    "find_component_by_tag"
+  ],
+  "WorldInfo": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionAutoInstancedActor": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionCustomHLOD": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionCustomHLODPlaceholder": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionHLOD": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionHLODOnlyLevelInstance": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionMiniMap": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionMiniMapVolume": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionReplay": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionStandaloneHLOD": [
+    "find_component_by_tag"
+  ],
+  "WorldPartitionVolume": [
+    "find_component_by_tag"
+  ],
+  "WorldSettings": [
+    "find_component_by_tag"
+  ],
+  "ZoneGraphAnnotationTestingActor": [
+    "find_component_by_tag"
+  ],
+  "ZoneGraphBehaviorTestingActor": [
+    "find_component_by_tag"
+  ],
+  "ZoneGraphData": [
+    "find_component_by_tag"
+  ],
+  "ZoneGraphTestingActor": [
+    "find_component_by_tag"
+  ],
+  "ZoneShape": [
+    "find_component_by_tag"
+  ]
+}

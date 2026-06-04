@@ -1,0 +1,46 @@
+{
+  "base": {
+    "exists": true,
+    "class": "<Object '/Script/Engine.AnimBlueprint' (0x00007FF3C785B068) Class 'Class'>",
+    "path": "/Game/ThirdPerson/Animations/ABP_Character_Base.ABP_Character_Base",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/ABP_Character_Base.ABP_Character_Base_C' (0x000002E4165A9A00) Class 'AnimBlueprintGeneratedClass'>",
+    "skeleton_generated_class_error": "'AnimBlueprint' object has no attribute 'skeleton_generated_class'",
+    "parent_class_error": "'AnimBlueprint' object has no attribute 'parent_class'",
+    "implemented_interfaces_error": "'AnimBlueprint' object has no attribute 'implemented_interfaces'",
+    "blueprint_type_error": "'AnimBlueprint' object has no attribute 'blueprint_type'",
+    "compile": "ok"
+  },
+  "layer_base": {
+    "exists": true,
+    "class": "<Object '/Script/Engine.AnimBlueprint' (0x00007FF3C785B068) Class 'Class'>",
+    "path": "/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayersBase.ABP_ItemAnimLayersBase",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayersBase.ABP_ItemAnimLayersBase_C' (0x000002E60CDF4600) Class 'AnimBlueprintGeneratedClass'>",
+    "skeleton_generated_class_error": "'AnimBlueprint' object has no attribute 'skeleton_generated_class'",
+    "parent_class_error": "'AnimBlueprint' object has no attribute 'parent_class'",
+    "implemented_interfaces_error": "'AnimBlueprint' object has no attribute 'implemented_interfaces'",
+    "blueprint_type_error": "'AnimBlueprint' object has no attribute 'blueprint_type'",
+    "compile": "ok"
+  },
+  "sword": {
+    "exists": true,
+    "class": "<Object '/Script/Engine.AnimBlueprint' (0x00007FF3C785B068) Class 'Class'>",
+    "path": "/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword_C' (0x000002E60CDF7000) Class 'AnimBlueprintGeneratedClass'>",
+    "skeleton_generated_class_error": "'AnimBlueprint' object has no attribute 'skeleton_generated_class'",
+    "parent_class_error": "'AnimBlueprint' object has no attribute 'parent_class'",
+    "implemented_interfaces_error": "'AnimBlueprint' object has no attribute 'implemented_interfaces'",
+    "blueprint_type_error": "'AnimBlueprint' object has no attribute 'blueprint_type'",
+    "compile": "ok"
+  },
+  "ali": {
+    "exists": true,
+    "class": "<Object '/Script/Engine.AnimBlueprint' (0x00007FF3C785B068) Class 'Class'>",
+    "path": "/Game/ThirdPerson/Animations/LinkedLayers/ALI_ItemAnimLayers.ALI_ItemAnimLayers",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ALI_ItemAnimLayers.ALI_ItemAnimLayers_C' (0x000002E4165A6200) Class 'AnimBlueprintGeneratedClass'>",
+    "skeleton_generated_class_error": "'AnimBlueprint' object has no attribute 'skeleton_generated_class'",
+    "parent_class_error": "'AnimBlueprint' object has no attribute 'parent_class'",
+    "implemented_interfaces_error": "'AnimBlueprint' object has no attribute 'implemented_interfaces'",
+    "blueprint_type_error": "'AnimBlueprint' object has no attribute 'blueprint_type'",
+    "compile": "ok"
+  }
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "expr": "unreal.Key()",
+    "ok": true,
+    "value": "<Struct 'Key' (0x0000020284A30F80) {}>",
+    "dir": []
+  },
+  {
+    "expr": "unreal.Key('Two')",
+    "ok": false,
+    "error": "call() takes at most 0 arguments (1 given)"
+  },
+  {
+    "expr": "unreal.InputChord()",
+    "ok": true,
+    "value": "<Struct 'InputChord' (0x000002028484FC60) {key: {}, shift: False, ctrl: False, alt: False, cmd: False}>",
+    "dir": [
+      "key"
+    ]
+  },
+  {
+    "set_prop": "key_name",
+    "ok": true,
+    "value": "<Struct 'Key' (0x0000020284A319E0) {}>"
+  },
+  {
+    "set_prop": "KeyName",
+    "ok": true,
+    "value": "<Struct 'Key' (0x0000020284A38900) {}>"
+  },
+  {
+    "set_prop": "name",
+    "ok": false,
+    "error": "Key: Failed to find property 'name' for attribute 'name' on 'Key'"
+  }
+]

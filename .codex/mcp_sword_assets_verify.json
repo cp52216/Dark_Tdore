@@ -1,0 +1,13 @@
+{
+  "/Game/Weapons/Sword/B_WeaponInstance_Sword.B_WeaponInstance_Sword": true,
+  "/Game/Weapons/Sword/B_EquipmentDefinition_Sword.B_EquipmentDefinition_Sword": true,
+  "/Game/Weapons/Sword/GA_EquipWeapon_Sword.GA_EquipWeapon_Sword": true,
+  "/Game/Input/Actions/IA_Weapon2.IA_Weapon2": true,
+  "/Game/Input/IMC_Default.IMC_Default": true,
+  "GA equipment_definition": "<Object '/Game/Weapons/Sword/B_EquipmentDefinition_Sword.B_EquipmentDefinition_Sword_C' (0x0000020235D8BD00) Class 'BlueprintGeneratedClass'>",
+  "GA unequip_other_weapons": "True",
+  "GA toggle_off_if_already_equipped": "True",
+  "Equipment instance_type": "<Object '/Game/Weapons/Sword/B_WeaponInstance_Sword.B_WeaponInstance_Sword_C' (0x0000020235D8C400) Class 'BlueprintGeneratedClass'>",
+  "Weapon equipped_anim_set": "<Struct 'Dark_TdoreAnimLayerSelectionSet' (0x000002030FFFB810) {layer_rules: , default_layer: \"/Script/Engine.AnimBlueprintGeneratedClass'/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword_C'\"}>",
+  "IMC IA_Weapon2 keys": []
+}

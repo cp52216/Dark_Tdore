@@ -28,7 +28,7 @@ UDark_TdoreHealthSet::UDark_TdoreHealthSet()
 	MaxHealthBeforeAttributeChange = 0.0f;
 	HealthBeforeAttributeChange = 0.0f;
 
-	UE_LOG(LogDark_TdoreGAS, Log, TEXT("[HealthSet] 构造: Health=%.1f MaxHealth=%.1f"), GetHealth(), GetMaxHealth());
+	UE_LOG(LogDark_TdoreGAS, Log, TEXT("[HealthSet] 构造: Health=%.1f MaxHealth=%.1f"), 100.0f, 100.0f);
 }
 
 // ============ 网络复制 ============

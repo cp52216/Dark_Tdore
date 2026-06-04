@@ -1,0 +1,34 @@
+{
+  "ability_input_actions": [
+    {
+      "input_action": "IA_AbilityQ",
+      "input_tag": "<Struct 'GameplayTag' (0x0000021D76E16048) {}>"
+    },
+    {
+      "input_action": "IA_Weapon2",
+      "input_tag": "<Struct 'GameplayTag' (0x0000021D76E17E68) {}>"
+    }
+  ],
+  "granted_abilities": [
+    {
+      "ability": "BP_GA_TestQ_C",
+      "input_tag": "<Struct 'GameplayTag' (0x0000021D76E159CC) {}>",
+      "level": 1
+    },
+    {
+      "ability": "BP_GA_Death_C",
+      "input_tag": "<Struct 'GameplayTag' (0x0000021D76E1B6AC) {}>",
+      "level": 1
+    },
+    {
+      "ability": "BP_GA_Interact_C",
+      "input_tag": "<Struct 'GameplayTag' (0x0000021D76E1F4CC) {}>",
+      "level": 1
+    },
+    {
+      "ability": "GA_EquipWeapon_Sword_C",
+      "input_tag": "<Struct 'GameplayTag' (0x0000021D76E1C76C) {}>",
+      "level": 1
+    }
+  ]
+}

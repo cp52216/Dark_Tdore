@@ -1,0 +1,32 @@
+{
+  "/Game/Weapons/Sword/B_WeaponInstance_Sword.B_WeaponInstance_Sword": {
+    "class": "<Object '/Script/Engine.Blueprint' (0x00007FF38DFD4B78) Class 'Class'>",
+    "generated_class_attr": "<built-in method generated_class of Blueprint object at 0x00000202735AFED0>",
+    "generated_class_callable": true,
+    "dir_generated": [
+      "__class__",
+      "__init_subclass__",
+      "__subclasshook__",
+      "generated_class",
+      "get_class",
+      "static_class"
+    ]
+  },
+  "/Game/Input/IMC_Default.IMC_Default": {
+    "class": "<Object '/Script/EnhancedInput.InputMappingContext' (0x00000201E34EAF00) Class 'Class'>",
+    "generated_class_attr": "None",
+    "generated_class_callable": false,
+    "dir_generated": [
+      "__class__",
+      "__init_subclass__",
+      "__subclasshook__",
+      "get_class",
+      "static_class"
+    ],
+    "map_key_doc": "x.map_key(action, to_key) -> EnhancedActionKeyMapping\r\nMap a key to an action within the mapping context.\r\n\r\nArgs:\r\n    action (InputAction): \r\n    to_key (Key): \r\n\r\nReturns:\r\n    EnhancedActionKeyMapping:",
+    "mapping_struct_dir": [
+      "action",
+      "key"
+    ]
+  }
+}

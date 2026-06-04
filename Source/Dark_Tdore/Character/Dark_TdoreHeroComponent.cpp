@@ -167,7 +167,7 @@ void UDark_TdoreHeroComponent::InitializePlayerInput()
 	{
 		if (Action.InputAction && Action.InputTag.IsValid())
 		{
-			EnhancedInputComponent->BindAction(Action.InputAction, ETriggerEvent::Triggered, this,
+			EnhancedInputComponent->BindAction(Action.InputAction, ETriggerEvent::Started, this,
 				&UDark_TdoreHeroComponent::Input_AbilityTagPressed, Action.InputTag);
 			EnhancedInputComponent->BindAction(Action.InputAction, ETriggerEvent::Completed, this,
 				&UDark_TdoreHeroComponent::Input_AbilityTagReleased, Action.InputTag);

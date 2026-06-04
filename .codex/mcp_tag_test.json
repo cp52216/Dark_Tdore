@@ -1,0 +1,17 @@
+[
+  {
+    "expr": "unreal.GameplayTagLibrary.make_literal_gameplay_tag('Input.Ability.Weapon.2')",
+    "ok": false,
+    "error": "GameplayTagLibrary: Failed to convert parameter 'value' when calling function 'BlueprintGameplayTagLibrary.MakeLiteralGameplayTag' on 'Default__BlueprintGameplayTagLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'str' as 'Value' (StructProperty)\n    TypeError: NativizeStructInstance: Cannot nativize 'str' as 'GameplayTag'\n      Exception: GameplayTag: Struct has 0 initialization parameters, but the given sequence had 22 elements"
+  },
+  {
+    "expr": "unreal.GameplayTagLibrary.make_literal_gameplay_tag(unreal.Name('Input.Ability.Weapon.2'))",
+    "ok": false,
+    "error": "GameplayTagLibrary: Failed to convert parameter 'value' when calling function 'BlueprintGameplayTagLibrary.MakeLiteralGameplayTag' on 'Default__BlueprintGameplayTagLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'Name' as 'Value' (StructProperty)\n    TypeError: NativizeStructInstance: Cannot nativize 'Name' as 'GameplayTag'"
+  },
+  {
+    "expr": "unreal.GameplayTag()",
+    "ok": true,
+    "value": "<Struct 'GameplayTag' (0x0000020273C8E410) {}>"
+  }
+]

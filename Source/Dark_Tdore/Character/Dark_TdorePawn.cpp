@@ -80,6 +80,6 @@ void ADark_TdorePawn::SetupAbilitySystem()
 
 	if (AbilitySet)
 	{
-		AbilitySet->GiveToAbilitySystem(Cast<UDark_TdoreAbilitySystemComponent>(AbilitySystemComponent), this);
+		AbilitySet->GiveToAbilitySystem(Cast<UDark_TdoreAbilitySystemComponent>(AbilitySystemComponent), nullptr, this);
 	}
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "prop": "pin_category",
+    "ok": false,
+    "error": "EdGraphPinType: Failed to find property 'pin_category' for attribute 'pin_category' on 'EdGraphPinType'"
+  },
+  {
+    "prop": "PinCategory",
+    "ok": false,
+    "error": "EdGraphPinType: Property 'PinCategory' for attribute 'PinCategory' on 'EdGraphPinType' is protected and cannot be set"
+  },
+  {
+    "prop": "pin_category",
+    "ok": false,
+    "error": "EdGraphPinType: Failed to find property 'pin_category' for attribute 'pin_category' on 'EdGraphPinType'"
+  },
+  {
+    "prop": "container_type",
+    "ok": false,
+    "error": "EdGraphPinType: Failed to find property 'container_type' for attribute 'container_type' on 'EdGraphPinType'"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Two",
+    "str": "<Struct 'Key' (0x0000020287393BA0) {}>",
+    "read": "Two"
+  },
+  {
+    "name": "Keyboard_2",
+    "str": "<Struct 'Key' (0x0000020287392060) {}>",
+    "read": "Keyboard_2"
+  },
+  {
+    "name": "2",
+    "str": "<Struct 'Key' (0x0000020287392F80) {}>",
+    "read": "2"
+  },
+  {
+    "name": "Num2",
+    "str": "<Struct 'Key' (0x0000020287392D40) {}>",
+    "read": "Num2"
+  },
+  {
+    "name": "NumPadTwo",
+    "str": "<Struct 'Key' (0x0000020287393980) {}>",
+    "read": "NumPadTwo"
+  },
+  {
+    "name": "NumPadTwoKey",
+    "str": "<Struct 'Key' (0x0000020287392A60) {}>",
+    "read": "NumPadTwoKey"
+  },
+  {
+    "name": "EKeys::Two",
+    "str": "<Struct 'Key' (0x0000020287393F80) {}>",
+    "read": "EKeys::Two"
+  }
+]

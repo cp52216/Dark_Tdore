@@ -1,0 +1,6 @@
+[
+  "classes weapon=<Object '/Game/Weapons/Sword/B_WeaponInstance_Sword.B_WeaponInstance_Sword_C' (0x0000020235D8C400) Class 'BlueprintGeneratedClass'>, equip=<Object '/Game/Weapons/Sword/B_EquipmentDefinition_Sword.B_EquipmentDefinition_Sword_C' (0x0000020235D8BD00) Class 'BlueprintGeneratedClass'>, ga=<Object '/Game/Weapons/Sword/GA_EquipWeapon_Sword.GA_EquipWeapon_Sword_C' (0x0000020312F64D00) Class 'BlueprintGeneratedClass'>, anim=<Object '/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword_C' (0x00000203082E0E00) Class 'AnimBlueprintGeneratedClass'>",
+  "configured weapon cdo",
+  "configured equipment definition cdo",
+  "FATAL:\nTraceback (most recent call last):\n  File \"<string>\", line 52, in <module>\nException: Dark_TdoreGameplayAbility_EquipWeapon: Failed to find property 'b_unequip_other_weapons' for attribute 'b_unequip_other_weapons' on 'GA_EquipWeapon_Sword_C'\n"
+]

@@ -1,0 +1,11 @@
+{
+  "/Script/Dark_Tdore.Dark_TdoreGameplayAbility_EquipWeapon": true,
+  "/Script/Dark_Tdore.Dark_TdoreWeaponInstance": true,
+  "/Script/Dark_Tdore.Dark_TdoreEquipmentDefinition": true,
+  "/Script/Dark_Tdore.Dark_TdoreInputConfig": true,
+  "/Script/Dark_Tdore.Dark_TdoreAbilitySet": true,
+  "/Game/Abilities/DA_DefaultAbilitySet.DA_DefaultAbilitySet": true,
+  "/Game/Input/DA_InputConfig.DA_InputConfig": true,
+  "/Game/Input/IMC_Default.IMC_Default": true,
+  "/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword": true
+}

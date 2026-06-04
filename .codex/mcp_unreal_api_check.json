@@ -1,0 +1,11 @@
+{
+  "InputAction": true,
+  "InputActionFactory": false,
+  "InputMappingContext": true,
+  "EnhancedActionKeyMapping": true,
+  "InputActionValueType": true,
+  "GameplayTag": true,
+  "GameplayTagLibrary": true,
+  "Dark_TdoreInputAction": true,
+  "Dark_TdoreAbilitySet_Ability": true
+}

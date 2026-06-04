@@ -33,7 +33,11 @@ void UDark_TdoreAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTa
 		{
 			if (AbilitySpec.Ability && (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag)))
 			{
-				InputPressedSpecHandles.AddUnique(AbilitySpec.Handle);
+				if (!InputHeldSpecHandles.Contains(AbilitySpec.Handle))
+				{
+					InputPressedSpecHandles.AddUnique(AbilitySpec.Handle);
+				}
+
 				InputHeldSpecHandles.AddUnique(AbilitySpec.Handle);
 			}
 		}

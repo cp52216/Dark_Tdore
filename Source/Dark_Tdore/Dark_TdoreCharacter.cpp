@@ -15,6 +15,7 @@
 #include "Character/Dark_TdoreHealthComponent.h"
 #include "Character/Dark_TdoreHeroComponent.h"
 #include "Character/Dark_TdorePawnData.h"
+#include "Equipment/Dark_TdoreEquipmentManagerComponent.h"
 #include "Input/Dark_TdoreInputConfig.h"
 #include "Player/Dark_TdorePlayerState.h"
 
@@ -68,6 +69,8 @@ ADark_TdoreCharacter::ADark_TdoreCharacter(const FObjectInitializer& ObjectIniti
 
 	// HealthComponent — 血量管理（参考 Lyra ULyraHealthComponent）
 	HealthComponent = CreateDefaultSubobject<UDark_TdoreHealthComponent>(TEXT("HealthComponent"));
+	// EquipmentManagerComponent — Lyra 风格装备管理；负责装备实例、挂件 Actor、装备授予能力的生命周期。
+	EquipmentManagerComponent = CreateDefaultSubobject<UDark_TdoreEquipmentManagerComponent>(TEXT("EquipmentManagerComponent"));
 }
 
 // ============ GAS 接口 ============

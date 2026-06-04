@@ -1,0 +1,8 @@
+{
+  "ubergraph_pages_error": "AnimBlueprint: Failed to find property 'ubergraph_pages' for attribute 'ubergraph_pages' on 'AnimBlueprint'",
+  "function_graphs_error": "AnimBlueprint: Failed to find property 'function_graphs' for attribute 'function_graphs' on 'AnimBlueprint'",
+  "macro_graphs_error": "AnimBlueprint: Failed to find property 'macro_graphs' for attribute 'macro_graphs' on 'AnimBlueprint'",
+  "delegate_signature_graphs_error": "AnimBlueprint: Failed to find property 'delegate_signature_graphs' for attribute 'delegate_signature_graphs' on 'AnimBlueprint'",
+  "intermediate_generated_graphs_error": "AnimBlueprint: Failed to find property 'intermediate_generated_graphs' for attribute 'intermediate_generated_graphs' on 'AnimBlueprint'",
+  "graphs": []
+}

@@ -1,0 +1,57 @@
+{
+  "GameplayTagLibrary": [
+    "add_gameplay_tag",
+    "add_gameplay_tag_to_container",
+    "append_gameplay_tag_containers",
+    "break_gameplay_tag_container",
+    "conv_object_to_gameplay_tag_asset_interface",
+    "do_gameplay_tags_match",
+    "does_container_have_tag",
+    "does_container_match_all_tags_in_container",
+    "does_container_match_any_tags_in_container",
+    "does_container_match_tag_query",
+    "equal_equal_gameplay_tag",
+    "equal_equal_gameplay_tag_container",
+    "get_all_actors_of_class_matching_tag_query",
+    "get_debug_string_from_gameplay_tag",
+    "get_debug_string_from_gameplay_tag_container",
+    "get_num_gameplay_tags_in_container",
+    "get_owned_gameplay_tags",
+    "get_tag_name",
+    "has_all_tags",
+    "has_any_tags",
+    "has_tag",
+    "is_gameplay_tag_valid",
+    "is_tag_query_empty",
+    "make_gameplay_tag_container_from_array",
+    "make_gameplay_tag_container_from_tag",
+    "make_gameplay_tag_query",
+    "make_gameplay_tag_query_match_all_tags",
+    "make_gameplay_tag_query_match_any_tags",
+    "make_gameplay_tag_query_match_no_tags",
+    "make_literal_gameplay_tag",
+    "make_literal_gameplay_tag_container",
+    "matches_any_tags",
+    "matches_tag",
+    "not_equal_gameplay_tag",
+    "not_equal_gameplay_tag_container",
+    "remove_gameplay_tag"
+  ],
+  "GameplayTag": [],
+  "BlueprintFactory": [
+    "asset_import_task"
+  ],
+  "AssetToolsHelpers": [
+    "get_asset_tools"
+  ],
+  "KismetEditorUtilities": null,
+  "InputMappingContext": [
+    "default_key_mappings",
+    "map_key",
+    "mapping_profile_overrides",
+    "mappings",
+    "unmap_all",
+    "unmap_all_keys_from_action",
+    "unmap_key"
+  ]
+}

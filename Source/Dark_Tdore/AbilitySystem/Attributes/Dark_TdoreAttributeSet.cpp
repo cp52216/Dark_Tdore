@@ -1,7 +1,10 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Dark_TdoreAttributeSet.h"
+
+#include "AbilitySystemGlobals.h"
 #include "AbilitySystem/Dark_TdoreAbilitySystemComponent.h"
+#include "GameFramework/Actor.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(Dark_TdoreAttributeSet)
 
@@ -17,5 +20,11 @@ UWorld* UDark_TdoreAttributeSet::GetWorld() const
 
 UDark_TdoreAbilitySystemComponent* UDark_TdoreAttributeSet::GetDarkTdoreAbilitySystemComponent() const
 {
-	return Cast<UDark_TdoreAbilitySystemComponent>(GetOwningAbilitySystemComponent());
+	const AActor* OwningActor = Cast<AActor>(GetOuter());
+	if (!OwningActor)
+	{
+		return nullptr;
+	}
+
+	return Cast<UDark_TdoreAbilitySystemComponent>(UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(OwningActor));
 }

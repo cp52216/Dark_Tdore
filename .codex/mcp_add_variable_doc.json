@@ -1,0 +1,3 @@
+{
+  "add_member_variable_doc": "X.add_member_variable(blueprint, member_name, variable_type) -> bool\r\nAdds a member variable to the specified blueprint with the specified type.\r\n\r\nArgs:\r\n    blueprint (Blueprint): \r\n    member_name (Name): \r\n    variable_type (EdGraphPinType): \r\n\r\nReturns:\r\n    bool: true if it succeeds, false if it fails."
+}

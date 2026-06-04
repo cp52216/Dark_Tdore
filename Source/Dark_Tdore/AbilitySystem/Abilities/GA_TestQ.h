@@ -10,7 +10,7 @@
  *
  * 用于验证完整 GAS 管线的测试技能：
  *   Q 按键 → Character::OnAbilityQPressed()
- *         → ASC::AbilityInputTagPressed("Input.Ability.Q")
+ *         → ASC::AbilityInputTagPressed("InputTag.Ability.Q")
  *         → Tick::ProcessAbilityInput()
  *         → TryActivateAbility(GA_TestQ)
  *         → GA_TestQ::ActivateAbility() → 打印日志 + 屏幕消息

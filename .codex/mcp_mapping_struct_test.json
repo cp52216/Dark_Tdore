@@ -1,0 +1,22 @@
+[
+  {
+    "expr": "unreal.EnhancedActionKeyMapping()",
+    "ok": true,
+    "value": "<Struct 'EnhancedActionKeyMapping' (0x000002025C3688E0) {triggers: , modifiers: , action: None, key: {}}>"
+  },
+  {
+    "set": "action",
+    "ok": true,
+    "value": "<Struct 'EnhancedActionKeyMapping' (0x000002025C3688E0) {triggers: , modifiers: , action: \"/Script/EnhancedInput.InputAction'/Game/Input/Actions/IA_Weapon2.IA_Weapon2'\", key: {}}>"
+  },
+  {
+    "set": "key",
+    "ok": true,
+    "value": "<Struct 'EnhancedActionKeyMapping' (0x000002025C3688E0) {triggers: , modifiers: , action: \"/Script/EnhancedInput.InputAction'/Game/Input/Actions/IA_Weapon2.IA_Weapon2'\", key: {}}>"
+  },
+  {
+    "expr": "unreal.EnhancedActionKeyMapping(action=ia, key=k)",
+    "ok": true,
+    "value": "<Struct 'EnhancedActionKeyMapping' (0x000002025C3686A0) {triggers: , modifiers: , action: \"/Script/EnhancedInput.InputAction'/Game/Input/Actions/IA_Weapon2.IA_Weapon2'\", key: {}}>"
+  }
+]

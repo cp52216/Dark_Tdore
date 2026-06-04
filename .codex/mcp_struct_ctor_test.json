@@ -1,0 +1,22 @@
+[
+  {
+    "kwargs": "input_action=None",
+    "ok": true,
+    "value": "<Struct 'Dark_TdoreInputAction' (0x000002028421FC20) {input_action: None, input_tag: {}}>"
+  },
+  {
+    "kwargs": "InputAction=None",
+    "ok": false,
+    "error": "call() 'InputAction' is an invalid keyword argument for this function"
+  },
+  {
+    "kwargs": "ability_level=1",
+    "ok": true,
+    "value": "<Struct 'Dark_TdoreAbilitySet_Ability' (0x000002028421A1E0) {ability: None, ability_level: 1, input_tag: {}}>"
+  },
+  {
+    "kwargs": "AbilityLevel=1",
+    "ok": false,
+    "error": "call() 'AbilityLevel' is an invalid keyword argument for this function"
+  }
+]

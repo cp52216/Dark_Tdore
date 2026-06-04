@@ -1,9 +1,16 @@
 {
-  "mcpServers": {
-    "monolith": {
-      "type": "sse",
-      "url": "http://localhost:9316/mcp",
-      "disabled": false
-    }
-  }
+	"mcpServers":
+	{
+		"monolith":
+		{
+			"type": "sse",
+			"url": "http://localhost:9316/mcp",
+			"disabled": true
+		},
+		"nwiro":
+		{
+			"type": "http",
+			"url": "http://localhost:5353/mcp"
+		}
+	}
 }

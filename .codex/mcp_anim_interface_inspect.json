@@ -1,0 +1,50 @@
+{
+  "base": {
+    "implemented_interfaces_error": "AnimBlueprint: Failed to find property 'implemented_interfaces' for attribute 'implemented_interfaces' on 'AnimBlueprint'",
+    "interfaces_error": "AnimBlueprint: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprint'",
+    "target_skeleton": "<Object '/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin' (0x000002E60555AF00) Class 'Skeleton'>",
+    "preview_skeletal_mesh_error": "AnimBlueprint: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimBlueprint'",
+    "parent_class_error": "AnimBlueprint: Failed to find property 'parent_class' for attribute 'parent_class' on 'AnimBlueprint'",
+    "parent_class_deprecated_error": "AnimBlueprint: Failed to find property 'parent_class_deprecated' for attribute 'parent_class_deprecated' on 'AnimBlueprint'",
+    "blueprint_type_error": "AnimBlueprint: Failed to find property 'blueprint_type' for attribute 'blueprint_type' on 'AnimBlueprint'",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/ABP_Character_Base.ABP_Character_Base_C' (0x000002E4165A9A00) Class 'AnimBlueprintGeneratedClass'>",
+    "class_interfaces_error": "AnimBlueprintGeneratedClass: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprintGeneratedClass'",
+    "super_class_error": "'AnimBlueprintGeneratedClass' object has no attribute 'get_super_class'"
+  },
+  "layer_base": {
+    "implemented_interfaces_error": "AnimBlueprint: Failed to find property 'implemented_interfaces' for attribute 'implemented_interfaces' on 'AnimBlueprint'",
+    "interfaces_error": "AnimBlueprint: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprint'",
+    "target_skeleton": "<Object '/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin' (0x000002E60555AF00) Class 'Skeleton'>",
+    "preview_skeletal_mesh_error": "AnimBlueprint: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimBlueprint'",
+    "parent_class_error": "AnimBlueprint: Failed to find property 'parent_class' for attribute 'parent_class' on 'AnimBlueprint'",
+    "parent_class_deprecated_error": "AnimBlueprint: Failed to find property 'parent_class_deprecated' for attribute 'parent_class_deprecated' on 'AnimBlueprint'",
+    "blueprint_type_error": "AnimBlueprint: Failed to find property 'blueprint_type' for attribute 'blueprint_type' on 'AnimBlueprint'",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayersBase.ABP_ItemAnimLayersBase_C' (0x000002E60CDF4600) Class 'AnimBlueprintGeneratedClass'>",
+    "class_interfaces_error": "AnimBlueprintGeneratedClass: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprintGeneratedClass'",
+    "super_class_error": "'AnimBlueprintGeneratedClass' object has no attribute 'get_super_class'"
+  },
+  "sword": {
+    "implemented_interfaces_error": "AnimBlueprint: Failed to find property 'implemented_interfaces' for attribute 'implemented_interfaces' on 'AnimBlueprint'",
+    "interfaces_error": "AnimBlueprint: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprint'",
+    "target_skeleton": "<Object '/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin' (0x000002E60555AF00) Class 'Skeleton'>",
+    "preview_skeletal_mesh_error": "AnimBlueprint: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimBlueprint'",
+    "parent_class_error": "AnimBlueprint: Failed to find property 'parent_class' for attribute 'parent_class' on 'AnimBlueprint'",
+    "parent_class_deprecated_error": "AnimBlueprint: Failed to find property 'parent_class_deprecated' for attribute 'parent_class_deprecated' on 'AnimBlueprint'",
+    "blueprint_type_error": "AnimBlueprint: Failed to find property 'blueprint_type' for attribute 'blueprint_type' on 'AnimBlueprint'",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.ABP_ItemAnimLayers_Sword_C' (0x000002E60CDF7000) Class 'AnimBlueprintGeneratedClass'>",
+    "class_interfaces_error": "AnimBlueprintGeneratedClass: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprintGeneratedClass'",
+    "super_class_error": "'AnimBlueprintGeneratedClass' object has no attribute 'get_super_class'"
+  },
+  "ali": {
+    "implemented_interfaces_error": "AnimBlueprint: Failed to find property 'implemented_interfaces' for attribute 'implemented_interfaces' on 'AnimBlueprint'",
+    "interfaces_error": "AnimBlueprint: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprint'",
+    "target_skeleton": "None",
+    "preview_skeletal_mesh_error": "AnimBlueprint: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimBlueprint'",
+    "parent_class_error": "AnimBlueprint: Failed to find property 'parent_class' for attribute 'parent_class' on 'AnimBlueprint'",
+    "parent_class_deprecated_error": "AnimBlueprint: Failed to find property 'parent_class_deprecated' for attribute 'parent_class_deprecated' on 'AnimBlueprint'",
+    "blueprint_type_error": "AnimBlueprint: Failed to find property 'blueprint_type' for attribute 'blueprint_type' on 'AnimBlueprint'",
+    "generated_class": "<Object '/Game/ThirdPerson/Animations/LinkedLayers/ALI_ItemAnimLayers.ALI_ItemAnimLayers_C' (0x000002E4165A6200) Class 'AnimBlueprintGeneratedClass'>",
+    "class_interfaces_error": "AnimBlueprintGeneratedClass: Failed to find property 'interfaces' for attribute 'interfaces' on 'AnimBlueprintGeneratedClass'",
+    "super_class_error": "'AnimBlueprintGeneratedClass' object has no attribute 'get_super_class'"
+  }
+}

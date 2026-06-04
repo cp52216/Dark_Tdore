@@ -1,0 +1,41 @@
+[mcp_servers.nwiro]
+url = "http://localhost:5353/mcp"
+
+[mcp_servers.nwiro.tools.execute_python]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.read_blueprint]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.add_anim_bp_state_machine]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.bp_refresh_all_nodes]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.bp_get_compile_errors]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.find_blueprint_nodes]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.get_project_info]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.get_asset_references]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.get_asset_referencers]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.find_blueprints]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.read_asset]
+approval_mode = "approve"
+
+[mcp_servers.nwiro.tools.read_log]
+approval_mode = "approve"
+
+[mcp_servers.monolith]
+url = "http://localhost:9316/mcp"

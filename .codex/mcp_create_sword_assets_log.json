@@ -1,0 +1,13 @@
+[
+  "created folder /Game/Weapons",
+  "created folder /Game/Weapons/Sword",
+  "created blueprint /Game/Weapons/Sword/B_WeaponInstance_Sword",
+  "created blueprint /Game/Weapons/Sword/B_EquipmentDefinition_Sword",
+  "created blueprint /Game/Weapons/Sword/GA_EquipWeapon_Sword",
+  "failed configuring weapon instance: NativizeClass: Cannot nativize 'builtin_function_or_method_with_closure' as 'Class' (allowed Class type: '<any>')\n  TypeError: NativizeObject: Cannot nativize 'builtin_function_or_method_with_closure' as 'Object' (allowed Class type: 'Class')",
+  "failed configuring equipment definition: NativizeClass: Cannot nativize 'builtin_function_or_method_with_closure' as 'Class' (allowed Class type: '<any>')\n  TypeError: NativizeObject: Cannot nativize 'builtin_function_or_method_with_closure' as 'Object' (allowed Class type: 'Class')",
+  "failed configuring equip ability: NativizeClass: Cannot nativize 'builtin_function_or_method_with_closure' as 'Class' (allowed Class type: '<any>')\n  TypeError: NativizeObject: Cannot nativize 'builtin_function_or_method_with_closure' as 'Object' (allowed Class type: 'Class')",
+  "created /Game/Input/Actions/IA_Weapon2",
+  "configured IA_Weapon2 value_type = Boolean",
+  "failed mapping IA_Weapon2 in IMC_Default: call() takes at most 0 arguments (1 given)"
+]

@@ -1,0 +1,24 @@
+{
+  "bp_exists": true,
+  "bp_path": "/Game/ThirdPerson/Animations/ABP_Character_Base.ABP_Character_Base",
+  "generated_class": "<Object '/Game/ThirdPerson/Animations/ABP_Character_Base.ABP_Character_Base_C' (0x000001B7D224E000) Class 'AnimBlueprintGeneratedClass'>",
+  "cdo": "<Object '/Game/ThirdPerson/Animations/ABP_Character_Base.Default__ABP_Character_Base_C' (0x000001B86C5F0000) Class 'ABP_Character_Base_C'>",
+  "dir_has_weapon": [],
+  "gameplay_tag_property_map": "<Struct 'GameplayTagBlueprintPropertyMap' (0x000001B86C5F0468) {}>",
+  "GameplayTagPropertyMap": "<Struct 'GameplayTagBlueprintPropertyMap' (0x000001B86C5F0468) {}>",
+  "BlueprintEditorLibrary": [
+    "add_member_variable",
+    "compile_blueprint",
+    "create_blueprint_asset_with_parent",
+    "get_blueprint_asset",
+    "get_blueprint_for_class",
+    "refresh_all_open_blueprint_editors",
+    "refresh_open_editors_for_blueprint",
+    "remove_unused_variables",
+    "reparent_blueprint",
+    "replace_variable_references",
+    "set_blueprint_variable_expose_on_spawn",
+    "set_blueprint_variable_expose_to_cinematics",
+    "set_blueprint_variable_instance_editable"
+  ]
+}
