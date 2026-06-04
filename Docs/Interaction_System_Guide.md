@@ -1,5 +1,15 @@
 # 交互系统 (Interaction System) — 完整指南
 
+## Current Project Notes
+
+以下几条以当前项目代码为准，优先级高于本文后面旧示例：
+
+1. 角色默认能力不是直接看某个固定的 `DA_DefaultAbilitySet` 名字，而是看 `PawnData->AbilitySets`。
+2. 交互常驻能力的真实 C++ 类是 `Dark_TdoreGameplayAbility_Interact`，授予入口仍然是 `AbilitySet->GiveToAbilitySystem(...)`。
+3. 本文中出现的 `BP_GA_PickupWeapon`、`BP_GA_PickupTest` 属于示例名，不代表当前项目一定已有这些资产。
+4. 当前项目已经新增正式装备系统，武器装备主链路优先参考 [Equipment_System_Guide.md](/D:/UE_ProJect/Dark_Tdore/Docs/Equipment_System_Guide.md)。
+5. GAS 输入 Tag 规范已经统一为 `InputTag.*`，不要再使用旧写法 `Input.Ability.*`。
+
 > 参考 Lyra Interaction/ 目录实现，基于 GAS + 接口模式
 
 ---

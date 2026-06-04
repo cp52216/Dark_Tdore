@@ -1,5 +1,15 @@
 # 摄像机系统详解（参考 Lyra CameraComponent）
 
+## Current Project Notes
+
+本文提到“替代传统 SpringArm + FollowCamera”这一点仍然成立。当前项目角色实际使用的是：
+
+- `UDark_TdoreCameraComponent`
+- `PawnData.DefaultCameraMode`
+- `HeroComponent::DetermineCameraMode()`
+
+不是 Character 上挂 `SpringArm` / `FollowCamera` 的传统 ThirdPerson 模板方案。
+
 > 替代传统 SpringArm + FollowCamera，实现模式栈 + 平滑混合 + 技能覆盖视角
 
 ---

@@ -1,372 +1,263 @@
-# GAS 系统完整加载与触发流程
+# GAS System Guide
 
-> 参考 Lyra Starter Game 架构
-> ASC 在 PlayerState 上，输入由 HeroComponent 处理，ProcessAbilityInput 在 PlayerController::PostProcessInput
+> 当前项目实际实现说明。以 `Source/Dark_Tdore` 代码和当前资源配置为准。
 
----
-
-## 一、架构概览
+## 1. 总体结构
 
 ```
-PlayerState (Owner, 持久)
-  ├── UDark_TdoreAbilitySystemComponent   ← ASC 在此，角色死亡不丢失
-  ├── UDark_TdoreHealthSet                ← 生命属性（Health, MaxHealth, Damage, Healing）
-  ├── UDark_TdoreCombatSet                ← 战斗属性（BaseDamage, BaseHeal）
-  └── UDark_TdoreAbilitySet               ← 通过 DataAsset 授予 GA/GE
+PlayerState
+  -> UDark_TdoreAbilitySystemComponent
+  -> UDark_TdoreHealthSet
+  -> UDark_TdoreCombatSet
 
-Character (Avatar, 物理表现体)
-  ├── UDark_TdorePawnExtensionComponent   ← 初始化协调器，管理 InitState
-  ├── UDark_TdoreHeroComponent            ← 输入处理（参考 Lyra）
-  ├── UDark_TdoreInputConfig              ← 输入配置 DataAsset
-  └── Camera + MovementComponent
+Character
+  -> UDark_TdorePawnExtensionComponent
+  -> UDark_TdoreHeroComponent
+  -> UDark_TdoreEquipmentManagerComponent
+  -> UDark_TdoreCharacterMovementComponent
 
 PlayerController
-  └── PostProcessInput                    ← 调用 ASC->ProcessAbilityInput()
-
-Dark_TdoreAbilitySystemGlobals
-  └── AllocGameplayEffectContext()        ← 工厂：所有 GE 用 FDark_TdoreGameplayEffectContext
+  -> PostProcessInput()
+     -> ASC->ProcessAbilityInput()
 ```
 
----
+当前项目是典型 Lyra 风格：
 
-## 二、完整加载流程
+- `ASC` 挂在 `PlayerState`
+- `Character` 作为 `AvatarActor`
+- 输入由 `HeroComponent` 处理
+- 技能输入缓冲在 `PlayerController::PostProcessInput` 统一结算
 
-### 阶段 1：PlayerState 创建
+## 2. 初始化链路
 
-```
-BP_GameMode 生成 PlayerState (BP_DarkTdorePlayerState)
-  │
-  ▼
-ADark_TdorePlayerState::Constructor()
-  ├── CreateDefaultSubobject<UDark_TdoreAbilitySystemComponent>   // 创建 ASC
-  │     SetIsReplicated(true)
-  │     SetReplicationMode(Mixed)
-  ├── CreateDefaultSubobject<UDark_TdoreAttributeSet>             // 创建 AttributeSet
-  └── SetNetUpdateFrequency(100.0f)
-  │
-  ▼
-PostInitializeComponents()
-  └── ASC->InitAbilityActorInfo(this, GetPawn())
-      OwnerActor = PlayerState ✅  (GAS 网络所有者)
-      AvatarActor = nullptr ❌    (Pawn 还没出生，后续修正)
-  │
-  ▼
-BeginPlay()
-  └── GrantAbilitySet()
-        ├── 遍历 GrantedAbilities
-        ├── FGameplayAbilitySpec(BP_GA_TestQ, Level=1)
-        ├── Spec.SourceObject = SourceObject
-        ├── Spec.GetDynamicSpecSourceTags().AddTag(Input.Ability.Q)  // ← Lyra 方式
-        └── ASC->GiveAbility(Spec)                                   // ← 授予到 ASC
+### 2.1 PlayerState
+
+文件：[Dark_TdorePlayerState.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Player/Dark_TdorePlayerState.cpp)
+
+启动时会做这几件事：
+
+1. 创建 `UDark_TdoreAbilitySystemComponent`
+2. 创建 `UDark_TdoreHealthSet`、`UDark_TdoreCombatSet`
+3. `PostInitializeComponents()` 中调用 `ASC->InitAbilityActorInfo(this, GetPawn())`
+4. `BeginPlay()` 中从 `PawnData->AbilitySets` 批量授予默认能力
+
+默认能力授予入口：
+
+```cpp
+AbilitySet->GiveToAbilitySystem(AbilitySystemComponent, nullptr);
 ```
 
-### 阶段 2：Character 创建
+### 2.2 Character
 
-```
-BP_GameMode 生成 Character (BP_ThirdPersonCharacter)
-  │
-  ▼
-ADark_TdoreCharacter::Constructor()
-  ├── SetDefaultSubobjectClass<UDark_TdoreCharacterMovementComponent>
-  ├── CameraBoom + FollowCamera
-  ├── PawnExtComponent = CreateDefaultSubobject<UDark_TdorePawnExtensionComponent>
-  │     └── OnAbilitySystemInitialized_RegisterAndCall(OnAbilitySystemInitialized)
-  └── HeroComponent = CreateDefaultSubobject<UDark_TdoreHeroComponent>
-```
+文件：[Dark_TdoreCharacter.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Dark_TdoreCharacter.cpp)
 
-### 阶段 3：PossessedBy — ASC 关联 + 输入绑定
+角色构造时默认创建：
 
-```
-PlayerController::Possess(Character)
-  │
-  ▼
-ADark_TdoreCharacter::PossessedBy(Controller)
-  │
-  ├── PS = GetDark_TdorePlayerState()
-  ├── PawnExtComp->InitializeAbilitySystem(PS->ASC, PS)
-  │     └── ASC->InitAbilityActorInfo(PS, Pawn)
-  │           OwnerActor = PlayerState ✅
-  │           AvatarActor = Character  ✅  ← 修正
-  ├── PawnExtComp->HandleControllerChanged()
-  │
-  ▼
-ADark_TdoreCharacter::SetupPlayerInputComponent(InputComponent)
-  ├── PawnExtComponent->SetupPlayerInputComponent()   // InitState 通知
-  └── HeroComponent->InitializePlayerInput(IC, InputConfig)
-        │
-        ├── NativeInputActions:
-        │     ├── InputTag.Jump     → BindAction(Started/Completed, Input_Jump/End)
-        │     ├── InputTag.Move     → BindAction(Triggered, Input_Move)
-        │     ├── InputTag.LookMouse→ BindAction(Triggered, Input_Look)
-        │     └── InputTag.Look     → BindAction(Triggered, Input_Look)
-        │
-        └── AbilityInputActions:
-              └── IA_AbilityQ + Input.Ability.Q
-                    ├── BindAction(Triggered,  Input_AbilityTagPressed,  Tag)
-                    └── BindAction(Completed, Input_AbilityTagReleased, Tag)
-```
+- `UDark_TdorePawnExtensionComponent`
+- `UDark_TdoreHeroComponent`
+- `UDark_TdoreHealthComponent`
+- `UDark_TdoreEquipmentManagerComponent`
+- `UDark_TdoreCharacterMovementComponent`
+- `UDark_TdoreCameraComponent`
 
----
+当角色被控制时：
 
-## 三、运行时触发流程：按 Q 键
+1. `PossessedBy()`
+2. 从 `PlayerState` 取 ASC
+3. `PawnExtComponent->InitializeAbilitySystem(PS->GetDark_TdoreAbilitySystemComponent(), PS)`
+4. 这一步会把 `AvatarActor` 修正为当前 Character
 
-```
-用户按下 Q 键
-  │
-  ▼
-EnhancedInput 系统
-  └── IMC_Default: Q → IA_AbilityQ
-  │
-  ▼
-HeroComponent::Input_AbilityTagPressed(Input.Ability.Q)
-  │
-  ▼
-Pawn->GetAbilitySystemComponent()  ← IAbilitySystemInterface
-  └── PawnExtComp->GetDark_TdoreAbilitySystemComponent()
-        └── PlayerState 上的 ASC ✅
-  │
-  ▼
-ASC->AbilityInputTagPressed(Input.Ability.Q)
-  │
-  for (Spec : ActivatableAbilities.Items)
-  {
-      if (Spec.GetDynamicSpecSourceTags().HasTagExact(Input.Ability.Q))
-          InputPressedSpecHandles.Add(Spec.Handle);  // BP_GA_TestQ 加入队列
-  }
-  │
-  ▼
-PlayerController::PostProcessInput → ASC->ProcessAbilityInput()
-  │
-  for (Handle : InputPressedSpecHandles)
-  {
-      if (Spec->Ability && !Spec->IsActive())
-      {
-          CancelActivationGroupAbilities();  // 互斥组先取消
-          TryActivateAbility(Handle);        // ← 激活 GA_TestQ！
-      }
-  }
-  │
-  ▼
-GA_TestQ::ActivateAbility()
-  └── UE_LOG: "GA_TestQ 已激活！Q 键测试技能触发成功。"
+### 2.3 HeroComponent 绑定输入
+
+文件：[Dark_TdoreHeroComponent.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Character/Dark_TdoreHeroComponent.cpp)
+
+输入配置来自：
+
+- `PawnData.InputConfig`
+- `DA_InputConfig`
+- `IMC_Default`
+
+当前项目的能力输入绑定方式：
+
+- `Started` -> `Input_AbilityTagPressed`
+- `Completed` -> `Input_AbilityTagReleased`
+
+也就是说现在不会再像之前调试阶段那样按住键每帧重复触发 Pressed。
+
+## 3. AbilitySet 的真实作用
+
+文件：[Dark_TdoreAbilitySet.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySet.cpp)
+
+`UDark_TdoreAbilitySet` 做两件事：
+
+1. 授予 `GameplayAbility`
+2. 授予 `GameplayEffect`
+
+授予能力时会把输入 Tag 写进 `Spec.GetDynamicSpecSourceTags()`：
+
+```cpp
+FGameplayAbilitySpec AbilitySpec(AbilityEntry.Ability, AbilityEntry.AbilityLevel);
+AbilitySpec.SourceObject = SourceObject;
+AbilitySpec.GetDynamicSpecSourceTags().AddTag(AbilityEntry.InputTag);
+ASC->GiveAbility(AbilitySpec);
 ```
 
-### 按 WASD 的流程
+所以当前项目里，输入和能力的对应关系不是写死在 Character 里，而是靠：
 
-```
-WASD → EnhancedInput → IA_Move
-  │
-  ▼
-HeroComponent::Input_Move
-  │
-  APawn* Pawn = GetPawn<APawn>();
-  Pawn->AddMovementInput(RotateVector(FVector::RightVector), Value.X);   // A/D 左右
-  Pawn->AddMovementInput(RotateVector(FVector::ForwardVector), Value.Y); // W/S 前后
-  │
-  ▼
-UCharacterMovementComponent::AddInputVector() → CalcVelocity() → 物理移动
-```
+- `AbilitySet` 里配置 `Ability + InputTag`
+- `InputConfig` 里配置 `InputAction + InputTag`
 
----
+两边通过同一个 `InputTag` 对上。
 
-## 四、伤害管线：Q 键到血量减少
+## 4. 输入到技能的调用链
 
-### 4.1 数据初始化
+### 4.1 以 `Q` 技能为例
 
-```
-PlayerState 构造
-  ├── CreateDefaultSubobject<UDark_TdoreHealthSet>   → Health=100, MaxHealth=100
-  └── CreateDefaultSubobject<UDark_TdoreCombatSet>   → BaseDamage=0, BaseHeal=0
+链路如下：
 
-角色 ASC 初始化
-  └── 应用 DefaultEffects: GE_BaseDamage_20 (infinite)
-       └── Modifier: CombatSet.BaseDamage, Override, 20
-            → BaseDamage.CurrentValue = 20
+```text
+键盘 Q
+-> IMC_Default 映射到 IA_AbilityQ
+-> DA_InputConfig 里 IA_AbilityQ -> InputTag.Ability.Q
+-> HeroComponent::Input_AbilityTagPressed(InputTag.Ability.Q)
+-> ASC::AbilityInputTagPressed(InputTag.Ability.Q)
+-> InputPressedSpecHandles 入队
+-> PlayerController::PostProcessInput()
+-> ASC::ProcessAbilityInput()
+-> TryActivateAbility()
+-> GA / BP_GA 激活
 ```
 
-### 4.2 Q 键到 Execution 触发
+### 4.2 以 Sprint 为例
 
-```
-Q 键 → EnhancedInput → HeroComponent → ASC::ProcessAbilityInput
-  └── TryActivateAbility(BP_GA_TestQ)
-       └── BP_GA_TestQ 蓝图: "Apply Gameplay Effect to Owner" (GE_Damage_20)
-            │
-            ▼
-ASC::ApplyGameplayEffectToSelf(GE_Damage_20)
-  │
-  ├─ GE_Damage_20 配置:
-  │    Duration: Instant        ← 立即执行一次
-  │    Execution: Dark_TdoreDamageExecution  ← 触发自定义计算
-  │
-  ├─ MakeOutgoingSpec → MakeEffectContext()
-  │    └── Dark_TdoreAbilitySystemGlobals::AllocGameplayEffectContext()
-  │         → new FDark_TdoreGameplayEffectContext  ← 工厂保证类型
-  │
-  ▼
-引擎: 发现 GE 有 Execution → 调用 Execute_Implementation
-```
+当前 Sprint 相关资源已经是正式链路：
 
-### 4.3 Execution 内部计算
+- `IA_Sprint`
+- `InputTag.Ability.Sprint`
+- `BP_GA_Sprint`
+- `GA_Sprint`
 
-```
-Dark_TdoreDamageExecution::Execute_Implementation(ExecutionParams, OutExecutionOutput)
-  │
-  ├─ Step 1: 读攻击者 CombatSet.BaseDamage
-  │    ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(
-  │        BaseDamageDef,  ← 注册为 Source.CombatSet.BaseDamage, 快照=true
-  │        EvaluateParameters,
-  │        BaseDamage)
-  │    → BaseDamage = 20  (从攻击者角色的 CombatSet 读取)
-  │
-  ├─ Step 2: 计算衰减 (当前均为 1.0，TODO)
-  │    DistanceAttenuation         = 1.0
-  │    PhysicalMaterialAttenuation = 1.0
-  │    DamageInteractionMultiplier = 1.0
-  │
-  ├─ Step 3: 计算最终伤害
-  │    DamageDone = 20 × 1.0 × 1.0 × 1.0 = 20
-  │
-  └─ Output:
-       OutExecutionOutput.AddOutputModifier(
-           HealthSet.Damage,   ← 目标: 元属性（管道值）
-           Add,                ← 操作: 累加
-           20)                 ← 值
+链路如下：
+
+```text
+LeftShift
+-> IMC_Default -> IA_Sprint
+-> DA_InputConfig -> InputTag.Ability.Sprint
+-> HeroComponent Pressed/Released
+-> ASC::AbilityInputTagPressed / Released
+-> GA_Sprint 激活 / 结束
+-> MoveComp->SetSprintPressed(true/false)
+-> GetMaxSpeed() 返回 600 / 500
 ```
 
-### 4.4 AddOutputModifier 后的连锁反应
+## 5. 当前输入 Tag 规范
 
-```
-引擎处理 OutExecutionOutput:
-  └── 修改目标角色的 HealthSet.Damage += 20
-       │
-       ▼
-HealthSet::PostGameplayEffectExecute(Data)
-  │
-  ├─ Data.EvaluatedData.Attribute == Damage ?
-  │    ├─ SetHealth(Health - Damage)     → Health: 100 → 80
-  │    └─ SetDamage(0)                   → Damage: 20 → 0 (清零管道值)
-  │
-  ├─ Health 变化检测:
-  │    OnHealthChanged.Broadcast(Instigator, Causer, Spec, Magnitude, OldHealth, NewHealth)
-  │      → HealthComponent 监听 → UI 更新
-  │
-  └─ 死亡检测:
-       if (Health <= 0 && !bOutOfHealth)
-       {
-           OnOutOfHealth.Broadcast(...)
-             → HealthComponent::HandleOutOfHealth()
-               → ASC::HandleGameplayEvent("GameplayEvent.Death")
-                 → ASC 匹配 AbilityTriggers → 激活 GA_Death
-       }
-```
+当前项目已经统一使用：
 
-### 4.5 完整调用链路总结
+- `InputTag.Move`
+- `InputTag.Look`
+- `InputTag.LookMouse`
+- `InputTag.Jump`
+- `InputTag.Ability.Q`
+- `InputTag.Ability.Weapon.2`
+- `InputTag.Ability.Sprint`
 
-```
-配置层:
-  DA_DefaultAbilitySet → BP_GA_TestQ (InputTag=Input.Ability.Q)
-  GE_BaseDamage_20 → CombatSet.BaseDamage = 20
-  GE_Damage_20 → Execution: Dark_TdoreDamageExecution
+不是旧文档里的 `Input.Ability.*`。
 
-输入层:
-  Q键 → ASC::ProcessAbilityInput → TryActivateAbility(BP_GA_TestQ)
+如果后面新增能力，应该继续按这个规范配：
 
-技能层:
-  BP_GA_TestQ 蓝图 → ApplyGameplayEffectToOwner(GE_Damage_20)
+1. `DefaultGameplayTags.ini` 增加 `InputTag.Ability.xxx`
+2. `DA_InputConfig` 增加 `InputAction -> InputTag`
+3. `AbilitySet` 增加 `Ability -> InputTag`
+4. `IMC_Default` 给这个 `InputAction` 配实际按键
 
-Execution层:
-  Execute → 读取 Source.CombatSet.BaseDamage=20 → 计算=20
-  AddOutputModifier → Target.HealthSet.Damage += 20
+## 6. ASC 输入处理逻辑
 
-扣血层:
-  PostGameplayEffectExecute → Health -= 20 → OnHealthChanged → OnOutOfHealth
-```
+文件：[Dark_TdoreAbilitySystemComponent.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.cpp)
 
----
+当前项目输入缓冲分三类：
 
-## 五、新增技能流程（零 C++ 改代码）
+- `InputPressedSpecHandles`
+- `InputReleasedSpecHandles`
+- `InputHeldSpecHandles`
 
-```
-1. DefaultGameplayTags.ini
-   +GameplayTagList=(Tag="Input.Ability.E", DevComment="E 键技能")
+处理规则：
 
-2. 创建 GA 蓝图 (Content/Abilities/BP_GA_Fire)
-   父类: Dark_TdoreGameplayAbility
+1. `Pressed` 时，把匹配到的 AbilitySpecHandle 放进 `Pressed` 和 `Held`
+2. `Released` 时，把 Handle 放进 `Released`，并从 `Held` 移除
+3. `ProcessAbilityInput()` 里统一激活和取消
 
-3. DA_DefaultAbilitySet → GrantedAbilities
-   加一行: Ability=BP_GA_Fire, InputTag=Input.Ability.E
+其中：
 
-4. DA_InputConfig → AbilityInputActions
-   加一行: InputAction=IA_Fire, InputTag=Input.Ability.E
+- `OnInputTriggered` 类技能：按下时触发一次
+- `WhileInputActive` 类技能：按下激活，松开取消
 
-5. IMC_Default → 映射
-   E 键 → IA_Fire
+Sprint 就属于第二类。
+
+## 7. 角色移动与 GAS 的关系
+
+文件：[Dark_TdoreCharacterMovementComponent.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Character/Dark_TdoreCharacterMovementComponent.cpp)
+
+当前移动相关有两层：
+
+### 7.1 普通移动输入
+
+`HeroComponent::Input_Move()` 里直接调用：
+
+```cpp
+Pawn->AddMovementInput(...)
 ```
 
----
+也就是说：
 
-## 六、关键 API 对照表
+- 动画不负责位移
+- 根运动目前只允许 Montage 使用
+- 常规走跑跳位移由 `CharacterMovementComponent` 驱动
 
-| 环节 | 位置 | API |
-|------|------|-----|
-| ASC 创建 | PlayerState 构造 | `CreateDefaultSubobject<UDark_TdoreAbilitySystemComponent>()` |
-| ASC 初始化 | PlayerState::PostInitializeComponents | `ASC->InitAbilityActorInfo(this, GetPawn())` |
-| Avatar 修正 | Character::PossessedBy | `PawnExtComp->InitializeAbilitySystem(ASC, PS)` |
-| 技能授予 | PlayerState::BeginPlay | `AbilitySet->GiveToAbilitySystem(ASC, SourceObject)` |
-| 标签挂载 | AbilitySet | `Spec.GetDynamicSpecSourceTags().AddTag(InputTag)` |
-| 标签匹配 | ASC | `Spec.GetDynamicSpecSourceTags().HasTagExact(InputTag)` |
-| 输入绑定 | HeroComponent::InitializePlayerInput | `BindAction(IA, TriggerEvent, this, Func)` |
-| 输入路由 | PlayerController::PostProcessInput | `ASC->ProcessAbilityInput(DeltaTime, bGamePaused)` |
-| 移动/视角 | HeroComponent::Input_Move/Input_Look | `Pawn->AddMovementInput()` / `Pawn->AddControllerYawInput()` |
-| 属性捕获 | ExecutionCalculation 构造 | `RelevantAttributesToCapture.Add(BaseDamageDef)` |
-| 伤害计算 | DamageExecution::Execute | `AttemptCalculateCapturedAttributeMagnitude(BaseDamageDef, ...)` |
-| 伤害输出 | DamageExecution::Execute | `OutExecutionOutput.AddOutputModifier(Damage, Add, Value)` |
-| 扣血转换 | HealthSet::PostGameplayEffectExecute | `SetHealth(Health - Damage)` |
-| 死亡检测 | HealthSet::PostGameplayEffectExecute | `OnOutOfHealth.Broadcast(...)` |
+### 7.2 GAS 对移动速度的影响
 
----
+`GetMaxSpeed()` 里现在有：
 
-## 七、Lyra 对齐要点
+- `Gameplay.MovementStopped` -> 返回 `0`
+- Walking / NavWalking 时：
+  - `bWantsToSprint = true` -> `SprintSpeed`
+  - 否则 -> `WalkSpeed`
 
-| Lyra 做法 | 我们对应 |
-|-----------|---------|
-| ASC 在 PlayerState | ✅ `ADark_TdorePlayerState` |
-| HeroComponent 处理输入 | ✅ `UDark_TdoreHeroComponent` |
-| InputConfig DataAsset | ✅ `UDark_TdoreInputConfig` |
-| PawnExtComp 协调初始化 | ✅ `UDark_TdorePawnExtensionComponent` |
-| PostProcessInput 处理技能 | ✅ `ADark_TdorePlayerController` |
-| GetDynamicSpecSourceTags | ✅ 标签 + 匹配一致 |
-| HeroComponent 直接操作 Pawn | ✅ `Pawn->AddMovementInput()` |
-| DamageExecution 属性捕获 | ✅ `Dark_TdoreDamageExecution` |
-| AbilitySystemGlobals 工厂 | ✅ `Dark_TdoreAbilitySystemGlobals` |
-| GameplayEffectContext 扩展 | ✅ `FDark_TdoreGameplayEffectContext` |
-| TagRelationshipMapping | ✅ `UDark_TdoreAbilityTagRelationshipMapping` |
+当前默认值：
 
----
+- `WalkSpeed = 500`
+- `SprintSpeed = 600`
 
-## 八、文件路径对应
+## 8. 装备系统如何和 GAS 接上
 
-| 文件 | 作用 |
-|------|------|
-| `AbilitySystem/Dark_TdoreAbilitySystemComponent` | 自定义 ASC，输入路由 + 激活组管理 |
-| `AbilitySystem/Dark_TdoreGameplayAbility` | GA 基类，激活策略 + 激活组 |
-| `AbilitySystem/Dark_TdoreAbilitySystemGlobals` | AllocGameplayEffectContext 工厂 |
-| `AbilitySystem/Dark_TdoreGameplayEffectContext` | 扩展 GE Context（CartridgeID 等） |
-| `AbilitySystem/Dark_TdoreAbilityTagRelationshipMapping` | DataAsset：技能 Block/Cancel 关系表 |
-| `AbilitySystem/Dark_TdoreAbilitySet` | DataAsset，捆绑技能 + 效果 |
-| `AbilitySystem/Attributes/Dark_TdoreAttributeSet` | 属性集基类 |
-| `AbilitySystem/Attributes/Dark_TdoreHealthSet` | 生命属性（Health, MaxHealth, Damage, Healing） |
-| `AbilitySystem/Attributes/Dark_TdoreCombatSet` | 战斗属性（BaseDamage, BaseHeal） |
-| `AbilitySystem/Executions/Dark_TdoreDamageExecution` | 伤害 ExecutionCalculation |
-| `AbilitySystem/Executions/Dark_TdoreHealExecution` | 治疗 ExecutionCalculation |
-| `AbilitySystem/Abilities/GA_TestQ` | Q 键测试技能 |
-| `AbilitySystem/Abilities/GA_Death` | 死亡技能（GameplayEvent 触发） |
-| `Character/Dark_TdorePawnExtensionComponent` | InitState 协调器 |
-| `Character/Dark_TdoreHeroComponent` | 玩家输入处理 |
-| `Character/Dark_TdoreHealthComponent` | 血量管理（监听 HealthSet） |
-| `Character/Dark_TdoreCharacterMovementComponent` | 自定义移动组件 |
-| `Character/Dark_TdorePawn` | AI/NPC 基类（APawn + GAS） |
-| `Player/Dark_TdorePlayerState` | ASC 宿主，属性集持有者 |
-| `Dark_TdorePlayerController` | PostProcessInput 处理技能 |
-| `Input/Dark_TdoreInputConfig` | 输入配置 DataAsset |
-| `Dark_TdoreCharacter` | 玩家角色（Camera + Movement + 组件） |
+装备和 GAS 的连接点有两个：
+
+1. `PawnData->AbilitySets`
+   - 授予角色出生就有的能力
+   - 例如 `GA_TestQ`、`GA_Death`、`BP_GA_Sprint`
+
+2. `EquipmentDefinition->AbilitySetsToGrant`
+   - 只在装备存在期间授予
+   - 卸下时通过 `GrantedHandles.TakeFromAbilitySystem()` 精确回收
+
+这也是角色常驻能力和装备临时能力的边界。
+
+## 9. 当前文档修正点
+
+这次已按当前项目修正以下事实：
+
+- 输入 Tag 统一是 `InputTag.*`，不是 `Input.*`
+- Ability 输入按下事件现在是 `Started`
+- Character 使用的是 `UDark_TdoreCameraComponent`，不是传统 `CameraBoom + FollowCamera`
+- Character 现在包含 `EquipmentManagerComponent`
+- Sprint 已经走正式 GAS 链路，不在 Character 里硬写
+
+## 10. 相关文件
+
+- [Dark_TdorePlayerState.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Player/Dark_TdorePlayerState.cpp)
+- [Dark_TdoreAbilitySet.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySet.cpp)
+- [Dark_TdoreAbilitySystemComponent.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.cpp)
+- [Dark_TdoreHeroComponent.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Character/Dark_TdoreHeroComponent.cpp)
+- [Dark_TdoreCharacter.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Dark_TdoreCharacter.cpp)
+- [Dark_TdoreCharacterMovementComponent.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Character/Dark_TdoreCharacterMovementComponent.cpp)
+- [GA_Sprint.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/AbilitySystem/Abilities/GA_Sprint.cpp)

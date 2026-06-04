@@ -1,5 +1,13 @@
 # 阵营系统 (Team System) — 完整指南
 
+## Current Project Notes
+
+以下说明以当前项目实现为准：
+
+1. 文中提到的 `Q键 -> BP_GA_TestQ` 只是用来说明伤害与友伤检测链路的例子，不代表阵营系统依赖某个固定 GA 名称。
+2. 实际伤害判定入口仍然是 `Dark_TdoreDamageExecution.cpp` 中对 `TeamSubsystem->CanCauseDamage(...)` 的调用。
+3. 玩家能力来源已经统一走 `PawnData->AbilitySets`，不是某个文档里写死的单一测试资源。
+
 > 参考 Lyra Teams 目录实现，核心基于 `UWorldSubsystem` + `IGenericTeamAgentInterface`
 
 ---
