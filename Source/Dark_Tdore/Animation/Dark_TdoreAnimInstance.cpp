@@ -20,7 +20,7 @@
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(Dark_TdoreAnimInstance)
 
-UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Status_Weapon_Equipped, "Status.Weapon.Equipped");
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Anim_Status_Weapon_Equipped, "Status.Weapon.Equipped");
 
 UDark_TdoreAnimInstance::UDark_TdoreAnimInstance(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -48,7 +48,7 @@ void UDark_TdoreAnimInstance::RefreshWeaponState()
 
 	const bool bPreviousHasWeapon = bHasWeapon;
 	const bool bHasWeaponFromTag = NativeAbilitySystemComponent
-		&& NativeAbilitySystemComponent.Get()->HasMatchingGameplayTag(TAG_Status_Weapon_Equipped);
+		&& NativeAbilitySystemComponent.Get()->HasMatchingGameplayTag(TAG_Anim_Status_Weapon_Equipped);
 
 	bool bHasWeaponFromEquipment = false;
 	if (AActor* OwningActor = GetOwningActor())
