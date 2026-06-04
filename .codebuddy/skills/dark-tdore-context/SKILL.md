@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-06-04 16:30 (增量: 1 .cpp + 2 Content)
+> **最后更新**: 2026-06-04 19:48 (增量: 2 .h + 3 .cpp + 20 Content + 1 .ini)
 
 ---
 
@@ -64,16 +64,16 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-06-04 16:30
+> 自动生成于 2026-06-04 19:48
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
-| Abilities | 7 | .uasset(7) | - |
+| Abilities | 8 | .uasset(8) | - |
 | Blueprints | 1 | .uasset(1) | - |
 | Characters | 128 | .uasset(128) | Mannequins |
 | Collections | 0 | - | - |
 | Developers | 0 | - | dell |
-| Input | 12 | .uasset(12) | Actions, Touch |
+| Input | 13 | .uasset(13) | Actions, Touch |
 | LevelPrototyping | 29 | .uasset(29) | Interactable, Materials, Meshes, Textures |
 | ShuangDao | 186 | .uasset(185), .umap(1) | AdvancedAsset, Animation, Maps, Materials, mesh, Particles, Textures |
 | System | 6 | .uasset(6) | GamePase |
@@ -305,7 +305,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **激活组管理**: `IsActivationGroupBlocked()` / `AddAbilityToActivationGroup()` / `RemoveAbilityFromActivationGroup()` / `CancelActivationGroupAbilities()`
 - **OnSpawn 技能**: `TryActivateAbilitiesOnSpawn()`
 - **动态标签效果**: `AddDynamicTagGameplayEffect(Tag)` / `RemoveDynamicTagGameplayEffect(Tag)`
 - **内部缓冲**: `InputPressedSpecHandles` / `InputReleasedSpecHandles` / `InputHeldSpecHandles` / `ActivationGroupCounts[4]`
@@ -325,5 +324,10 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-05-29 20:31**: 增量更新 (其他文件)
 - **2026-06-04 15:24**: 增量更新 (11 .h + 14 .cpp + 144 Content + 1 .uplugin + 3 .ini + .uproject)
 - **2026-06-04 16:30**: 增量更新 (1 .cpp + 2 Content)
-  - Source/.cpp: Source/Dark_Tdore/Animation/Dark_TdoreAnimInstance.cpp
-  - Content: Content/ThirdPerson/Animations/ABP_Character_Base.uasset, Content/ThirdPerson/Animations/LinkedLayers/ABP_ItemAnimLayers_Sword.uasset
+- **2026-06-04 19:48**: 增量更新 (2 .h + 3 .cpp + 20 Content + 1 .ini)
+  - Source/.h: Source/Dark_Tdore/AbilitySystem/Abilities/GA_Sprint.h, Source/Dark_Tdore/Character/Dark_TdoreCharacterMovementComponent.h
+  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Abilities/GA_Sprint.cpp, Source/Dark_Tdore/Character/Dark_TdoreCharacterMovementComponent.cpp, Source/Dark_Tdore/Character/Dark_TdoreHeroComponent.cpp
+  - Content: Content/Abilities/BP_GA_Sprint.uasset, Content/Abilities/DA_DefaultAbilitySet.uasset, Content/Input/Actions/IA_Sprint.uasset, Content/Input/DA_InputConfig.uasset, Content/Input/IMC_Default.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_run_back.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_run_backL45.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_run_backR45.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_walk_back.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_walk_backL45.uasset ... 共20个
+  - Config/.ini: Config/DefaultGameplayTags.ini
+  - 类变更 [Abilities]: UGA_Sprint
+  - 类变更 [Character]: UDark_TdoreCharacterMovementComponent
