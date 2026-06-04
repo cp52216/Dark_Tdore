@@ -62,6 +62,9 @@ public:
 	/** 设置网络复制的加速度（用于客户端预测） */
 	void SetReplicatedAcceleration(const FVector& InAcceleration);
 
+	UFUNCTION(BlueprintCallable, Category = "DarkTdore|Movement")
+	void SetSprintPressed(bool bInWantsToSprint);
+
 protected:
 	virtual void InitializeComponent() override;
 
@@ -71,4 +74,13 @@ protected:
 	/** 是否有网络复制的加速度需要保留 */
 	UPROPERTY(Transient)
 	bool bHasReplicatedAcceleration = false;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "DarkTdore|Movement")
+	float WalkSpeed = 500.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "DarkTdore|Movement")
+	float SprintSpeed = 600.0f;
+
+	UPROPERTY(Transient)
+	bool bWantsToSprint = false;
 };

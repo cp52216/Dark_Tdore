@@ -227,16 +227,28 @@ void UDark_TdoreHeroComponent::Input_JumpEnd()
 
 void UDark_TdoreHeroComponent::Input_AbilityTagPressed(FGameplayTag InputTag)
 {
-	if (IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(GetPawn<APawn>()))
+	APawn* Pawn = GetPawn<APawn>();
+
+	if (IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(Pawn))
+	{
 		if (UDark_TdoreAbilitySystemComponent* ASC = Cast<UDark_TdoreAbilitySystemComponent>(ASCInterface->GetAbilitySystemComponent()))
+		{
 			ASC->AbilityInputTagPressed(InputTag);
+		}
+	}
 }
 
 void UDark_TdoreHeroComponent::Input_AbilityTagReleased(FGameplayTag InputTag)
 {
-	if (IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(GetPawn<APawn>()))
+	APawn* Pawn = GetPawn<APawn>();
+
+	if (IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(Pawn))
+	{
 		if (UDark_TdoreAbilitySystemComponent* ASC = Cast<UDark_TdoreAbilitySystemComponent>(ASCInterface->GetAbilitySystemComponent()))
+		{
 			ASC->AbilityInputTagReleased(InputTag);
+		}
+	}
 }
 
 // ============ 摄像机模式 ============

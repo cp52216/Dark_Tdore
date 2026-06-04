@@ -28,6 +28,7 @@ namespace DarkTdoreCharacter
 UDark_TdoreCharacterMovementComponent::UDark_TdoreCharacterMovementComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	MaxWalkSpeed = WalkSpeed;
 }
 
 void UDark_TdoreCharacterMovementComponent::InitializeComponent()
@@ -85,6 +86,11 @@ float UDark_TdoreCharacterMovementComponent::GetMaxSpeed() const
 		{
 			return 0.0f;
 		}
+	}
+
+	if (MovementMode == MOVE_Walking || MovementMode == MOVE_NavWalking)
+	{
+		return bWantsToSprint ? SprintSpeed : WalkSpeed;
 	}
 
 	return Super::GetMaxSpeed();
@@ -147,4 +153,9 @@ void UDark_TdoreCharacterMovementComponent::SetReplicatedAcceleration(const FVec
 {
 	bHasReplicatedAcceleration = true;
 	Acceleration = InAcceleration;
+}
+
+void UDark_TdoreCharacterMovementComponent::SetSprintPressed(bool bInWantsToSprint)
+{
+	bWantsToSprint = bInWantsToSprint;
 }
