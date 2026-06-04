@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-06-04 19:48 (增量: 2 .h + 3 .cpp + 20 Content + 1 .ini)
+> **最后更新**: 2026-06-04 20:20 (增量: 5 Docs)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-06-04 19:48
+> 自动生成于 2026-06-04 20:20
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -305,7 +305,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **OnSpawn 技能**: `TryActivateAbilitiesOnSpawn()`
 - **动态标签效果**: `AddDynamicTagGameplayEffect(Tag)` / `RemoveDynamicTagGameplayEffect(Tag)`
 - **内部缓冲**: `InputPressedSpecHandles` / `InputReleasedSpecHandles` / `InputHeldSpecHandles` / `ActivationGroupCounts[4]`
 - **ActivationPolicy**: `OnInputTriggered` / `WhileInputActive` / `OnSpawn`
@@ -325,9 +324,5 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-06-04 15:24**: 增量更新 (11 .h + 14 .cpp + 144 Content + 1 .uplugin + 3 .ini + .uproject)
 - **2026-06-04 16:30**: 增量更新 (1 .cpp + 2 Content)
 - **2026-06-04 19:48**: 增量更新 (2 .h + 3 .cpp + 20 Content + 1 .ini)
-  - Source/.h: Source/Dark_Tdore/AbilitySystem/Abilities/GA_Sprint.h, Source/Dark_Tdore/Character/Dark_TdoreCharacterMovementComponent.h
-  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Abilities/GA_Sprint.cpp, Source/Dark_Tdore/Character/Dark_TdoreCharacterMovementComponent.cpp, Source/Dark_Tdore/Character/Dark_TdoreHeroComponent.cpp
-  - Content: Content/Abilities/BP_GA_Sprint.uasset, Content/Abilities/DA_DefaultAbilitySet.uasset, Content/Input/Actions/IA_Sprint.uasset, Content/Input/DA_InputConfig.uasset, Content/Input/IMC_Default.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_run_back.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_run_backL45.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_run_backR45.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_walk_back.uasset, Content/WuDang_Montage/Animation/Adapted/Move/Back/move_walk_backL45.uasset ... 共20个
-  - Config/.ini: Config/DefaultGameplayTags.ini
-  - 类变更 [Abilities]: UGA_Sprint
-  - 类变更 [Character]: UDark_TdoreCharacterMovementComponent
+- **2026-06-04 20:20**: 增量更新 (5 Docs)
+  - Docs: Docs/Camera_System_Guide.md, Docs/Equipment_System_Guide.md, Docs/GAS_System_Guide.md, Docs/Interaction_System_Guide.md, Docs/Team_System_Guide.md
