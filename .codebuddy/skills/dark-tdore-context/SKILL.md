@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-06-04 20:20 (增量: 5 Docs)
+> **最后更新**: 2026-06-05 17:36 (增量: 6 .h + 8 .cpp + 1 .cs + 7 Content + 1 .ini + 2 Docs)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-06-04 20:20
+> 自动生成于 2026-06-05 17:36
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -76,12 +76,12 @@ Dark_Tdore/
 | Input | 13 | .uasset(13) | Actions, Touch |
 | LevelPrototyping | 29 | .uasset(29) | Interactable, Materials, Meshes, Textures |
 | ShuangDao | 186 | .uasset(185), .umap(1) | AdvancedAsset, Animation, Maps, Materials, mesh, Particles, Textures |
-| System | 6 | .uasset(6) | GamePase |
+| System | 7 | .uasset(7) | Debug, GamePase |
 | ThirdPerson | 12 | .uasset(11), .umap(1) | Animations, Camera |
 | Variant_Combat | 31 | .uasset(30), .umap(1) | Anims, Blueprints, Input, Materials, UI, VFX |
 | Variant_Platforming | 11 | .uasset(10), .umap(1) | Anims, Blueprints, Input, VFX |
 | Variant_SideScrolling | 19 | .uasset(18), .umap(1) | Anims, Blueprints, Input, UI |
-| Weapons | 3 | .uasset(3) | Sword |
+| Weapons | 6 | .uasset(6) | Sword |
 | WuDang_Montage | 474 | .uasset(473), .umap(1) | AdvancedAsset, Animation, demo, FBX, Maps |
 | WudangSword_Animset | 1 | .uasset(1) | demo |
 ## 三、核心类继承关系
@@ -305,7 +305,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **动态标签效果**: `AddDynamicTagGameplayEffect(Tag)` / `RemoveDynamicTagGameplayEffect(Tag)`
 - **内部缓冲**: `InputPressedSpecHandles` / `InputReleasedSpecHandles` / `InputHeldSpecHandles` / `ActivationGroupCounts[4]`
 - **ActivationPolicy**: `OnInputTriggered` / `WhileInputActive` / `OnSpawn`
 - **ActivationGroup**: `Independent` / `Exclusive_Replaceable` / `Exclusive_Blocking`
@@ -325,4 +324,14 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-06-04 16:30**: 增量更新 (1 .cpp + 2 Content)
 - **2026-06-04 19:48**: 增量更新 (2 .h + 3 .cpp + 20 Content + 1 .ini)
 - **2026-06-04 20:20**: 增量更新 (5 Docs)
-  - Docs: Docs/Camera_System_Guide.md, Docs/Equipment_System_Guide.md, Docs/GAS_System_Guide.md, Docs/Interaction_System_Guide.md, Docs/Team_System_Guide.md
+- **2026-06-05 17:36**: 增量更新 (6 .h + 8 .cpp + 1 .cs + 7 Content + 1 .ini + 2 Docs)
+  - Source/.h: Source/Dark_Tdore/Combat/AnimNotifyState_DarkTdoreInputBufferWindow.h, Source/Dark_Tdore/Combat/Dark_TdoreCombatInputBufferComponent.h, Source/Dark_Tdore/Combat/Dark_TdoreCombatTypes.h, Source/Dark_Tdore/Combat/Dark_TdoreGameplayAbility_MeleeCombo.h, Source/Dark_Tdore/Debug/Dark_TdoreDirectionDebugComponent.h, Source/Dark_Tdore/Weapons/Dark_TdoreWeaponActor.h
+  - Source/.cpp: Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySystemComponent.cpp, Source/Dark_Tdore/Combat/AnimNotifyState_DarkTdoreInputBufferWindow.cpp, Source/Dark_Tdore/Combat/Dark_TdoreCombatInputBufferComponent.cpp, Source/Dark_Tdore/Combat/Dark_TdoreCombatTypes.cpp, Source/Dark_Tdore/Combat/Dark_TdoreGameplayAbility_MeleeCombo.cpp, Source/Dark_Tdore/Debug/Dark_TdoreDirectionDebugComponent.cpp, Source/Dark_Tdore/Equipment/Dark_TdoreEquipmentInstance.cpp, Source/Dark_Tdore/Weapons/Dark_TdoreWeaponActor.cpp
+  - Source/.cs: Source/Dark_Tdore/Dark_Tdore.Build.cs
+  - Content: Content/Characters/Mannequins/Meshes/SK_Mannequin.uasset, Content/System/Debug/BP_DirectionDebugComponent.uasset, Content/ThirdPerson/BP_ThirdPersonCharacter.uasset, Content/Weapons/BP_Weapon.uasset, Content/Weapons/Sword/BP_Sword.uasset, Content/Weapons/Sword/B_EquipmentDefinition_Sword.uasset, Content/Weapons/Sword/SM_sword.uasset
+  - Config/.ini: Config/DefaultGameplayTags.ini
+  - Docs: Docs/Combat_System_Design.md, Docs/References/deepseek_markdown_20260605_18566b.md
+  - Other: .gitignore
+  - 类变更 [Combat]: UAnimNotifyState_DarkTdoreInputBufferWindow, UDark_TdoreCombatInputBufferComponent, EDark_TdoreCombatAttackWeight, EDark_TdoreCombatImpactLevel, UDark_TdoreComboData, UDark_TdoreGameplayAbility_MeleeCombo
+  - 类变更 [Debug]: UDark_TdoreDirectionDebugComponent
+  - 类变更 [Weapons]: ADark_TdoreWeaponActor
