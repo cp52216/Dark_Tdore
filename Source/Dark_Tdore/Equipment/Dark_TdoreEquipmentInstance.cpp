@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Character.h"
 #include "Net/UnrealNetwork.h"
+#include "Weapons/Dark_TdoreWeaponActor.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(Dark_TdoreEquipmentInstance)
 
@@ -90,6 +91,10 @@ void UDark_TdoreEquipmentInstance::SpawnEquipmentActors(const TArray<FDark_Tdore
 		NewActor->FinishSpawning(FTransform::Identity, true);
 		NewActor->SetActorRelativeTransform(SpawnInfo.AttachTransform);
 		NewActor->AttachToComponent(AttachTarget, FAttachmentTransformRules::KeepRelativeTransform, SpawnInfo.AttachSocket);
+		if (ADark_TdoreWeaponActor* WeaponActor = Cast<ADark_TdoreWeaponActor>(NewActor))
+		{
+			WeaponActor->InitializeFromEquipmentInstance(this);
+		}
 		SpawnedActors.Add(NewActor);
 	}
 }

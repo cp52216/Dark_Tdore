@@ -29,6 +29,9 @@ Build/
 *.sln.docstates
 *.pidb
 
+# CodeGraph local index
+.codegraph/
+
 # OS
 Thumbs.db
 Desktop.ini

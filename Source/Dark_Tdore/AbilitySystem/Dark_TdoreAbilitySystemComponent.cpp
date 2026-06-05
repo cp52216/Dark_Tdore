@@ -4,6 +4,7 @@
 #include "Dark_TdoreAbilityTagRelationshipMapping.h"
 #include "Dark_TdoreGameplayAbility.h"
 #include "Dark_TdoreLogChannels.h"
+#include "Combat/Dark_TdoreCombatInputBufferComponent.h"
 #include "GameplayTagContainer.h"
 
 // ============ 构造 & 生命周期 ============
@@ -29,6 +30,16 @@ void UDark_TdoreAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTa
 {
 	if (InputTag.IsValid())
 	{
+		// 战斗输入缓冲是 Pawn 上的可选组件。这里位于 Lyra 风格的输入路由入口，
+		// 因此所有 Ability 输入都会先被记录下来；具体是否消费，由动画通知窗口和连招数据决定。
+		if (AActor* AvatarActorForInputBuffer = GetAvatarActor())
+		{
+			if (UDark_TdoreCombatInputBufferComponent* CombatInputBuffer = AvatarActorForInputBuffer->FindComponentByClass<UDark_TdoreCombatInputBufferComponent>())
+			{
+				CombatInputBuffer->BufferInputTag(InputTag);
+			}
+		}
+
 		for (const FGameplayAbilitySpec& AbilitySpec : ActivatableAbilities.Items)
 		{
 			if (AbilitySpec.Ability && (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag)))
