@@ -1,6 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Combat/Dark_TdoreGameplayAbility_MeleeCombo.h"
+#include "Combat/Abilities/Dark_TdoreGameplayAbility_MeleeCombo.h"
 
 #include "Combat/Dark_TdoreCombatInputBufferComponent.h"
 #include "Weapons/Dark_TdoreWeaponInstance.h"

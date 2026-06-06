@@ -9,6 +9,13 @@
 class UDark_TdoreCombatInputBufferComponent;
 class UDark_TdoreWeaponInstance;
 
+/**
+ * 通用近战连招 Ability。
+ *
+ * 设计方向参考 GA_Sprint：Ability 自己只负责一条清晰的玩法职责。
+ * 这里不写具体武器招式顺序，而是从 ComboData 读取连招段；
+ * 不依赖 Character 代码，而是通过装备实例和 Pawn 上的输入缓冲组件工作。
+ */
 UCLASS(Abstract, Blueprintable)
 class UDark_TdoreGameplayAbility_MeleeCombo : public UDark_TdoreGameplayAbility_FromEquipment
 {
