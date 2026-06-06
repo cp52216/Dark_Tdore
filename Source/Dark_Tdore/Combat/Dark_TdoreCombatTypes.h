@@ -104,6 +104,19 @@ struct FDark_TdoreComboStep
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combo", meta = (Categories = "InputTag"))
 	FGameplayTagContainer AllowedNextInputTags;
 
+	// 是否使用下面两个默认窗口参数。关闭后，本段只依赖 Montage 里的 AnimNotifyState_InputBufferWindow。
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combo")
+	bool bUseDefaultInputBufferWindow = true;
+
+	// 没有在 Montage 里放 AnimNotifyState_InputBufferWindow 时，C++ 使用这个默认开窗时间。
+	// 例如 0.55 表示本段动画播放到 55% 后允许接下一段。
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combo", meta = (EditCondition = "bUseDefaultInputBufferWindow", ClampMin = "0.0", ClampMax = "1.0"))
+	float DefaultInputBufferWindowStartRatio = 0.55f;
+
+	// 默认窗口持续时间。<=0 时自动持续到本段动画结束。
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combo", meta = (EditCondition = "bUseDefaultInputBufferWindow", ClampMin = "0.0"))
+	float DefaultInputBufferWindowDuration = 0.45f;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
 	EDark_TdoreCombatAttackWeight AttackWeight = EDark_TdoreCombatAttackWeight::Light;
 

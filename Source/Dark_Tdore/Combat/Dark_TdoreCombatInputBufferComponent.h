@@ -7,6 +7,9 @@
 #include "GameplayTagContainer.h"
 #include "Dark_TdoreCombatInputBufferComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FDark_TdoreCombatInputBufferedNativeDelegate, FGameplayTag /*InputTag*/);
+DECLARE_MULTICAST_DELEGATE_OneParam(FDark_TdoreCombatInputWindowNativeDelegate, FName /*WindowName*/);
+
 USTRUCT(BlueprintType)
 struct FDark_TdoreBufferedCombatInput
 {
@@ -53,6 +56,11 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Combat|Input Buffer")
 	const TArray<FDark_TdoreBufferedCombatInput>& GetBufferedInputs() const { return BufferedInputs; }
+
+	// C++ 连招 Ability 监听这些事件，在动画窗口打开或玩家再次按键时自动尝试切下一段。
+	FDark_TdoreCombatInputBufferedNativeDelegate OnInputBuffered;
+	FDark_TdoreCombatInputWindowNativeDelegate OnInputBufferWindowOpened;
+	FDark_TdoreCombatInputWindowNativeDelegate OnInputBufferWindowClosed;
 
 private:
 	void TrimExpiredInputs(float CurrentTime);
