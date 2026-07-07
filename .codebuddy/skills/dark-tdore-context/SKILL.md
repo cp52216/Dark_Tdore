@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-06-06 17:55 (增量: 3 .h + 2 .cpp + 19 Content)
+> **最后更新**: 2026-07-07 20:16 (增量: 2 .h + 1 .cpp + 1 Docs)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-06-06 17:55
+> 自动生成于 2026-07-07 20:16
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -327,7 +327,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **ActivationGroup**: `Independent` / `Exclusive_Replaceable` / `Exclusive_Blocking`
 - **蓝图事件**: `K2_OnAbilityAdded()` / `K2_OnAbilityRemoved()` / `K2_OnPawnAvatarSet()`
 - **`UDark_TdoreHealthComponent`**: 监听 `HealthSet` 属性变化
 - **Build.cs 公共依赖**: Core, CoreUObject, Engine, InputCore, EnhancedInput, GameplayAbilities, GameplayTags, GameplayTasks, ModularGameplay, ModularGameplayActors, UMG, Slate
@@ -347,8 +346,10 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-06-05 17:36**: 增量更新 (6 .h + 8 .cpp + 1 .cs + 7 Content + 1 .ini + 2 Docs)
 - **2026-06-06 09:39**: 增量更新 (1 .h + 1 .cpp + 1 .cs)
 - **2026-06-06 17:55**: 增量更新 (3 .h + 2 .cpp + 19 Content)
-  - Source/.h: Source/Dark_Tdore/Combat/Abilities/Dark_TdoreGameplayAbility_MeleeCombo.h, Source/Dark_Tdore/Combat/Dark_TdoreCombatInputBufferComponent.h, Source/Dark_Tdore/Combat/Dark_TdoreCombatTypes.h
-  - Source/.cpp: Source/Dark_Tdore/Combat/Abilities/Dark_TdoreGameplayAbility_MeleeCombo.cpp, Source/Dark_Tdore/Combat/Dark_TdoreCombatInputBufferComponent.cpp
-  - Content: Content/Characters/Mannequins/Meshes/SK_Mannequin.uasset, Content/Input/Actions/IA_AttackLight.uasset, Content/Input/DA_InputConfig.uasset, Content/Input/IMC_Default.uasset, Content/ThirdPerson/BP_ThirdPersonCharacter.uasset, Content/Weapons/PC_CombatInputBufferComponent.uasset, Content/Weapons/Sword/B_EquipmentDefinition_Sword.uasset, Content/Weapons/Sword/Combat/LightAttack/DA_Combo_Sword_Light.uasset, Content/Weapons/Sword/Combat/LightAttack/GA_MeleeCombo_Sword_Light.uasset, Content/Weapons/Sword/Combat/LightAttack/Montage/Combo01_1_Montage.uasset ... 共19个
-  - 类变更 [Abilities]: UDark_TdoreGameplayAbility_MeleeCombo
-  - 类变更 [Combat]: UDark_TdoreCombatInputBufferComponent, EDark_TdoreCombatAttackWeight, EDark_TdoreCombatImpactLevel, UDark_TdoreComboData
+- **2026-07-07 20:16**: 增量更新 (2 .h + 1 .cpp + 1 Docs)
+  - Source/.h: Source/Dark_Tdore/Combat/Dark_TdoreCombatTypes.h, Source/Dark_Tdore/Equipment/Dark_TdoreEquipmentDefinition.h
+  - Source/.cpp: Source/Dark_Tdore/Combat/Abilities/Dark_TdoreGameplayAbility_MeleeCombo.cpp
+  - Docs: Docs/Animation_System_Guide.md
+  - Other: .codebuddy/skills/dark-tdore-context/SKILL.md
+  - 类变更 [Combat]: EDark_TdoreCombatAttackWeight, EDark_TdoreCombatImpactLevel, UDark_TdoreComboData
+  - 类变更 [Equipment]: UDark_TdoreEquipmentDefinition
