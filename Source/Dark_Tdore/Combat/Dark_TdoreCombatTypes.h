@@ -117,21 +117,27 @@ struct FDark_TdoreComboStep
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combo", meta = (EditCondition = "bUseDefaultInputBufferWindow", ClampMin = "0.0"))
 	float DefaultInputBufferWindowDuration = 0.45f;
 
+	// 本段攻击权重：轻/中/重/投技，影响连段路线和硬直反馈。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
 	EDark_TdoreCombatAttackWeight AttackWeight = EDark_TdoreCombatAttackWeight::Light;
 
+	// 命中后的硬直等级：None/Light/Medium/Heavy/Launch，决定受击者动画反馈。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
 	EDark_TdoreCombatImpactLevel ImpactLevel = EDark_TdoreCombatImpactLevel::Light;
 
+	// 攻击命中时附加的 GameplayTag，例如 Effect.Damage.Light、Ability.Combo.Hit。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
 	FGameplayTagContainer AttackTags;
 
+	// 可选：本段攻击命中后应用的伤害 GameplayEffect。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
 	TSubclassOf<UGameplayEffect> DamageEffect;
 
+	// 本段攻击的角色位移配置：推进距离、时长、速度曲线。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Movement")
 	FDark_TdoreCombatMovementConfig Movement;
 
+	// 攻击吸附配置：是否启用 MotionWarping、距离范围、目标名、权重曲线。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Magnetism")
 	FDark_TdoreAttackMagnetismConfig Magnetism;
 };

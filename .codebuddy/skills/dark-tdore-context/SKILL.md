@@ -149,6 +149,28 @@ UObject
 | `UDark_TdoreHealthSet` | Health, MaxHealth, Healing, Damage | Meta属性管道: Damage→Health-、Healing→Health+、Clamp[0,MaxHealth] |
 | `UDark_TdoreCombatSet` | (战斗属性) | 战斗相关数值 |
 
+### AbilitySet 与 Lyra 架构差异 (重要)
+
+当前 `UDark_TdoreAbilitySet` **不包含** `GrantedAttributes` 属性授予功能。与 Lyra 的核心差异：
+
+| 方面 | **Lyra** | **Dark_Tdore** |
+|------|----------|----------------|
+| 属性创建时机 | `GiveToAbilitySystem()` 运行时 | `PlayerState`/`Pawn` 构造时 |
+| 创建方式 | `NewObject` + `AddAttributeSetSubobject`（ASC 子对象） | `CreateDefaultSubobject`（Owner 子对象） |
+| 灵活性 | 不同 AbilitySet 可带不同属性集，GameFeature 可动态注入 | 属性写死在 C++ 类里，固定不变 |
+| 适用场景 | 模块化项目，多 GameFeature 各维护属性 | 单一项目，属性种类固定 |
+
+**当前够用**：属性固定无需动态切换时，在构造中创建比运行时动态创建更简单清晰。
+
+### TODO — 后续要做
+
+1. **权限检查**：`GiveToAbilitySystem` 和 `TakeFromAbilitySystem` 需补 `ASC->IsOwnerActorAuthoritative()` 检查，防止 SimulatedProxy 客户端执行授予/回收逻辑
+2. **动态属性授予（按需扩展）**：如需不同装备/模式带不同属性集，可在 `FDark_TdoreAbilitySet` 中添加 `GrantedAttributes` 数组：
+   - `NewObject<UAttributeSet>(ASC->GetOwner(), SetClass)` 动态创建
+   - `ASC->AddAttributeSetSubobject(NewSet)` 注册到 ASC
+   - `FDark_TdoreAbilitySet_GrantedHandles` 中记录属性指针用于移除
+   - `TakeFromAbilitySystem` 中添加 `ASC->RemoveSpawnedAttribute(Set)` 回收逻辑
+
 ### 现有技能
 
 | 技能 | 类 | 功能 |

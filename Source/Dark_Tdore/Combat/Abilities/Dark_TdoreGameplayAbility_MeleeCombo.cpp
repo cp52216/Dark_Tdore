@@ -152,8 +152,17 @@ void UDark_TdoreGameplayAbility_MeleeCombo::StartComboStep(const FDark_TdoreComb
 
 	const USkeletalMeshComponent* MeshComponent = Character->GetMesh();
 	const UAnimInstance* AnimInstance = MeshComponent ? MeshComponent->GetAnimInstance() : nullptr;
-	UE_LOG(LogDark_Tdore, Log, TEXT("[MeleeCombo] 播放连招段: Ability=%s Pawn=%s Mesh=%s AnimInstance=%s Step=%s Montage=%s Section=%s Slot=%s PlayedLength=%.3f AllowedNext=%s"),
-		*GetNameSafe(this),
+	// 基础动画信息
+	// 输入缓冲窗口配置
+	// 攻击参数：轻重、硬直等级、标签、伤害 GE
+	// 位移配置：距离、时长、速度曲线
+	// 吸附配置：开关、距离范围、MotionWarping 目标名、权重曲线
+	UE_LOG(LogDark_Tdore, Log, TEXT("[MeleeCombo] 播放连招段: Ability=%s Pawn=%s Mesh=%s AnimInstance=%s Step=%s Montage=%s Section=%s Slot=%s PlayedLength=%.3f AllowedNext=%s "
+		"InputBufferDefault=%s WindowStart=%.2f WindowDuration=%.3f "
+		"AttackWeight=%s ImpactLevel=%s AttackTags=%s DamageEffect=%s "
+		"MoveDist=%.1f MoveDuration=%.3f MoveCurve=%s "
+		"MagEnabled=%s MagMin=%.1f MagMax=%.1f MagTarget=%s MagCurve=%s"),
+		/* 基础动画信息 */ *GetNameSafe(this),
 		*GetNameSafe(Character),
 		*GetNameSafe(MeshComponent),
 		*GetNameSafe(AnimInstance),
@@ -162,7 +171,22 @@ void UDark_TdoreGameplayAbility_MeleeCombo::StartComboStep(const FDark_TdoreComb
 		Step.MontageSection.IsNone() ? TEXT("None") : *Step.MontageSection.ToString(),
 		Step.Montage->SlotAnimTracks.Num() > 0 ? *Step.Montage->SlotAnimTracks[0].SlotName.ToString() : TEXT("None"),
 		PlayedLength,
-		*Step.AllowedNextInputTags.ToStringSimple());
+		*Step.AllowedNextInputTags.ToStringSimple(),
+		/* 输入缓冲窗口配置 */ Step.bUseDefaultInputBufferWindow ? TEXT("true") : TEXT("false"),
+		Step.DefaultInputBufferWindowStartRatio,
+		Step.DefaultInputBufferWindowDuration,
+		/* 攻击参数 */ *StaticEnum<EDark_TdoreCombatAttackWeight>()->GetNameStringByValue(static_cast<int64>(Step.AttackWeight)),
+		*StaticEnum<EDark_TdoreCombatImpactLevel>()->GetNameStringByValue(static_cast<int64>(Step.ImpactLevel)),
+		*Step.AttackTags.ToStringSimple(),
+		*GetNameSafe(Step.DamageEffect),
+		/* 位移配置 */ Step.Movement.Distance,
+		Step.Movement.Duration,
+		*GetNameSafe(Step.Movement.SpeedCurve),
+		/* 吸附配置 */ Step.Magnetism.bEnableMagnetism ? TEXT("true") : TEXT("false"),
+		Step.Magnetism.MinDistance,
+		Step.Magnetism.MaxDistance,
+		*Step.Magnetism.MotionWarpingTargetName.ToString(),
+		*GetNameSafe(Step.Magnetism.WeightCurve));
 
 	if (PlayedLength <= 0.0f)
 	{

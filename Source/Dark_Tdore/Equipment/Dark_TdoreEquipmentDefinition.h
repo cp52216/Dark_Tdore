@@ -43,7 +43,7 @@ struct FDark_TdoreEquipmentActorToSpawn
  * 4. 设置 ActorsToSpawn，例如剑模型并挂到 hand_rSocket。
  */
 UCLASS(Blueprintable, Const, Abstract, BlueprintType)
-class UDark_TdoreEquipmentDefinition : public UObject
+class UDark_TdoreEquipmentDefinition : public UObject	
 {
 	GENERATED_BODY()
 
