@@ -972,5 +972,241 @@ ABP_ItemAnimLayers_Sword
 - [GA_EquipWeapon.h](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Weapons/Abilities/GA_EquipWeapon.h)
 - [GA_EquipWeapon.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Weapons/Abilities/GA_EquipWeapon.cpp)
 - [Dark_TdoreAbilitySet.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/AbilitySystem/Dark_TdoreAbilitySet.cpp)
+
+---
+
+# 装备系统快速理解（4 个核心类）
+
+> 用"按 2 装备剑"这条链路，简洁讲清楚四个核心类各自做什么。
+
+---
+
+## 你在游戏里按 2 装备剑时，发生了什么？
+
+```
+玩家按 2
+    ↓
+ASC 路由到 GA_EquipWeapon_Sword（GAS 技能）
+    ↓ 调用
+EquipmentManagerComponent->EquipItem( B_EquipmentDefinition_Sword )
+    ↓ 内部执行
+① 读 Definition 配置 → 创建 Instance → 授予 AbilitySet → 生成剑模型 Actor
+② 调 Instance->OnEquipped() → 设 Tag + 挂动画层 + 播拔刀动画
+③ 网络复制 → 客户端同步显示
+```
+
+---
+
+## 1. Dark_TdoreEquipmentDefinition — 装备的"配方/说明书"
+
+**它是一张配置表，不是运行时对象。**
+
+想象你要做一把"冰霜剑"：
+- 用什么 C++ 类来承载运行时逻辑？→ `InstanceType = BP_SwordInstance`
+- 装备后角色获得哪些技能？→ `AbilitySetsToGrant = [剑连击技能集]`
+- 剑的 3D 模型长什么样？挂在哪里？→ `ActorsToSpawn = [剑模型, hand_rSocket]`
+
+| 配置项 | 含义 |
+|--------|------|
+| `InstanceType` | 用哪个类来创建运行时实例。剑填 `BP_SwordInstance` |
+| `AbilitySetsToGrant` | 装备时授予的技能包。剑的 AbilitySet 里有 `GA_MeleeCombo_Sword_Light` 等 |
+| `ActorsToSpawn` | 装备时生成的 3D 物体。剑模型挂 `hand_rSocket` |
+
+---
+
+## 2. Dark_TdoreEquipmentInstance — 装备的"运行时化身"
+
+**Definition 说"是什么"（画册），Instance 是"某个角色身上的这一件"（实物）。**
+
+`EquipmentManager::EquipItem()` 执行时：
+```
+NewObject<UDark_TdoreWeaponInstance>(Character, BP_SwordInstance)  ← 创建 Instance
+SpawnEquipmentActors(Definition.ActorsToSpawn)                     ← 生成剑模型 Actor
+Instance->OnEquipped()                                              ← 触发装备回调
+```
+
+| 回调 | 调用时机 | 子类 WeaponInstance 内部做什么 |
+|------|---------|-------------------------------|
+| `OnEquipped()` | 装备完成 | 设 `Status.Weapon.Equipped` Tag → `LinkAnimClassLayers` 挂 Sword 动画层 → 播拔刀 |
+| `OnUnequipped()` | 卸下 | 移除 Tag → 卸载动画层 → 播收刀 |
+
+继承链：
+```
+UDark_TdoreEquipmentInstance     ← 基类：所有装备通用
+    ↑
+UDark_TdoreWeaponInstance        ← 武器专用：动画层选择、装备/攻击时间
+    ↑
+BP_SwordInstance（蓝图）          ← 设计师填动画层、拔刀/收刀 Montage
+```
+
+---
+
+## 3. Dark_TdoreEquipmentManagerComponent — 装备的"管家"
+
+**挂在 Character 上的组件，管理角色所有的装备列表。**
+
+### 装备流程 EquipItem(Definition)
+
+```
+① AddEntry(Definition)
+   读 Definition → NewObject 创建 Instance
+   → 授予 AbilitySetsToGrant（GiveToAbilitySystem）
+   → SpawnActor 生成模型
+   → 标记 FastArray 通知客户端
+
+② Instance->OnEquipped()
+   → 设 Tag + 动画层 + Montage
+
+③ AddReplicatedSubObject → 网络复制
+```
+
+### 卸下流程 UnequipItem(Instance)
+
+```
+① Instance->OnUnequipped()  → 移除 Tag + 卸载动画层
+② RemoveEntry                → 回收技能/GE + 销毁 Actor + 移除条目
+```
+
+### 关键查询方法
+
+| 方法 | 用途 |
+|------|------|
+| `GetFirstInstanceOfType(WeaponInstance)` | AnimInstance 判断"角色有武器吗" |
+| `GetFirstInstanceOfDefinition(Sword_Def)` | GA_EquipWeapon 判断"这把剑已装备了吗" |
+| `UnequipAllItemsOfType(WeaponInstance)` | 装备新武器前先卸下当前武器 |
+
+### 网络复制
+
+**FastArray** 增量同步：
+- 服务器改列表 → 客户端收到增删
+- `PostReplicatedAdd` → 客户端调 `OnEquipped()`（表现层）
+- `PreReplicatedRemove` → 客户端调 `OnUnequipped()`
+- 服务器做完整逻辑（技能授予），客户端只做表现
+
+---
+
+## 4. Dark_TdoreGameplayAbility_FromEquipment — 装备技能的"身份证"
+
+**让技能知道"是谁授予了我"。**
+
+```
+EquipItem 时 AddEntry 授予 AbilitySet：
+    ASC->GiveAbility(Spec)
+        Spec.SourceObject = WeaponInstance  ← 关键！技能记住了来源
+
+之后技能激活时：
+    GetAssociatedEquipment() → 从 Spec.SourceObject 取回 WeaponInstance
+    → 可以读武器数据、判断是否还在装备中
+```
+
+`GA_MeleeCombo_Sword_Light` 继承 `FromEquipment`，所以它能在运行中反查"我是哪把剑给的"。
+
+---
+
+## 完整链路
+
+```
+════════ 装备 ════════
+按2 → GA_EquipWeapon → EquipItem(Definition)
+    → Definition 配置驱动: InstanceType + AbilitySets + ActorsToSpawn
+    → AddEntry: 创建Instance + 授予技能(Spec.SourceObject=Instance) + 生成模型
+    → OnEquipped: Tag + 动画层 + 拔刀
+    → 网络复制
+
+════════ 攻击 ════════
+左键 → GA_MeleeCombo_Sword_Light (继承 FromEquipment)
+    → GetAssociatedEquipment() → WeaponInstance
+    → 播放 Combo Montage → 动画层已挂载 → 正确输出剑动画
+```
+
+---
+
+## 一句话总结
+
+| 类 | 一句话 |
+|----|--------|
+| **Definition** | 配方：用什么实例、授予什么技能、生成什么模型 |
+| **Instance** | 化身：角色身上这一件的运行时对象，负责装备/卸下回调 |
+| **ManagerComponent** | 管家：完整装备流程（创建→授予→生成→动画→复制） |
+| **FromEquipment** | 身份证：让技能反查"哪个装备给了我"，读取装备数据 |
+
+---
+
+## 补充：AddEntry 和 Entry 概念详解
+
+### 什么是 Entry（条目）
+
+角色可能同时装备多件东西：一把剑 + 一个盾 + 一个头盔。每件装备就是一条"条目"。
+
+```
+角色身上的装备列表 (FastArray网络复制)
+┌──────────────────────────────────────────────────────┐
+│  Entry[0]                      Entry[1]               │
+│  ┌──────────────────────┐    ┌──────────────────────┐ │
+│  │ EquipmentDefinition:  │    │ EquipmentDefinition:  │ │
+│  │   B_Sword_Definition  │    │   B_Shield_Definition │ │
+│  │ Instance: Sword实例    │    │ Instance: Shield实例   │ │
+│  │ GrantedHandles:        │    │ GrantedHandles:        │ │
+│  │  [GA_Combo, GA_Parry]  │    │  [GA_Block, GE_Def]    │ │
+│  └──────────────────────┘    └──────────────────────┘ │
+└──────────────────────────────────────────────────────┘
+```
+
+每个 Entry 存三样东西：
+
+| 字段 | 含义 | 复制到客户端？ |
+|------|------|:----:|
+| `EquipmentDefinition` | 这是哪件装备（剑？盾？头盔？）| ✅ |
+| `Instance` | 这件装备的运行时对象（C++逻辑+蓝图扩展）| ✅ |
+| `GrantedHandles` | 装备时授予的技能/GE句柄 | ❌ 服务器专用，卸下时回收用 |
+
+为什么叫 Entry？因为整个列表是 **FFastArraySerializer**（UE 的增量网络同步数组），数组的基本单元叫 `FFastArraySerializerItem`，所以叫 Entry。
+
+### AddEntry 6 步详解
+
+`EquipmentManager::EquipItem() → EquipmentList.AddEntry(Definition)` 里执行：
+
+```
+AddEntry(B_Sword_Definition)
+│
+├─ ① 读定义配置
+│     取 Definition 的 CDO → 读 InstanceType
+│     如果 InstanceType 为空 → 回退到 UDark_TdoreEquipmentInstance
+│
+├─ ② 创建新条目 + NewObject 创建 Instance
+│     Entries.AddDefaulted()  ← 数组末尾追加一个 Entry 槽位
+│     NewObject<InstanceType>(Character)  ← 创建运行时实例，Outer=Character
+│     SetInstigator(Character)   ← 记录"谁装备的"
+│
+├─ ③ 授予 AbilitySet
+│     遍历 Definition 的 AbilitySetsToGrant
+│     → GiveToAbilitySystem(ASC, &GrantedHandles, Instance)
+│       · 把技能 Spec 加入 ASC
+│       · Spec.SourceObject = Instance（技能记住"这件装备给我的"）
+│       · 句柄存到 GrantedHandles（卸下时精确回收）
+│
+├─ ④ 生成可见 Actor
+│     SpawnEquipmentActors(Definition.ActorsToSpawn)
+│     → SpawnActorDeferred → FinishSpawning → AttachToComponent(Mesh, socket)
+│     → 加入 SpawnedActors 列表
+│
+├─ ⑤ MarkItemDirty → 触发网络复制
+│     FastArray 把新条目发给客户端
+│     → 客户端 PostReplicatedAdd → Instance->OnEquipped()
+│
+└─ ⑥ 返回 Instance
+      EquipItem 拿到返回值 → 调 Instance->OnEquipped()（Tag + 动画层 + Montage）
+```
+
+### 为什么需要 Entry 这个概念
+
+**本质原因：网络复制。**
+
+如果只是把 Instance 存到普通 `TArray` 里，客户端根本看不到。Entry 的存在是因为：
+
+1. **它是 FastArray 的复制单元**：服务器 `MarkItemDirty` → 客户端收到增量
+2. **它捆绑了"配置 + 实例 + 回收句柄"**：卸下时一把抓，不用反查
+3. **它给装备一个"身份"**：`GetFirstInstanceOfDefinition` 遍历 Entries 按定义精确匹配
+
 - [Dark_TdoreAnimInstance.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Animation/Dark_TdoreAnimInstance.cpp)
 - [Dark_TdoreCharacter.cpp](/D:/UE_ProJect/Dark_Tdore/Source/Dark_Tdore/Dark_TdoreCharacter.cpp)
