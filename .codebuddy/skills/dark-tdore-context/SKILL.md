@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-07-21 15:51 (增量: 2 .h + 6 .cpp + 1 Docs)
+> **最后更新**: 2026-07-21 20:33 (全量扫描)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-07-21 15:51
+> 自动生成于 2026-07-21 20:33
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -327,7 +327,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **`UDark_TdoreHealthComponent`**: 监听 `HealthSet` 属性变化
 - **Build.cs 公共依赖**: Core, CoreUObject, Engine, InputCore, EnhancedInput, GameplayAbilities, GameplayTags, GameplayTasks, ModularGameplay, ModularGameplayActors, UMG, Slate
 - **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
 - **2026-05-25 11:40**: 增量更新 (其他文件)
@@ -347,8 +346,4 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-06-06 17:55**: 增量更新 (3 .h + 2 .cpp + 19 Content)
 - **2026-07-07 20:16**: 增量更新 (2 .h + 1 .cpp + 1 Docs)
 - **2026-07-21 15:51**: 增量更新 (2 .h + 6 .cpp + 1 Docs)
-  - Source/.h: Source/Dark_Tdore/Equipment/Dark_TdoreEquipmentInstance.h, Source/Dark_Tdore/Weapons/Dark_TdoreWeaponActor.h
-  - Source/.cpp: Source/Dark_Tdore/Animation/Dark_TdoreAnimInstance.cpp, Source/Dark_Tdore/Equipment/Dark_TdoreEquipmentInstance.cpp, Source/Dark_Tdore/Equipment/Dark_TdoreEquipmentManagerComponent.cpp, Source/Dark_Tdore/Weapons/Abilities/GA_EquipWeapon.cpp, Source/Dark_Tdore/Weapons/Dark_TdoreWeaponActor.cpp, Source/Dark_Tdore/Weapons/Dark_TdoreWeaponInstance.cpp
-  - Docs: Docs/Equipment_System_Guide.md
-  - 类变更 [Equipment]: UDark_TdoreEquipmentInstance
-  - 类变更 [Weapons]: ADark_TdoreWeaponActor
+- **2026-07-21 20:33**: 全量扫描，73 .h + 65 .cpp + 1 .cs, Content 16 顶层目录
