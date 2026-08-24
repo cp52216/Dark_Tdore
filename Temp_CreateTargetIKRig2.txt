@@ -1,0 +1,8 @@
+Error: IKRigController: Failed to convert parameter 'skeletal_mesh' when calling function 'IKRigController.SetSkeletalMesh' on 'IKRigController_2'
+  TypeError: NativizeProperty: Cannot nativize 'Skeleton' as 'SkeletalMesh' (ObjectProperty)
+    TypeError: NativizeObject: Cannot nativize 'Skeleton' as 'Object' (allowed Class type: 'SkeletalMesh')
+Traceback (most recent call last):
+  File "<string>", line 10, in <module>
+TypeError: IKRigController: Failed to convert parameter 'skeletal_mesh' when calling function 'IKRigController.SetSkeletalMesh' on 'IKRigController_2'
+  TypeError: NativizeProperty: Cannot nativize 'Skeleton' as 'SkeletalMesh' (ObjectProperty)
+    TypeError: NativizeObject: Cannot nativize 'Skeleton' as 'Object' (allowed Class type: 'SkeletalMesh')

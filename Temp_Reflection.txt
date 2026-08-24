@@ -1,0 +1,1 @@
+Error: 'Class' object has no attribute 'find_function_by_name'

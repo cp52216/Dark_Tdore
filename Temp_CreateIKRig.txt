@@ -1,0 +1,9 @@
+create_new_ik_rig_asset doc: X.create_new_ik_rig_asset(package_path, asset_name) -> IKRigDefinition
+Create a new IK Rig rig asset at a specified location in your project's content folder.
+
+Args:
+    package_path (str): 
+    asset_name (str): The name of the new asset (ie "IK_MyNewRig")
+
+Returns:
+    IKRigDefinition:

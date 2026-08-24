@@ -1,0 +1,6 @@
+Found 83 AnimSequence assets by load
+  A_Attack_01: /Game/Girl_GreatSword_AnimSet/Animation/A_Attack_01.A_Attack_01
+  A_Attack_02: /Game/Girl_GreatSword_AnimSet/Animation/A_Attack_02.A_Attack_02
+  A_bound_down: /Game/Girl_GreatSword_AnimSet/Animation/A_bound_down.A_bound_down
+  A_bound_down_high: /Game/Girl_GreatSword_AnimSet/Animation/A_bound_down_high.A_bound_down_high
+  A_bound_up: /Game/Girl_GreatSword_AnimSet/Animation/A_bound_up.A_bound_up

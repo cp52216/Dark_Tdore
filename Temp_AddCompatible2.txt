@@ -1,0 +1,1 @@
+Added /Game/Girl_GreatSword_AnimSet/Animation/Skeleton/S_Mannequin_Skeleton.S_Mannequin_Skeleton to compatible skeletons

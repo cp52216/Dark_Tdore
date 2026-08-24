@@ -1,0 +1,1 @@
+RetargetAutoAlignMethod: ['CHAIN_TO_CHAIN', 'GLOBAL_ROTATION_AXES', 'LOCAL_ROTATION_AXES', 'MESH_TO_MESH', 'cast', 'get_display_name', 'name', 'static_enum', 'value']

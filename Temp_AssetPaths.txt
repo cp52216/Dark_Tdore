@@ -1,0 +1,11 @@
+Count: 90
+  /Game/Girl_GreatSword_AnimSet/Animation/A_Attack_01.A_Attack_01
+  /Game/Girl_GreatSword_AnimSet/Animation/A_Attack_02.A_Attack_02
+  /Game/Girl_GreatSword_AnimSet/Animation/A_bound_down.A_bound_down
+  /Game/Girl_GreatSword_AnimSet/Animation/A_bound_down_high.A_bound_down_high
+  /Game/Girl_GreatSword_AnimSet/Animation/A_bound_up.A_bound_up
+  /Game/Girl_GreatSword_AnimSet/Animation/A_bound_up_high.A_bound_up_high
+  /Game/Girl_GreatSword_AnimSet/Animation/A_Buff_01.A_Buff_01
+  /Game/Girl_GreatSword_AnimSet/Animation/A_Buff_02.A_Buff_02
+  /Game/Girl_GreatSword_AnimSet/Animation/A_Combo_01.A_Combo_01
+  /Game/Girl_GreatSword_AnimSet/Animation/A_Combo_01_1.A_Combo_01_1

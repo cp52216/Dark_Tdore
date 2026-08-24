@@ -1,0 +1,7 @@
+auto_map_chains doc: x.auto_map_chains(auto_map_type, force_remap, op_name="None") -> None
+Use string comparision to find "best" Source chain to map to each Target chain or clear the mappings
+
+Args:
+    auto_map_type (AutoMapChainType): an enum specifying the type of mapping to perform (ie, Exact, Fuzzy or Clear)
+    force_remap (bool): if false, will only remap those mappings that unset/None
+    op_name (Name): if specified, will auto-map only the chain mapping in the specified op, otherwise applies to all ops

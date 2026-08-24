@@ -1,0 +1,1 @@
+Created target IK Rig: /Game/Girl_GreatSword_AnimSet/Animation/Skeleton/IKRig_Mannequin1.IKRig_Mannequin1

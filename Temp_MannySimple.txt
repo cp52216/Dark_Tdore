@@ -1,0 +1,2 @@
+Type: SkeletalMesh
+Skeleton: /Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin

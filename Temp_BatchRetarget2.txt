@@ -1,0 +1,10 @@
+Error: IKRetargetBatchOperation: Failed to convert parameter 'assets_to_retarget' when calling function 'IKRetargetBatchOperation.DuplicateAndRetarget' on 'Default__IKRetargetBatchOperation'
+  TypeError: NativizeProperty: Cannot nativize 'list' as 'AssetsToRetarget' (ArrayProperty)
+    TypeError: NativizeProperty: Cannot nativize 'AnimSequence' as 'TransientPythonProperty' (StructProperty)
+      TypeError: NativizeStructInstance: Cannot nativize 'AnimSequence' as 'AssetData'
+Traceback (most recent call last):
+  File "<string>", line 18, in <module>
+TypeError: IKRetargetBatchOperation: Failed to convert parameter 'assets_to_retarget' when calling function 'IKRetargetBatchOperation.DuplicateAndRetarget' on 'Default__IKRetargetBatchOperation'
+  TypeError: NativizeProperty: Cannot nativize 'list' as 'AssetsToRetarget' (ArrayProperty)
+    TypeError: NativizeProperty: Cannot nativize 'AnimSequence' as 'TransientPythonProperty' (StructProperty)
+      TypeError: NativizeStructInstance: Cannot nativize 'AnimSequence' as 'AssetData'

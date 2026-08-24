@@ -1,0 +1,15 @@
+set_retarget_source_asset: x.set_retarget_source_asset(retarget_source_asset) -> None
+Assigns the passed skeletal mesh to the retarget source
+
+Args:
+    retarget_source_asset (SkeletalMesh):
+get_retarget_source_asset: x.get_retarget_source_asset() -> SkeletalMesh
+Returns the retarget source asset soft object pointer.
+
+Returns:
+    SkeletalMesh:
+get_skeleton: x.get_skeleton() -> Skeleton
+
+
+Returns:
+    Skeleton: The target USkeleton for the provided UAnimationAsset

@@ -1,0 +1,1 @@
+Created source IK Rig: /Game/Girl_GreatSword_AnimSet/Animation/Skeleton/IKRig_GirlGreatSword.IKRig_GirlGreatSword
