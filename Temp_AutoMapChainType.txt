@@ -1,1 +1,0 @@
-AutoMapChainType: ['CLEAR', 'EXACT', 'FUZZY', 'cast', 'get_display_name', 'name', 'static_enum', 'value']

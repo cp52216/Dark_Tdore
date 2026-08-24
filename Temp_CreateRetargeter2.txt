@@ -1,1 +1,0 @@
-Created retargeter: /Game/Girl_GreatSword_AnimSet/Animation/Skeleton/RTG_GirlGreatSword_to_Mannequin.RTG_GirlGreatSword_to_Mannequin

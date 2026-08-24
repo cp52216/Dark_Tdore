@@ -1,2 +1,0 @@
-AnimationAsset methods: ['get_skeleton']
-AnimSequence methods: ['clear_retarget_source_asset', 'get_retarget_source_asset', 'get_skeleton', 'set_retarget_source_asset', 'update_retarget_source_asset_data']

@@ -1,2 +1,0 @@
-Source mesh type: SkeletalMesh
-Path: /Game/Girl_GreatSword_AnimSet/Animation/Skeleton/SK_Mannequin.SK_Mannequin

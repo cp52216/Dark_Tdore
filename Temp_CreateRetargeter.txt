@@ -1,8 +1,0 @@
-Error: IKRetargeterController: Failed to convert parameter 'auto_map_type' when calling function 'IKRetargeterController.AutoMapChains' on 'IKRetargeterController_0'
-  TypeError: NativizeProperty: Cannot nativize 'RetargetSourceOrTarget' as 'AutoMapType' (EnumProperty)
-    TypeError: NativizeEnumEntry: Cannot nativize 'RetargetSourceOrTarget' as 'AutoMapChainType'
-Traceback (most recent call last):
-  File "<string>", line 21, in <module>
-TypeError: IKRetargeterController: Failed to convert parameter 'auto_map_type' when calling function 'IKRetargeterController.AutoMapChains' on 'IKRetargeterController_0'
-  TypeError: NativizeProperty: Cannot nativize 'RetargetSourceOrTarget' as 'AutoMapType' (EnumProperty)
-    TypeError: NativizeEnumEntry: Cannot nativize 'RetargetSourceOrTarget' as 'AutoMapChainType'
