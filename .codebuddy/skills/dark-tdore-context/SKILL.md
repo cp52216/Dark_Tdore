@@ -2,7 +2,7 @@
 
 > **用途**: 跨对话保持项目架构记忆，防止上下文丢失。
 > **自动更新**: 该 Skill 绑定 Git 提交自动同步机制。
-> **最后更新**: 2026-08-24 10:16 (增量: 557 Content)
+> **最后更新**: 2026-08-24 10:18 (增量: 其他文件)
 
 ---
 
@@ -64,7 +64,7 @@ Dark_Tdore/
 
 ## Content 目录结构
 
-> 自动生成于 2026-08-24 10:16
+> 自动生成于 2026-08-24 10:18
 
 | 目录 | 文件数 | 类型 | 子目录 |
 |------|--------|------|--------|
@@ -328,7 +328,6 @@ git commit (任何代码变更, 含 revert 回退)
 ---
 ## 自动更新日志
 
-- **公开头文件路径**: `Dark_Tdore`, `Dark_Tdore/AbilitySystem`, `Dark_Tdore/AbilitySystem/Abilities`
 - **2026-05-25 11:40**: 增量更新 (其他文件)
 - **2026-05-25 15:11**: 增量更新 (7 .h + 6 .cpp + 1 .cs)
 - **2026-05-25 17:50**: 增量更新 (4 .h + 4 .cpp + 4 Content + 1 .ini + 1 Docs)
@@ -348,6 +347,6 @@ git commit (任何代码变更, 含 revert 回退)
 - **2026-07-21 15:51**: 增量更新 (2 .h + 6 .cpp + 1 Docs)
 - **2026-07-21 20:33**: 全量扫描，73 .h + 65 .cpp + 1 .cs, Content 16 顶层目录
 - **2026-08-24 10:16**: 增量更新 (557 Content)
-  - Content: Content/Girl_GreatSword_AnimSet/AdvancedAsset/AimoffSet/lookaround.uasset, Content/Girl_GreatSword_AnimSet/AdvancedAsset/BlendSpace/BlendSpace.uasset, Content/Girl_GreatSword_AnimSet/AdvancedAsset/Blueprint/SK_Mannequin_Blueprint.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Attack_01.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Attack_02.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Buff_01.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Buff_02.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Combo_01.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Combo_01_1.uasset, Content/Girl_GreatSword_AnimSet/Animation/A_Combo_01_2.uasset ... 共557个
-  - Other: .codebuddy/mcp.json, .codebuddy/skills/mvvm-framework/SKILL.md, Temp_AddCompatible2.txt, Temp_AnimBPLib.txt, Temp_AnimHelp.txt, Temp_AnimMethods.txt, Temp_AssetCount.txt, Temp_AssetCount2.txt, Temp_AssetCount5.txt, Temp_AssetData.txt ... 共38个
-  - 已删除: Content/ShuangDao/AdvancedAsset/AimoffSet/lookaround.uasset, Content/ShuangDao/AdvancedAsset/BlendSpace/BlendSpace.uasset, Content/ShuangDao/AdvancedAsset/Blueprint/Paladin_SK_Mannequin_Blueprint.uasset, Content/ShuangDao/Animation/ANIM_Attack_01.uasset, Content/ShuangDao/Animation/ANIM_Attack_Sliding.uasset, Content/ShuangDao/Animation/ANIM_Attack_StingDown.uasset, Content/ShuangDao/Animation/ANIM_Combo_01.uasset, Content/ShuangDao/Animation/ANIM_Combo_01_1.uasset, Content/ShuangDao/Animation/ANIM_Combo_01_2.uasset, Content/ShuangDao/Animation/ANIM_Combo_01_3.uasset
+- **2026-08-24 10:18**: 增量更新 (其他文件)
+  - Other: Temp_AddCompatible2.txt, Temp_AnimBPLib.txt, Temp_AnimHelp.txt, Temp_AnimMethods.txt, Temp_AssetCount.txt, Temp_AssetCount2.txt, Temp_AssetCount5.txt, Temp_AssetData.txt, Temp_AssetData2.txt, Temp_AssetPaths.txt ... 共36个
+  - 已删除: Temp_AddCompatible2.txt, Temp_AnimBPLib.txt, Temp_AnimHelp.txt, Temp_AnimMethods.txt, Temp_AssetCount.txt, Temp_AssetCount2.txt, Temp_AssetCount5.txt, Temp_AssetData.txt, Temp_AssetData2.txt, Temp_AssetPaths.txt
